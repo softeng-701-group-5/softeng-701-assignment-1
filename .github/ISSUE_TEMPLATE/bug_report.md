@@ -8,21 +8,21 @@ assignees: ''
 ---
 
 **Bug Summary**
-[A concise description of what the bug is]
+<!-- A concise description of what the bug is -->
 
 **Test Case(s)**
-[List the relevant unsuccessful test case(s)]
+<!-- List the relevant unsuccessful test case(s) -->
 
 ---
 
 **Expected behavior**
-[A clear and concise description of what you expected to happen]
+<!-- Describe what you expected to happen -->
 
 **Observed Behaviour**
-[A clear and concise description of the observed behaviour of the bug]
+<!-- Describe the observed behaviour of the bug -->
 
 **Steps To Reproduce**
-[The steps performed to reproduce the bug]
+<!-- The steps performed to reproduce the bug -->
 1. 
 2. 
 
@@ -47,4 +47,4 @@ assignees: ''
 ---
 
 **Additional context**
-[Add any other context about the problem here]
+<!-- Add any other context about the problem here -->
