@@ -34,6 +34,8 @@ What kind of change does this PR introduce?
 Please check if your PR fulfills the following requirements:
 
 - [ ] Tested code with current upstream repo
+- [ ] Added new tests to the test suite for the feature
+- [ ] Tested the full test suite, and ensured that the feature does not break current build.
 - [ ] Docs have been added/updated which fit (for bug fixes / features)
 - [ ] Contains **NO** breaking changes
 - [ ] Associated with an issue (GitHub or internal)
