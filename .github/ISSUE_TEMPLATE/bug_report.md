@@ -28,8 +28,8 @@ assignees: ''
 
 **Environment**
 - Version:
- - OS: 
- - Browser: 
+- OS: 
+- Browser: 
 
 ---
 
