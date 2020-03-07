@@ -11,7 +11,6 @@ import net.dean.jraw.pagination.Paginator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -21,6 +20,8 @@ public class RedditFeedProvider {
     private RedditClient redditClient;
 
     public RedditFeedProvider(ApplicationProperties properties) {
+        validateRedditProperties(properties);
+
         UserAgent userAgent = new UserAgent("web", "com.feeder.server.providers.reddit", "v0.1", properties.getRedditUsername());
 
         Credentials credentials = Credentials.script(properties.getRedditUsername(), properties.getRedditPassword(),
@@ -32,7 +33,6 @@ public class RedditFeedProvider {
     }
 
     public List<Submission> getFeed(int numberOfItems) {
-        logger.info("Begin request to retrieve Reddit feed");
 
         Paginator.Builder<Submission> builder = redditClient.frontPage().limit(numberOfItems);
 
@@ -40,11 +40,31 @@ public class RedditFeedProvider {
 
         List submissions = paginator.accumulate(1);
 
-        logger.info("Finish request to retrieve Reddit feed");
-
         submissions.forEach(s -> logger.info(s.toString()));
 
         // TODO: Map the submissions to a different type for processing with other social media feeds
         return submissions;
+    }
+
+    private void validateRedditProperties(ApplicationProperties properties) {
+        if (properties == null) {
+            throw new IllegalStateException("ApplicationProperties is not defined");
+        }
+
+        if (properties.getRedditUsername() == null || properties.getRedditUsername().isBlank()) {
+            throw new IllegalStateException("providers.reddit.username is not defined");
+        }
+
+        if (properties.getRedditPassword() == null || properties.getRedditPassword().isBlank()) {
+            throw new IllegalStateException("providers.reddit.password is not defined");
+        }
+
+        if (properties.getRedditClientId() == null || properties.getRedditClientId().isBlank()) {
+            throw new IllegalStateException("providers.reddit.clientId is not defined");
+        }
+
+        if (properties.getRedditClientSecret() == null || properties.getRedditClientSecret().isBlank()) {
+            throw new IllegalStateException("providers.reddit.clientSecret is not defined");
+        }
     }
 }
