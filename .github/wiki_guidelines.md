@@ -15,7 +15,7 @@ GitHub uses its own version of the Markdown syntax and a guide has been publishe
 <!-- Waiting on clarification from Kelly on best way to handle listing contributions -->
 
 ### Home
-The 'Home' page must include a list of contributors. 
+The 'Home' page must include a list of contributors.
 <!-- It may also provide an overview of the wiki, but this should be handled by meaningful page names -->
 
 ### Meeting Minutes
@@ -34,3 +34,7 @@ When detailing future work, ensure that each feature is given a description that
 
 ## Writing Style
 Contributors to the wiki should ensure that they maintain a professional standard of prose, use the first person inclusive (i.e. "we did x because") and use the active voice instead of the passive voice where possible. Wikipedia provides a [good rundown](https://en.wikipedia.org/wiki/Writing_style) on this.
+
+## Markdown Style
+- When creating unordered lists, `-` should be used instead of `*`.
+- Line breaks should be a double new line; avoid the use of `<br>`
