@@ -22,9 +22,9 @@ Create a pull request by follwing these steps:
 
 1. Use the fork and pull workflow to make your pull requests, see [here](https://gist.github.com/Chaser324/ce0505fbed06b947d962) for more information
 2. Follow all instructions in the [pull request template](./.github/pull_request_template.md)
-3. Follow the [styleguides](#styleguides)
+3. Follow the [style guides](#style-guides)
 
-## StyleGuides
+## Style Guides
 
 ### Git Commit Messages
 
