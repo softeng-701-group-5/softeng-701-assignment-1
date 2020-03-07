@@ -34,7 +34,7 @@ In order to ensure each contributor is credited fairly for their contributions, 
 ### Jordan
 I worked on x
 ### Matt
-I worked on x
+I worked on y
 ```
 
 ### Future Work
