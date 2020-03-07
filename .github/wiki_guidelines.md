@@ -8,14 +8,13 @@ GitHub uses its own version of the Markdown syntax and a guide has been publishe
 
 ## Wiki Structure
 * A 'Home' page should describe the project and the contributors
-* A 'Meeting Minutes' page should include meeting minutes from all group meetings, with different meetings divided into different sections.
+* A 'Meeting Minutes' page should include meeting minutes from all group meetings, with different meetings divided into different sections
 * Various pages describing the implementation of the project e.g. 'Front-end', 'Back-end'
+* A 'Contributions' page, which provides an overview of how each contributor contributed
 * A 'Future Work' page which suggests ways to extend the project for future contributors
-* A 'Contributions' page, which provides an overview of how each contributor contributed to the project 
-<!-- Waiting on clarification from Kelly on best way to handle listing contributions -->
 
 ### Home
-The 'Home' page must include a list of contributors.
+The 'Home' page must include a list of contributors. 
 <!-- It may also provide an overview of the wiki, but this should be handled by meaningful page names -->
 
 ### Meeting Minutes
@@ -26,11 +25,25 @@ All meeting minutes should follow a consistent format and include (at minimum):
 * Action Items
 
 ### Implementation Documentation
-There should be a page dedicated to each sub-group and a members of that group should maintain said page. Each page must include an *Overview*, describing its purpose and how it integrates with the overall project. It is also encouraged to list relevant features
+There should be a page dedicated to each sub-group and a members of that group should maintain said page. Each page must include an *Overview*, describing its purpose and how it integrates with the overall project. It is also encouraged to list relevant features.
+
+### Contributions
+In order to ensure each contributor is credited fairly for their contributions, the contributions page should include a short summary of the features each contributor worked on, including non-technical contributions (i.e. documentation). Contributions are to be organised by assigned sub-group, even if a contributor contributed to more than one sub-group. An example format that the page should follow is given below.
+```
+## Front-end
+### Jordan
+I worked on x
+### Matt
+I worked on x
+```
 
 ### Future Work
-When detailing future work, ensure that each feature is given a description that would be adequate.
-<!-- Not sure about this one, maybe define a format with name, purpose, description, etc. -->
+When suggesting future work, ensure that each feature is given a description that adequately describes why the feature should be implemented and provide some detail (if possible) as to how it could be implemented. An example format is given below.
+```
+## Name
+### Description
+### Reason 
+```
 
 ## Writing Style
 Contributors to the wiki should ensure that they maintain a professional standard of prose, use the first person inclusive (i.e. "we did x because") and use the active voice instead of the passive voice where possible. Wikipedia provides a [good rundown](https://en.wikipedia.org/wiki/Writing_style) on this.
