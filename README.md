@@ -8,3 +8,5 @@ We are using the React framework to manage the front-end UI and using a Java ser
 * Reddit
 * Spotify
 * Twitter
+
+*Created for Assignment 1 of the SOFTENG701 corse at the University of Auckland*
