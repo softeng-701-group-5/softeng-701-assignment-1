@@ -1,0 +1,65 @@
+name: feeder-workflow-ci
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  server: # Spring Boot CI
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Java 11 JDK
+      uses: actions/setup-java@v1.3.0
+      with:
+        java-version: 11
+    - name: Cache Maven Dependencies
+      uses: actions/cache@v1.1.2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/server/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+    - name: Build with Maven
+      working-directory: ./server
+      run: mvn clean compile
+    - name: Test with Maven
+      working-directory: ./server
+      run: mvn test
+    - name: Package with Maven
+      working-directory: ./server
+      run: mvn package
+    - name: Upload Target
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: feeder-server
+        path: './server/target/'
+ 
+  client: # React CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Get Yarn Cache
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache node_modules for Yarn 
+        uses: actions/cache@v1
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/client/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Yarn Install
+        working-directory: ./client
+        run: yarn install
+      - name: Yarn Build
+        working-directory: ./client
+        run: yarn build
+      - name: Yarn Test
+        working-directory: ./client
+        run: CI=true yarn test --passWithNoTests
