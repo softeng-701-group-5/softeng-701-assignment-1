@@ -33,13 +33,16 @@ Examples of unacceptable behavior by participants include:
 
 ## As a SE701 Student in Group 5
 
-We all expect to have great communication skills, which includes the use of either Discord or Messenger
-(Whichever suits best for you). This also includes in the case of being unable to participate for 
-a time being, letting the team know will aid in any future planning that may be done.
+We are all expect to have great communication skills, which includes the use of either Discord or Messenger
+(Whichever suits best for you). This includes cases of being unable to participate for periods of time, 
+letting the team know will aid in any future planning that may be done.
 
-We all expect to be actively participating in construction of this project. It is noted that we are all
-students and we have other commitments. However, any contribution is good contribution, as long as you
-have made significant impact in construction of the project.
+We are all expect to be actively participating in construction of this project. It is noted that we are all
+students and we have other commitments. However, any contribution is good contribution, so long as you
+have made significant impact in construction of the project. *One-Upping* is heavily *DISCOURAGED* as this
+means that other members of the team will be unable to showcase their own contributions as you may overshadow
+them. In the case of having plenty of contribution to the project already, you are expected to help push
+others in contributing to the project.
 
 ## Scope
 
