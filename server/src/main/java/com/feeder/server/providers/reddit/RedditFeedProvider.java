@@ -8,42 +8,52 @@ import net.dean.jraw.models.Submission;
 import net.dean.jraw.oauth.Credentials;
 import net.dean.jraw.oauth.OAuthHelper;
 import net.dean.jraw.pagination.Paginator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+/***
+ * A RedditFeedProvider is responsible for retrieving Reddit posts from a users homepage from the Reddit API.
+ */
 @Service
 public class RedditFeedProvider {
 
-    private static final Logger logger = LoggerFactory.getLogger(RedditFeedProvider.class);
     private RedditClient redditClient;
 
     public RedditFeedProvider(ApplicationProperties properties) {
         validateRedditProperties(properties);
 
-        UserAgent userAgent = new UserAgent("web", "com.feeder.server.providers.reddit", "v0.1", properties.getRedditUsername());
+        // UserAgent and Credentials are used to get an OAuth token for the RedditClient
+        UserAgent userAgent = new UserAgent("web", "com.feeder.server.providers.reddit",
+                "v0.1", properties.getRedditUsername());
 
         Credentials credentials = Credentials.script(properties.getRedditUsername(), properties.getRedditPassword(),
                 properties.getRedditClientId(), properties.getRedditClientSecret());
 
         NetworkAdapter adapter = new OkHttpNetworkAdapter(userAgent);
 
-        redditClient = OAuthHelper.automatic(adapter, credentials);
+        redditClient = getAuthenticatedClient(adapter, credentials);
     }
 
+    /***
+     * Returns Reddit posts/submissions on the users front page, the user is defined by the ApplicationProperties.
+     *
+     * @param numberOfItems number of submissions to return
+     * @return List of submissions
+     */
     public List<Submission> getFeed(int numberOfItems) {
 
-        Paginator.Builder<Submission> builder = redditClient.frontPage().limit(numberOfItems);
+        // Make a request for the front page
+        Paginator paginator = redditClient.frontPage().limit(numberOfItems).build();
 
-        Paginator paginator = builder.build();
-
+        // Only get the first page of results, because pagination is not yet supported
         List submissions = paginator.accumulate(1);
-
-        submissions.forEach(s -> logger.info(s.toString()));
 
         // TODO: Map the submissions to a different type for processing with other social media feeds
         return submissions;
+    }
+
+    protected RedditClient getAuthenticatedClient(NetworkAdapter adapter, Credentials credentials) {
+        return OAuthHelper.automatic(adapter, credentials);
     }
 
     private void validateRedditProperties(ApplicationProperties properties) {
