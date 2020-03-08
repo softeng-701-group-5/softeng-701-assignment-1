@@ -56,7 +56,7 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Yarn Install
         working-directory: ./client
-        run: yarn install
+        run: yarn install --frozen-lockfile
       - name: Yarn Build
         working-directory: ./client
         run: yarn build
