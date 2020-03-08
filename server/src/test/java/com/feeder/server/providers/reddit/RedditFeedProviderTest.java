@@ -1,16 +1,15 @@
 package com.feeder.server.providers.reddit;
-
 import com.feeder.server.ApplicationProperties;
 import net.dean.jraw.RedditClient;
 import net.dean.jraw.http.NetworkAdapter;
 import net.dean.jraw.models.Submission;
-import net.dean.jraw.models.SubredditSort;
 import net.dean.jraw.oauth.Credentials;
 import net.dean.jraw.pagination.DefaultPaginator;
-import net.dean.jraw.pagination.Paginator;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,19 +18,20 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
-class RedditFeedProviderTest {
+@ExtendWith(MockitoExtension.class)
+public class RedditFeedProviderTest {
+
+    @Mock private RedditClient mockRedditClient;
     private TestableRedditFeedProvider subject;
-    private RedditClient mockRedditClient;
     private ApplicationProperties mockProperties = new ApplicationProperties("test","test","test","test");
 
     @Test
-    void testGetFeed() {
+    public void testGetFeed() {
         // arrange
         int expectedNumberOfSubmissions = 2;
-        mockRedditClient = mock(RedditClient.class);
         DefaultPaginator mockPaginator = mock(DefaultPaginator.class);
         List mockList = Arrays.asList(new Submission[expectedNumberOfSubmissions]);
-        DefaultPaginator.Builder<Submission, SubredditSort> builder = mock(DefaultPaginator.Builder.class);
+        DefaultPaginator.Builder builder = mock(DefaultPaginator.Builder.class);
 
         when(mockRedditClient.frontPage()).thenReturn(builder);
         when(builder.limit(anyInt())).thenReturn(builder);
@@ -48,7 +48,7 @@ class RedditFeedProviderTest {
     }
 
     @Test
-    void testPropertyValidation() {
+    public void testPropertyValidation() {
         try {
             subject = new TestableRedditFeedProvider(new ApplicationProperties("","","",""));
             fail();
