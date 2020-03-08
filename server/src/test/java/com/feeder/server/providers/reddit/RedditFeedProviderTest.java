@@ -2,7 +2,9 @@ package com.feeder.server.providers.reddit;
 import com.feeder.server.ApplicationProperties;
 import net.dean.jraw.RedditClient;
 import net.dean.jraw.http.NetworkAdapter;
+import net.dean.jraw.models.Listing;
 import net.dean.jraw.models.Submission;
+import net.dean.jraw.models.SubredditSort;
 import net.dean.jraw.oauth.Credentials;
 import net.dean.jraw.pagination.DefaultPaginator;
 import org.junit.jupiter.api.Test;
@@ -28,10 +30,10 @@ public class RedditFeedProviderTest {
     @Test
     public void testGetFeed() {
         // arrange
-        int expectedNumberOfSubmissions = 2;
-        DefaultPaginator mockPaginator = mock(DefaultPaginator.class);
-        List mockList = Arrays.asList(new Submission[expectedNumberOfSubmissions]);
-        DefaultPaginator.Builder builder = mock(DefaultPaginator.Builder.class);
+        int expectedNumberOfListings = 2;
+        DefaultPaginator<Submission> mockPaginator = mock(DefaultPaginator.class);
+        List<Listing<Submission>> mockList = Arrays.asList(new Listing[expectedNumberOfListings]);
+        DefaultPaginator.Builder<Submission, SubredditSort> builder = mock(DefaultPaginator.Builder.class);
 
         when(mockRedditClient.frontPage()).thenReturn(builder);
         when(builder.limit(anyInt())).thenReturn(builder);
@@ -41,10 +43,10 @@ public class RedditFeedProviderTest {
         subject = new TestableRedditFeedProvider(mockProperties);
 
         // act
-        List result = subject.getFeed(expectedNumberOfSubmissions);
+        List<Listing<Submission>> result = subject.getFeed(expectedNumberOfListings);
 
         // assert
-        assertEquals(result.size(), expectedNumberOfSubmissions);
+        assertEquals(result.size(), expectedNumberOfListings);
     }
 
     @Test
