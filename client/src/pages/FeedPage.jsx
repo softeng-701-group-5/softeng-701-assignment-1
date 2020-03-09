@@ -1,5 +1,12 @@
 import React from 'react';
-import { AppBar, Typography, Toolbar, makeStyles } from '@material-ui/core';
+import {
+  AppBar,
+  Typography,
+  Toolbar,
+  Container,
+  Paper,
+  makeStyles,
+} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,7 +32,12 @@ export const FeedPage = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <p>welcome to the feed page</p>
+
+      <Container>
+        <Paper>
+          <p>welcome to the feed page</p>
+        </Paper>
+      </Container>
     </div>
   );
 };
