@@ -3,6 +3,8 @@ package com.feeder.server.controllers;
 import com.feeder.server.ApplicationProperties;
 import com.feeder.server.models.Hello;
 import com.feeder.server.providers.reddit.RedditFeedProvider;
+import net.dean.jraw.models.Listing;
+import net.dean.jraw.models.Submission;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class HelloController {
     @GetMapping
     public Hello readHello() {
 
-        List items = redditFeedProvider.getFeed(2);
+        List<Listing<Submission>> items = redditFeedProvider.getFeed(2);
         items.forEach(s -> logger.info(s.toString()));
         return new Hello("hello");
     }

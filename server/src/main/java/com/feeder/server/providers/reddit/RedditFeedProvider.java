@@ -20,6 +20,11 @@ public class RedditFeedProvider {
 
     private RedditClient redditClient;
 
+    /***
+     * Default constructor required for unit testing
+     */
+    public RedditFeedProvider() {}
+
     public RedditFeedProvider(ApplicationProperties properties) {
         validateRedditProperties(properties);
 
