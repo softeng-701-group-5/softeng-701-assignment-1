@@ -10,11 +10,15 @@ import {
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
+  container: {
+    marginTop: 30,
   },
-  title: {
-    flexGrow: 1,
+  paperContainer: {
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  item: {
+    textAlign: 'center',
   },
 }));
 
@@ -42,11 +46,11 @@ export const FeedPage = () => {
         </Toolbar>
       </AppBar>
 
-      <Container>
-        <Paper>
+      <Container className={classes.container}>
+        <Paper className={classes.paperContainer}>
           <Grid container direction="column" spacing={3}>
             {items.map((item, i) => (
-              <Grid item key={i}>
+              <Grid item key={i} className={classes.item}>
                 <Paper>
                   <Typography>{item}</Typography>
                 </Paper>
