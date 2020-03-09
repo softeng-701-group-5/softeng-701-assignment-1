@@ -39,8 +39,7 @@ Please check if your PR fulfills the following requirements:
 - [ ] Docs have been added/updated which fit (for bug fixes / features)
 - [ ] Contains **NO** breaking changes
 - [ ] Associated with an issue (GitHub or internal)
-- [ ] Checked licensing of Frameworks/Libraries (if applicable)
-- [ ] Squashed Commits 
+- [ ] Checked licensing of Frameworks/Libraries (if applicable) 
 
 <!-- If you are unsure on how to squash commits, please refer to the following link for help:
 https://www.devroom.io/2011/07/05/git-squash-your-latests-commits-into-one/
