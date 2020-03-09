@@ -29,3 +29,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Development variables/secrets ###
+application-dev.properties
