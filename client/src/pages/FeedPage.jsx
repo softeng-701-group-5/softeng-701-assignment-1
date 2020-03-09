@@ -5,15 +5,13 @@ import {
   Toolbar,
   Container,
   Paper,
+  Grid,
   makeStyles,
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
@@ -22,6 +20,17 @@ const useStyles = makeStyles(theme => ({
 
 export const FeedPage = () => {
   const classes = useStyles();
+
+  // TODO: fetch data from server
+  const items = [
+    'item 1',
+    'item 2',
+    'item 3',
+    'item 4',
+    'item 5',
+    'item 6',
+    'item 7',
+  ];
 
   return (
     <div className={classes.root}>
@@ -35,7 +44,15 @@ export const FeedPage = () => {
 
       <Container>
         <Paper>
-          <p>welcome to the feed page</p>
+          <Grid container direction="column" spacing={3}>
+            {items.map((item, i) => (
+              <Grid item key={i}>
+                <Paper>
+                  <Typography>{item}</Typography>
+                </Paper>
+              </Grid>
+            ))}
+          </Grid>
         </Paper>
       </Container>
     </div>
