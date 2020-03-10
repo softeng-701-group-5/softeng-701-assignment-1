@@ -16,11 +16,14 @@ export const HomePage = () => {
   return (
     <Paper>
       <Grid container>
-        <Link to="/feed">
-          <Button className={classes.loginButton} color="blue">
-            <Typography>LOGIN</Typography>
-          </Button>
-        </Link>
+        <Button
+          component={Link}
+          to="/feed"
+          className={classes.loginButton}
+          color="blue"
+        >
+          <Typography>LOGIN</Typography>
+        </Button>
       </Grid>
     </Paper>
   );
