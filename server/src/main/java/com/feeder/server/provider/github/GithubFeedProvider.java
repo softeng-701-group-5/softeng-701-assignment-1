@@ -1,7 +1,7 @@
-package com.feeder.server.providers.github;
+package com.feeder.server.provider.github;
 
-import com.feeder.server.models.GithubData;
-import com.feeder.server.providers.FeedProvider;
+import com.feeder.server.model.GithubData;
+import com.feeder.server.provider.FeedProvider;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 

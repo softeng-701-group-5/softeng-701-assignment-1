@@ -1,7 +1,7 @@
-package com.feeder.server.providers.twitter;
+package com.feeder.server.provider.twitter;
 
-import com.feeder.server.models.TwitterData;
-import com.feeder.server.providers.FeedProvider;
+import com.feeder.server.model.TwitterData;
+import com.feeder.server.provider.FeedProvider;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 

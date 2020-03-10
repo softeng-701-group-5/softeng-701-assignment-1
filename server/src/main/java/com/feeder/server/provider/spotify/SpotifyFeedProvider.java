@@ -1,7 +1,7 @@
-package com.feeder.server.providers.spotify;
+package com.feeder.server.provider.spotify;
 
-import com.feeder.server.models.SpotifyData;
-import com.feeder.server.providers.FeedProvider;
+import com.feeder.server.model.SpotifyData;
+import com.feeder.server.provider.FeedProvider;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 

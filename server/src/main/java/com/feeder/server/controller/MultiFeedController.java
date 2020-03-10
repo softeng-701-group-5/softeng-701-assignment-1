@@ -1,11 +1,11 @@
-package com.feeder.server.controllers;
+package com.feeder.server.controller;
 
-import com.feeder.server.models.GenericData;
-import com.feeder.server.models.GithubData;
-import com.feeder.server.models.RedditData;
-import com.feeder.server.models.SpotifyData;
-import com.feeder.server.models.TwitterData;
-import com.feeder.server.providers.FeedProvider;
+import com.feeder.server.model.GenericData;
+import com.feeder.server.model.GithubData;
+import com.feeder.server.model.RedditData;
+import com.feeder.server.model.SpotifyData;
+import com.feeder.server.model.TwitterData;
+import com.feeder.server.provider.FeedProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

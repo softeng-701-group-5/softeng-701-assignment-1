@@ -1,4 +1,4 @@
-package com.feeder.server.providers.reddit;
+package com.feeder.server.provider.reddit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;

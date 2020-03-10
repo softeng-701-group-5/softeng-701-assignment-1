@@ -1,7 +1,7 @@
-package com.feeder.server.providers.reddit;
+package com.feeder.server.provider.reddit;
 
-import com.feeder.server.models.RedditData;
-import com.feeder.server.providers.FeedProvider;
+import com.feeder.server.model.RedditData;
+import com.feeder.server.provider.FeedProvider;
 import java.util.List;
 import net.dean.jraw.RedditClient;
 import net.dean.jraw.models.Listing;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
 /**
- * * A RedditFeedProvider is responsible for retrieving Reddit posts from a users homepage from the
+ * A RedditFeedProvider is responsible for retrieving Reddit posts from a users homepage from the
  * Reddit API.
  */
 @Service
@@ -21,7 +21,7 @@ public class RedditFeedProvider implements FeedProvider<RedditData> {
   @Autowired private RedditClient redditClient;
 
   /**
-   * * Returns Reddit posts/submissions on the users front page, the user is defined by the
+   * Returns Reddit posts/submissions on the users front page, the user is defined by the
    * ApplicationProperties.
    *
    * @param numberOfItems number of submissions to return

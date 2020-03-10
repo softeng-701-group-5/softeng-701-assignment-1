@@ -1,4 +1,4 @@
-package com.feeder.server.providers.reddit;
+package com.feeder.server.provider.reddit;
 
 import com.feeder.server.ApplicationProperties;
 import net.dean.jraw.RedditClient;
