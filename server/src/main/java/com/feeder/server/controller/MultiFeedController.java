@@ -53,7 +53,6 @@ public class MultiFeedController {
   public Flux<RedditData> serializationDemoFlow() {
     return Flux.just(
         RedditData.newBuilder()
-            .feedType(Type.REDDIT)
             .title("Cat")
             .description("What a nice cat")
             .imageURI("http://cat.jpg")

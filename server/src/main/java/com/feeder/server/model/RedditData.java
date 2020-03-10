@@ -16,6 +16,11 @@ public abstract class RedditData extends GenericData {
     return new AutoValue_RedditData.Builder();
   }
 
+  @Override
+  public Type feedType() {
+    return Type.REDDIT;
+  }
+
   @JsonProperty("title")
   public abstract String title();
 
@@ -33,8 +38,6 @@ public abstract class RedditData extends GenericData {
     Builder imageURI(String imageUrl);
 
     Builder description(String description);
-
-    Builder feedType(Type feedType);
 
     RedditData build();
   }
