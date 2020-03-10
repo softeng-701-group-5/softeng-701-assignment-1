@@ -4,4 +4,4 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_EMPTY)
-public class TwitterData extends GenericData {}
+public abstract class TwitterData extends GenericData {}

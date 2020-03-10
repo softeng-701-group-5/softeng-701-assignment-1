@@ -1,6 +1,7 @@
 package com.feeder.server.controller;
 
 import com.feeder.server.model.GenericData;
+import com.feeder.server.model.GenericData.Type;
 import com.feeder.server.model.GithubData;
 import com.feeder.server.model.RedditData;
 import com.feeder.server.model.SpotifyData;
@@ -46,5 +47,16 @@ public class MultiFeedController {
   @GetMapping("/twitter")
   public Flux<TwitterData> twitterFlow() {
     return twitterFeedProvider.getFeed();
+  }
+
+  @GetMapping("/demo")
+  public Flux<RedditData> serializationDemoFlow() {
+    return Flux.just(
+        RedditData.newBuilder()
+            .feedType(Type.REDDIT)
+            .title("Cat")
+            .description("What a nice cat")
+            .imageURI("http://cat.jpg")
+            .build());
   }
 }

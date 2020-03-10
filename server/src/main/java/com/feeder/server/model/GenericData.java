@@ -1,11 +1,9 @@
 package com.feeder.server.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import java.net.URI;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(Include.NON_EMPTY)
 public abstract class GenericData {
+
   public enum Type {
     REDDIT,
     GITHUB,
@@ -13,8 +11,6 @@ public abstract class GenericData {
     TWITTER
   }
 
-  public String title;
-  public URI imageURI;
-  public String description;
-  public Type feedType;
+  @JsonProperty("feedType")
+  public abstract Type feedType();
 }
