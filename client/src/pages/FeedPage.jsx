@@ -7,7 +7,9 @@ import {
   Paper,
   Grid,
   makeStyles,
+  IconButton,
 } from '@material-ui/core';
+import { HomeIcon } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,6 +45,14 @@ export const FeedPage = () => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+          >
+            <HomeIcon />
+          </IconButton>
           <Typography className={classes.title} variant="h6">
             Feedr
           </Typography>
