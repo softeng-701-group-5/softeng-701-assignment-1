@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
-import { HelloPage } from './HelloPage';
+import { FeedPage } from './FeedPage';
 
-describe('<Hello />', () => {
+describe('<FeedPage />', () => {
   let subject;
 
   beforeEach(() => {
-    subject = mount(<HelloPage />);
+    subject = mount(<FeedPage />);
   });
 
   afterEach(() => {
@@ -16,6 +16,6 @@ describe('<Hello />', () => {
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<HelloPage />, div);
+    ReactDOM.render(<FeedPage />, div);
   });
 });

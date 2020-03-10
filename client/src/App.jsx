@@ -1,5 +1,6 @@
 import React from 'react';
+import { FeedPage } from './pages/FeedPage';
 
 export const App = () => {
-  return <div>Welcome to Feeder client.</div>;
+  return <FeedPage />;
 };
