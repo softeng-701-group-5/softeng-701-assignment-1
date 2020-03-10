@@ -1,4 +1,7 @@
 package com.feeder.server.models;
 
-public class GithubData extends GenericData {
-}
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_EMPTY)
+public class GithubData extends GenericData {}
