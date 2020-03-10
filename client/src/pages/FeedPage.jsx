@@ -10,6 +10,9 @@ import {
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    backgroundColor: '#f5f5f5',
+  },
   container: {
     marginTop: 30,
   },
@@ -47,11 +50,11 @@ export const FeedPage = () => {
       </AppBar>
 
       <Container className={classes.container}>
-        <Paper className={classes.paperContainer}>
+        <Paper square className={classes.paperContainer}>
           <Grid container direction="column" spacing={3}>
             {items.map((item, i) => (
               <Grid item key={i} className={classes.item}>
-                <Paper>
+                <Paper square>
                   <Typography>{item}</Typography>
                 </Paper>
               </Grid>
