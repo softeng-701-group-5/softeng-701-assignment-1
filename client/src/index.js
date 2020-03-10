@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
-import { App2 } from './App';
+import { helloButton } from './App';
+import { Hello } from './components/Hello';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
     <div>
         <App />
-        <App2 />
+        <helloButton />
+        <Hello />
     </div>, document.getElementById('root'));
 //ReactDOM.render(<App />, <App2 />, document.getElementById('root'));
 
