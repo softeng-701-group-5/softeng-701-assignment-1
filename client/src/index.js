@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
-import { helloButton } from './App';
-import { Hello } from './components/Hello';
+import { App2 } from './App';
+import { CardContainer } from './App';
 import * as serviceWorker from './serviceWorker';
+import RecipeReviewCard from './Card2';
+
 
 ReactDOM.render(
     <div>
-        <App />
-        <helloButton />
-        <Hello />
+        
+        <CardContainer>
+            
+        </CardContainer>
+        <RecipeReviewCard />
+
     </div>, document.getElementById('root'));
 //ReactDOM.render(<App />, <App2 />, document.getElementById('root'));
 
