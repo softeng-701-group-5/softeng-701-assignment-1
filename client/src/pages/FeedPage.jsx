@@ -53,7 +53,7 @@ export const FeedPage = () => {
           <IconButton
             component={Link}
             to={'/'}
-            color="white"
+            color="inherit"
             className={classes.homeButton}
           >
             <HomeIcon />
