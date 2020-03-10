@@ -1,6 +1,7 @@
 package com.feeder.server.controllers;
 
 import com.feeder.server.ApplicationProperties;
+import com.feeder.server.models.GenericData;
 import com.feeder.server.models.Hello;
 import com.feeder.server.providers.reddit.RedditFeedProvider;
 import net.dean.jraw.models.Listing;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -23,10 +25,11 @@ public class HelloController {
     @Autowired private RedditFeedProvider redditFeedProvider;
 
     @GetMapping
-    public Hello readHello() {
+    public Flux<? extends GenericData> readHello() {
 
         List<Listing<Submission>> items = redditFeedProvider.getFeed(2);
         items.forEach(s -> logger.info(s.toString()));
-        return new Hello("hello");
+        //return new Hello("hello");
+        return redditFeedProvider.getFeed();
     }
 }

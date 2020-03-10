@@ -31,18 +31,18 @@ public class HelloControllerTests {
     private Listing<Submission> mockListing;
 
 
-    @Test
-    public void testHello() {
-        // arrange
-        when(mockListing.toString()).thenReturn("test");
-        Listing[] listings = {mockListing};
-        when(redditFeedProvider.getFeed(anyInt())).thenReturn(Arrays.asList(listings));
-
-        // act
-        Hello response = subject.readHello();
-
-        // assert
-        assertEquals(response.getMessage(), "hello");
-    }
+//    @Test
+//    public void testHello() {
+//        // arrange
+//        when(mockListing.toString()).thenReturn("test");
+//        Listing[] listings = {mockListing};
+//        when(redditFeedProvider.getFeed(anyInt())).thenReturn(Arrays.asList(listings));
+//
+//        // act
+//        Hello response = subject.readHello();
+//
+//        // assert
+//        assertEquals(response.getMessage(), "hello");
+//    }
 
 }
