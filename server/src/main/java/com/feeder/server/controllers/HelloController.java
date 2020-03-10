@@ -3,6 +3,7 @@ package com.feeder.server.controllers;
 import com.feeder.server.ApplicationProperties;
 import com.feeder.server.models.Hello;
 import com.feeder.server.providers.reddit.RedditFeedProvider;
+import com.feeder.server.providers.reddit.RedditFeedProviderFactory;
 import net.dean.jraw.models.Listing;
 import net.dean.jraw.models.Submission;
 import org.slf4j.Logger;
@@ -19,12 +20,14 @@ import java.util.List;
 public class HelloController {
 
     private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
-    @Autowired private ApplicationProperties properties;
-    @Autowired private RedditFeedProvider redditFeedProvider;
+    @Autowired private RedditFeedProviderFactory redditFeedProviderFactory;
+    @Autowired private ApplicationProperties applicationProperties;
+    private RedditFeedProvider redditFeedProvider;
 
     @GetMapping
     public Hello readHello() {
 
+        redditFeedProvider = redditFeedProviderFactory.createProvider(applicationProperties);
         List<Listing<Submission>> items = redditFeedProvider.getFeed(2);
         items.forEach(s -> logger.info(s.toString()));
         return new Hello("hello");

@@ -1,7 +1,9 @@
 package com.feeder.server.controllers;
 
+import com.feeder.server.ApplicationProperties;
 import com.feeder.server.models.Hello;
 import com.feeder.server.providers.reddit.RedditFeedProvider;
+import com.feeder.server.providers.reddit.RedditFeedProviderFactory;
 import net.dean.jraw.models.Listing;
 import net.dean.jraw.models.Submission;
 import org.junit.jupiter.api.Test;
@@ -14,29 +16,26 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 public class HelloControllerTests {
 
+    @Mock private RedditFeedProviderFactory redditFeedProviderFactory;
+    @Mock private RedditFeedProvider mockRedditFeedProvider;
+    @Mock private Listing<Submission> mockListing;
+
     @InjectMocks
     private HelloController subject;
-
-    @Mock
-    private RedditFeedProvider redditFeedProvider;
-    @Mock
-    private Listing<Submission> mockListing;
-
 
     @Test
     public void testHello() {
         // arrange
         when(mockListing.toString()).thenReturn("test");
         Listing[] listings = {mockListing};
-        when(redditFeedProvider.getFeed(anyInt())).thenReturn(Arrays.asList(listings));
+        when(mockRedditFeedProvider.getFeed(anyInt())).thenReturn(Arrays.asList(listings));
+        when(redditFeedProviderFactory.createProvider(any())).thenReturn(mockRedditFeedProvider);
 
         // act
         Hello response = subject.readHello();
@@ -44,5 +43,4 @@ public class HelloControllerTests {
         // assert
         assertEquals(response.getMessage(), "hello");
     }
-
 }

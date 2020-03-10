@@ -1,31 +1,29 @@
 package com.feeder.server.providers.reddit;
-import com.feeder.server.ApplicationProperties;
+
 import net.dean.jraw.RedditClient;
-import net.dean.jraw.http.NetworkAdapter;
 import net.dean.jraw.models.Listing;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.models.SubredditSort;
-import net.dean.jraw.oauth.Credentials;
 import net.dean.jraw.pagination.DefaultPaginator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class RedditFeedProviderTest {
 
     @Mock private RedditClient mockRedditClient;
-    private TestableRedditFeedProvider subject;
-    private ApplicationProperties mockProperties = new ApplicationProperties("test","test","test","test");
+    @InjectMocks private RedditFeedProvider subject;
 
     @Test
     public void testGetFeed() {
@@ -40,33 +38,10 @@ public class RedditFeedProviderTest {
         when(builder.build()).thenReturn(mockPaginator);
         when(mockPaginator.accumulate(anyInt())).thenReturn(mockList);
 
-        subject = new TestableRedditFeedProvider(mockProperties);
-
         // act
         List<Listing<Submission>> result = subject.getFeed(expectedNumberOfListings);
 
         // assert
         assertEquals(result.size(), expectedNumberOfListings);
-    }
-
-    @Test
-    public void testPropertyValidation() {
-        try {
-            subject = new TestableRedditFeedProvider(new ApplicationProperties("","","",""));
-            fail();
-        } catch (IllegalStateException e) {
-
-        }
-    }
-
-    private class TestableRedditFeedProvider extends RedditFeedProvider {
-        public TestableRedditFeedProvider(ApplicationProperties mockProperties) {
-            super(mockProperties);
-        }
-
-        @Override
-        protected RedditClient getAuthenticatedClient(NetworkAdapter adapter, Credentials credentials) {
-            return mockRedditClient;
-        }
     }
 }
