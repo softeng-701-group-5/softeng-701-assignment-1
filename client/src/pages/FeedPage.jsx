@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
   homeButton: {
     marginRight: theme.spacing(2),
+    color: '#FFFFFF',
   },
 }));
 
