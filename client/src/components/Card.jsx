@@ -1,4 +1,23 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  small: {
+    width: theme.spacing(3),
+    height: theme.spacing(3),
+  },
+  large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+  },
+}));
 
 /* colours and logos: 
  * reddit:  #FF4500 https://redditupvoted.files.wordpress.com/2015/10/reddit_icon_twitter_fb.png
@@ -12,10 +31,15 @@ import React from 'react';
  * image link: user_icon, image
  */
 function Card(props) {
+    
+  const classes = useStyles();
 
     return (
         <center>
         <div style = {{width: "400px", background: "#e6e6e6", padding:"10px", textAlign:"left"}}>
+            <div className={classes.root}>
+                <Avatar alt="Remy Sharp" src="https://img.icons8.com/windows/64/000000/user.png" style={{background: "grey"}} className={classes.large} />
+            </div>
             <h1>{props.title}</h1>
             <h2>{props.username}</h2>
             <p>{props.text}</p>
