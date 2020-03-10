@@ -9,7 +9,8 @@ import {
   makeStyles,
   IconButton,
 } from '@material-ui/core';
-import { HomeIcon } from '@material-ui/icons';
+import HomeIcon from '@material-ui/icons/Home';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,6 +25,9 @@ const useStyles = makeStyles(theme => ({
   },
   item: {
     textAlign: 'center',
+  },
+  homeButton: {
+    marginRight: theme.spacing(2),
   },
 }));
 
@@ -44,12 +48,12 @@ export const FeedPage = () => {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar variant="dense">
           <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
+            component={Link}
+            to={'/'}
+            color="white"
+            className={classes.homeButton}
           >
             <HomeIcon />
           </IconButton>

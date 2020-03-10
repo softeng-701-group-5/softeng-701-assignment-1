@@ -1,7 +1,7 @@
 import React from 'react';
 import { FeedPage } from './pages/FeedPage';
 import { HomePage } from './pages/HomePage';
-import { Router, Switch, Route } from 'react-router';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 export const App = () => {
   return (

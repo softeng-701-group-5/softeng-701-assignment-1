@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 export const HomePage = () => {
   return (
-    <Button>
-      <Link to="/feed">Login</Link>
-    </Button>
+    <Link to="/feed">
+      <Button color="blue">LOGIN</Button>
+    </Link>
   );
 };
