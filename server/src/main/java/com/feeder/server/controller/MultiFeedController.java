@@ -1,5 +1,6 @@
 package com.feeder.server.controller;
 
+import com.feeder.server.model.DemoData;
 import com.feeder.server.model.GenericData;
 import com.feeder.server.model.GenericData.Type;
 import com.feeder.server.model.GithubData;
@@ -50,11 +51,10 @@ public class MultiFeedController {
   }
 
   @GetMapping("/demo")
-  public Flux<RedditData> serializationDemoFlow() {
+  public Flux<DemoData> serializationDemoFlow() {
     return Flux.just(
-        RedditData.newBuilder()
+        DemoData.newBuilder()
             .title("Cat")
-            .description("What a nice cat")
             .imageURI("http://cat.jpg")
             .build());
   }
