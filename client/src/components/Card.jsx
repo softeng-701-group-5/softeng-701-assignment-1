@@ -72,7 +72,9 @@ function Card(props) {
   return (
     <center>
       <div className={styles.card} >
-        {props.user_icon ? <Avatar alt="Remy Sharp" src={props.user_icon} className={classes.large} style={{ float: "left", margin: "0.6em" }} /> : <Avatar alt="Remy Sharp" src="https://img.icons8.com/windows/64/000000/user.png" style={{ background: "#b3b3b3", float: "left", margin: "0.1em" }} className={classes.large} />}
+        {props.user_icon ? 
+          <Avatar alt="Remy Sharp" src={props.user_icon} className={classes.large} style={{ float: "left", margin: "0.6em" }} /> : 
+          <Avatar alt="Remy Sharp" src="https://img.icons8.com/windows/64/000000/user.png" style={{ background: "#b3b3b3", float: "left", margin: "0.1em" }} className={classes.large} />}
         <h1>{props.title}</h1>
         <h2>{props.username}</h2>
         <p>{props.text}</p>
@@ -86,7 +88,7 @@ function Card(props) {
                 var img = document.getElementById('myImg');
                 var modalImg = document.getElementById("img01");
                 var captionText = document.getElementById("caption");
-                var span = document.getElementsByClassName("close")[0];
+                var span = document.getElementById("close");
                 modal.style.display = "block";
                 modalImg.style.display = "block";
                 captionText.style.display = "block";
@@ -110,16 +112,9 @@ function Card(props) {
         <img src={mediaIcon(props.media)} className={styles.mediaicon} />
       </div>
 
-      {/* <div id="myModal" className="modal"> */}
+      {/* Modal */}
       <div id="myModal" className={styles.modal}>
-        <span className="close" style={{
-  position: "absolute",
-  top: "15px",
-  right: "35px",
-  color: "#f1f1f1",
-  fontSize: "40px",
-  fontWeight: "bold",
-  transition: "0.3s"}}>&times;</span>
+        <span id="close" className={styles.close}>&times;</span>
         <img alt="" src="" id="img01"  className={styles.modalimage} />
         <div id="caption"></div>
       </div>
