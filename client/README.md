@@ -7,6 +7,9 @@ In the project directory, you can run:
 ### `yarn install --frozen-lockfile`
 Installs required dependencies to run the project.
 
+### `yarn add @material-ui/core`
+### `yarn add @material-ui/[whatever else you need]`
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />

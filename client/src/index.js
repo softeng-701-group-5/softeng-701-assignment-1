@@ -2,14 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
 import * as serviceWorker from './serviceWorker';
-import RecipeReviewCard from './Card2';
 
 
 ReactDOM.render(
     <div>
         <App />
-        <RecipeReviewCard />
-
     </div>, document.getElementById('root'));
 //ReactDOM.render(<App />, <App2 />, document.getElementById('root'));
 
