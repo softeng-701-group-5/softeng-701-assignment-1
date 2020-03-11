@@ -72,9 +72,12 @@ function Card(props) {
   return (
     <center>
       <div className={styles.card} >
+        {/* only displays icon if image is supplied, otherwise displays default icon */}
         {props.user_icon ? 
           <Avatar alt="Remy Sharp" src={props.user_icon} className={classes.large} style={{ float: "left", margin: "0.6em" }} /> : 
           <Avatar alt="Remy Sharp" src="https://img.icons8.com/windows/64/000000/user.png" style={{ background: "#b3b3b3", float: "left", margin: "0.1em" }} className={classes.large} />}
+        
+        {/* title, username, text */}
         <h1>{props.title}</h1>
         <h2>{props.username}</h2>
         <p>{props.text}</p>

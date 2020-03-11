@@ -1,19 +1,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import TwitterIcon from './assets/twitter-icon.svg';
@@ -27,8 +24,6 @@ const useStyles = makeStyles(theme => ({
         padding: 0,
         margin: 0, 
         border: 0,
-        backgroundColor: "green",
-        // border-bottom: '5px solid red',
   },
   media: {
     height: 0,
@@ -96,7 +91,7 @@ const mediaIcon = (param) => {
 
   return (
     <Card className={classes.root} style={{padding:"0", margin:"0", border:"0"}}>
-      <CardHeader style={{backgroundColor:"white"}}
+      <CardHeader 
               avatar={
                   <Avatar aria-label="recipe" className={classes.avatar}>
                       R
@@ -109,22 +104,21 @@ const mediaIcon = (param) => {
               }
               title="Title"
               subheader="5 min ago"
-              //style={{border-bottom: '5px solid red'}}
       />
       <CardMedia
         className={classes.media}
               image="https://cdn.mos.cms.futurecdn.net/ntFmJUZ8tw3ULD3tkBaAtf.jpg"
         title="Paella dish"
       />
-      <CardContent style={{backgroundColor:"white"}}>
+      <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           Main text
         </Typography>
       </CardContent>
+      {/* TODO change the background colour call to a function call */}
       <CardActions style={{backgroundColor:"red"}} disableSpacing >
         <img src={mediaIcon("twitter")}/>
       </CardActions>
-      {/* <div style={{backgroundColor:"green", padding:"0", margin:"0", border:"0"}}><p>sdfg</p></div> */}
     </Card>
   );
 }
