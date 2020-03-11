@@ -16,9 +16,18 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+import TwitterIcon from './assets/twitter-icon.svg';
+import SpotifyIcon from './assets/spotify-icon.svg';
+import GithubIcon from './assets/github-icon.svg';
+import RedditIcon from './assets/reddit-icon.svg';
+
 const useStyles = makeStyles(theme => ({
   root: {
         maxWidth: 345,
+        padding: 0,
+        margin: 0, 
+        border: 0,
+        backgroundColor: "green",
         // border-bottom: '5px solid red',
   },
   media: {
@@ -48,9 +57,46 @@ export default function RecipeReviewCard() {
     setExpanded(!expanded);
   };
 
+  
+  /* colours and logos: 
+  * reddit:  #FF4500 https://redditupvoted.files.wordpress.com/2015/10/reddit_icon_twitter_fb.png
+  * spotify: #23D05F https://pbs.twimg.com/profile_images/558366562424332288/8ObpK74F.png
+  * github:  #010101 https://avatars0.githubusercontent.com/u/9919?s=280&v=4
+  * twitter: #05ACF0 https://pmcdeadline2.files.wordpress.com/2016/09/twitter-logo.jpg
+  */
+ const barColour = (param) => {
+  switch (param) {
+    case "reddit":
+      return "#FF4500";
+    case "spotify":
+      return "#23D05F";
+    case "github":
+      return "#010101";
+    case "twitter":
+      return "#05ACF0";
+    default:
+      return "#b3b3b3";
+  }
+}
+
+const mediaIcon = (param) => {
+  switch (param) {
+    case "reddit":
+      return RedditIcon;
+    case "spotify":
+      return SpotifyIcon;
+    case "github":
+      return GithubIcon;
+    case "twitter":
+      return TwitterIcon;
+    default:
+      return "";
+  }
+}
+
   return (
-    <Card className={classes.root}>
-      <CardHeader
+    <Card className={classes.root} style={{padding:"0", margin:"0", border:"0"}}>
+      <CardHeader style={{backgroundColor:"white"}}
               avatar={
                   <Avatar aria-label="recipe" className={classes.avatar}>
                       R
@@ -70,40 +116,15 @@ export default function RecipeReviewCard() {
               image="https://cdn.mos.cms.futurecdn.net/ntFmJUZ8tw3ULD3tkBaAtf.jpg"
         title="Paella dish"
       />
-      <CardContent>
+      <CardContent style={{backgroundColor:"white"}}>
         <Typography variant="body2" color="textSecondary" component="p">
           Main text
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
+      <CardActions style={{backgroundColor:"red"}} disableSpacing >
+        <img src={mediaIcon("twitter")}/>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Paragraph 1</Typography>
-          <Typography paragraph>
-            Paragraph 2
-          </Typography>
-          <Typography paragraph>
-            Paragraph 3
-          </Typography>
-          <Typography paragraph>
-            Paragraph 4
-          </Typography>
-          <Typography>
-            Paragraph 5
-          </Typography>
-        </CardContent>
-      </Collapse>
+      {/* <div style={{backgroundColor:"green", padding:"0", margin:"0", border:"0"}}><p>sdfg</p></div> */}
     </Card>
   );
 }

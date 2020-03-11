@@ -1,18 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
-import { App2 } from './App';
-import { CardContainer } from './App';
 import * as serviceWorker from './serviceWorker';
 import RecipeReviewCard from './Card2';
 
 
 ReactDOM.render(
     <div>
-        
-        <CardContainer>
-            
-        </CardContainer>
+        <App />
         <RecipeReviewCard />
 
     </div>, document.getElementById('root'));

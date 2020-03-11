@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './components/Card'
+import Card2 from './Card2'
 
 export const App = () => {
   return <div>
@@ -9,7 +10,7 @@ export const App = () => {
       user_icon="http://2.bp.blogspot.com/-8ms4E7aH4w8/UMztXOsniqI/AAAAAAAAIW0/qql0GcspDzs/s1600/2298.jpg" 
       date_time="17/05/19" 
       text="This is my new profile picture! Hope you like it :)" 
-      image_link="http://2.bp.blogspot.com/-8ms4E7aH4w8/UMztXOsniqI/AAAAAAAAIW0/qql0GcspDzs/s1600/2298.jpg"
+      // image_link="http://2.bp.blogspot.com/-8ms4E7aH4w8/UMztXOsniqI/AAAAAAAAIW0/qql0GcspDzs/s1600/2298.jpg"
       media="twitter" 
     />
   </div>;
