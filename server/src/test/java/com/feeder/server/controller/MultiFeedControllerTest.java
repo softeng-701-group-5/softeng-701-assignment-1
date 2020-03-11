@@ -20,7 +20,7 @@ import java.net.http.HttpClient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringRunner.class)
+
 @WebFluxTest(MultiFeedControllerTest.class)
 public class MultiFeedControllerTest {
 
