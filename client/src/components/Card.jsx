@@ -5,6 +5,7 @@ import TwitterIcon from '../assets/twitter-icon.svg';
 import SpotifyIcon from '../assets/spotify-icon.svg';
 import GithubIcon from '../assets/github-icon.svg';
 import RedditIcon from '../assets/reddit-icon.svg';
+import styles from './Card.module.css'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,12 +24,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-/* colours and logos: 
- * reddit:  #FF4500 https://redditupvoted.files.wordpress.com/2015/10/reddit_icon_twitter_fb.png
- * spotify: #23D05F https://pbs.twimg.com/profile_images/558366562424332288/8ObpK74F.png
- * github:  #010101 https://avatars0.githubusercontent.com/u/9919?s=280&v=4
- * twitter: #05ACF0 https://pmcdeadline2.files.wordpress.com/2016/09/twitter-logo.jpg
- */
 
 /* available props: 
  * text: title, username, date_time, text, media
@@ -36,8 +31,14 @@ const useStyles = makeStyles(theme => ({
  */
 function Card(props) {
 
+  /* colours and logos: 
+  * reddit:  #FF4500 https://redditupvoted.files.wordpress.com/2015/10/reddit_icon_twitter_fb.png
+  * spotify: #23D05F https://pbs.twimg.com/profile_images/558366562424332288/8ObpK74F.png
+  * github:  #010101 https://avatars0.githubusercontent.com/u/9919?s=280&v=4
+  * twitter: #05ACF0 https://pmcdeadline2.files.wordpress.com/2016/09/twitter-logo.jpg
+  */
   const barColour = (param) => {
-    switch(param) {
+    switch (param) {
       case "reddit":
         return "#FF4500";
       case "spotify":
@@ -52,7 +53,7 @@ function Card(props) {
   }
 
   const mediaIcon = (param) => {
-    switch(param) {
+    switch (param) {
       case "reddit":
         return RedditIcon;
       case "spotify":
@@ -68,23 +69,62 @@ function Card(props) {
 
   const classes = useStyles();
 
-    return (
-        <center>
-          <div style = {{width: "30em", background: "#f2f2f2", padding:"0.6em", textAlign:"left", boxShadow:"0.48em 0.6em 0.3em grey", borderRadius: "0.48em 0.48em 0em 0em"}}>
-              {props.user_icon ? <Avatar alt="Remy Sharp" src={props.user_icon} className={classes.large} style={{float: "left", margin:"0.6em"}} /> : <Avatar alt="Remy Sharp" src="https://img.icons8.com/windows/64/000000/user.png" style={{background: "#b3b3b3", float: "left", margin:"0.1em"}} className={classes.large} />}
-              <h1 style={{lineHeight: "0.6em"}}>{props.title}</h1>
-              <h2 style={{lineHeight: "0.6em", fontSize: "1.2em", color: "grey"}}>{props.username}</h2>
-              <p>{props.text}</p>
+  return (
+    <center>
+      <div className={styles.card} >
+        {props.user_icon ? <Avatar alt="Remy Sharp" src={props.user_icon} className={classes.large} style={{ float: "left", margin: "0.6em" }} /> : <Avatar alt="Remy Sharp" src="https://img.icons8.com/windows/64/000000/user.png" style={{ background: "#b3b3b3", float: "left", margin: "0.1em" }} className={classes.large} />}
+        <h1>{props.title}</h1>
+        <h2>{props.username}</h2>
+        <p>{props.text}</p>
 
-              {/* only displays if there is an image */}
-              <div>{props.image_link ? <img src={props.image_link} style = {{width: "30em"}}></img> : null}</div>
-          </div>
+        {/* only displays if there is an image */}
+        <div>{props.image_link ? 
+          <img id="myImg" alt="Random" src={props.image_link} style={{ width: "30em" }} 
+            onClick={
+              () => {
+                var modal = document.getElementById('myModal');
+                var img = document.getElementById('myImg');
+                var modalImg = document.getElementById("img01");
+                var captionText = document.getElementById("caption");
+                var span = document.getElementsByClassName("close")[0];
+                modal.style.display = "block";
+                modalImg.style.display = "block";
+                captionText.style.display = "block";
+                span.style.display = "block";
+                modalImg.src = img.src;
+                captionText.innerHTML = img.alt;
+    
+                span.onclick = function () {
+                  modal.style.display = "none";
+                  modalImg.style.display = "none";
+                  captionText.style.display = "none";
+                  this.style.display = "none";
+                }
+              }
+            } /> : null}
+        </div>
+      </div>
 
-          <div style = {{width: "30em", height: "1.2em", background: barColour(props.media), padding:"0.6em", textAlign:"left", boxShadow:"0.48em 0.48em 0.3em grey", borderRadius: "0em 0em 0.48em 0.48em"}}>
-            <img src={mediaIcon(props.media)} style = {{width: "1.2em", padding:"0em", lineHeight:"0", margin:"0"}}/>
-          </div>
-        </center>
-    );
+      {/* colour bar */}
+      <div className={styles.colourbar} style={{background: barColour(props.media)}}>
+        <img src={mediaIcon(props.media)} className={styles.mediaicon} />
+      </div>
+
+      {/* <div id="myModal" className="modal"> */}
+      <div id="myModal" className={styles.modal}>
+        <span className="close" style={{
+  position: "absolute",
+  top: "15px",
+  right: "35px",
+  color: "#f1f1f1",
+  fontSize: "40px",
+  fontWeight: "bold",
+  transition: "0.3s"}}>&times;</span>
+        <img alt="" src="" id="img01"  className={styles.modalimage} />
+        <div id="caption"></div>
+      </div>
+    </center>
+  );
 }
 
 export default Card;
