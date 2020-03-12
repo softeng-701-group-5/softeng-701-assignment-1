@@ -13,7 +13,7 @@ public class RedditClientConfigTest {
 
   @BeforeEach
   public void setup() {
-    emptyProperties = new ApplicationProperties("", "", "", "");
+    emptyProperties = new ApplicationProperties("", "", "", "", "","","");
     redditClientConfig = new RedditClientConfig();
   }
 
