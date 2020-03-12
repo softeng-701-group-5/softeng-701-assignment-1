@@ -16,12 +16,7 @@ export const HomePage = () => {
   return (
     <Paper>
       <Grid container>
-        <Button
-          component={Link}
-          to="/feed"
-          className={classes.loginButton}
-          color="blue"
-        >
+        <Button component={Link} to="/feed" className={classes.loginButton}>
           <Typography>LOGIN</Typography>
         </Button>
       </Grid>
