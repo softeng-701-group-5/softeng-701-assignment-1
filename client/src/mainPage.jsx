@@ -1,7 +1,7 @@
 import React from 'react';
 import { MediaCard } from './components/materialUI_card'
 
-export const App = () => {
+export const MainPage = () => {
   return <div>
     <MediaCard
           media="reddit"
