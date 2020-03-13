@@ -39,6 +39,8 @@ Please check if your PR fulfills the following requirements:
 - [ ] Docs have been added/updated which fit (for bug fixes / features)
 - [ ] Contains **NO** breaking changes
 - [ ] Associated with an issue (GitHub or internal)
+- [ ] Checked licensing of Frameworks/Libraries (if applicable) 
+
 
 <!-- If this PR contains a breaking change, please describe the impact below, and why this change had to be introduced.
      Please note that breaking changes are likely to be rejected -->
@@ -50,3 +52,4 @@ Please check if your PR fulfills the following requirements:
 
 Internal Issue (If applicable):
 <!-- Link to relevant internal issue if applicable. All PRs should be associated with an issue (GitHub issue or internal) -->
+<!-- Template modified from Platform Uno Github, under the Apache 2.0 License-->
