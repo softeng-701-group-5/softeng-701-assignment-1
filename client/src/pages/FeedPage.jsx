@@ -7,7 +7,11 @@ import {
   Paper,
   Grid,
   makeStyles,
+  IconButton,
 } from '@material-ui/core';
+import HomeIcon from '@material-ui/icons/Home';
+import { Link } from 'react-router-dom';
+
 import { MediaCard } from '../components/MediaCard';
 
 const useStyles = makeStyles(theme => ({
@@ -23,6 +27,10 @@ const useStyles = makeStyles(theme => ({
   },
   item: {
     textAlign: 'center',
+  },
+  homeButton: {
+    marginRight: theme.spacing(2),
+    color: '#FFFFFF',
   },
 }));
 
@@ -44,6 +52,14 @@ export const FeedPage = () => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
+          <IconButton
+            component={Link}
+            to={'/'}
+            color="inherit"
+            className={classes.homeButton}
+          >
+            <HomeIcon />
+          </IconButton>
           <Typography className={classes.title} variant="h6">
             Feedr
           </Typography>

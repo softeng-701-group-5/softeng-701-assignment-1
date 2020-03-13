@@ -44,6 +44,7 @@
     "@material-ui/icons": "^4.9.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0"
   },
   "devDependencies": {
