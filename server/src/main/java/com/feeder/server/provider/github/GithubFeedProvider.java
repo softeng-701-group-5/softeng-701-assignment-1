@@ -1,25 +1,59 @@
 package com.feeder.server.provider.github;
 
+import com.feeder.server.ApplicationProperties;
 import com.feeder.server.model.GithubData;
 import com.feeder.server.provider.FeedProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
+import java.util.List;
+
 @Service
 public class GithubFeedProvider implements FeedProvider<GithubData> {
-  
+
+  private final String GITHUB_API_BASE_URL = "https://api.github.com";
+  private final String GITHUB_v3_MIME_TYPE = "application/vnd.github.v3+json";
 
   @Autowired
-  public GithubFeedProvider() {
+  ApplicationProperties applicationProperties;
 
+  private WebClient.Builder webClientBuilder;
+
+  public WebClient.Builder getWebClientBuilder() {
+    if (this.webClientBuilder == null) {
+      this.webClientBuilder = WebClient.builder()
+              .baseUrl(GITHUB_API_BASE_URL)
+              .defaultHeader(HttpHeaders.CONTENT_TYPE, GITHUB_v3_MIME_TYPE)
+              .defaultHeader(HttpHeaders.AUTHORIZATION)
+              .defaultHeaders(httpHeaders -> httpHeaders.setBasicAuth(applicationProperties.getGithubUsername(), applicationProperties.getGithubPassword()));
+    }
+    return this.webClientBuilder;
+  }
+
+  private void assignEtag(List<String> etag) {
+//    System.out.println(etag.getClass().getTypeName());
+//    for (String s: etag) {
+//      this.etag = s;
+//    }
   }
 
   @Override
   public Flux<GithubData> getFeed() {
     // TODO: Github team to implement
 
-    return Flux.empty();
+    // Add if statement to check and get the etag for the github account
+
+    WebClient webClient = getWebClientBuilder().build();
+
+    return webClient.get()
+            .uri("/users//received_events")
+            .exchange()
+            .doOnSuccess(clientResponse -> assignEtag(clientResponse.headers().header("Etag")))
+            .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
   }
 }
