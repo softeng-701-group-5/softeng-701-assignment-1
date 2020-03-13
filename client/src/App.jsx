@@ -8,8 +8,8 @@ export const App = () => {
           title="What was normal to have in 2010 but not 2020?"
           username="John Smith"
           mainText="Top comment: Cellphone with a physical keyboard."
-          // imageLink="https://images.techhive.com/images/article/2015/11/old_nokia_phones-100625503-large.jpg"
-          // avatarLink="http://2.bp.blogspot.com/-8ms4E7aH4w8/UMztXOsniqI/AAAAAAAAIW0/qql0GcspDzs/s1600/2298.jpg"
+          imageLink="https://images.techhive.com/images/article/2015/11/old_nokia_phones-100625503-large.jpg"
+          avatarLink="http://2.bp.blogspot.com/-8ms4E7aH4w8/UMztXOsniqI/AAAAAAAAIW0/qql0GcspDzs/s1600/2298.jpg"
           relativeTime="10 mins ago"
           mediaSourceLink=""
       /> 

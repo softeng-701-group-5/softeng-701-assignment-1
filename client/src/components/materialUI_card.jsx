@@ -85,10 +85,10 @@ export const MediaCard = props => {
     <Card className={classes.root}>
       <CardHeader
         avatar={
-            <Avatar alt={props.username} src={props.avatarLink ?
-                props.avatarLink :
-                "https://img.icons8.com/windows/64/000000/user.png"} className={classes.avatar}
-            />
+          <Avatar alt={props.username} src={props.avatarLink ?
+            props.avatarLink :
+            "https://img.icons8.com/windows/64/000000/user.png"} className={classes.avatar}
+          />
         }
 
         action={
