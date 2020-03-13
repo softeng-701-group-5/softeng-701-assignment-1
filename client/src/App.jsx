@@ -1,5 +1,5 @@
 import React from 'react';
-import MediaCard from './components/materialUI_card';
+import { MediaCard } from './components/materialUI_card'
 
 export const App = () => {
   return <div>

@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function MediaCard(props) {
+export const MediaCard = props => {
   const classes = useStyles()
   /* Alters colour bar based on which media is passed in
   * colours and logos: 
