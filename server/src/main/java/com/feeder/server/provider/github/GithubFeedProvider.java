@@ -4,10 +4,8 @@ import com.feeder.server.ApplicationProperties;
 import com.feeder.server.model.GithubData;
 import com.feeder.server.provider.FeedProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Base64Utils;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
@@ -36,7 +34,7 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
     }
     return this.webClientBuilder;
   }
-  
+
   private void assignEtag(List<String> etag) {
     for (String s: etag) {
       this.eTag = s;
@@ -46,6 +44,7 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
   @Override
   public Flux<GithubData> getFeed() {
     // TODO: Github team to implement
+
 
     WebClient webClient = getWebClientBuilder().build();
 
