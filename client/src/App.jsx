@@ -10,6 +10,7 @@ export const App = () => {
           image_link="https://images.techhive.com/images/article/2015/11/old_nokia_phones-100625503-large.jpg"
           avatar_link="http://2.bp.blogspot.com/-8ms4E7aH4w8/UMztXOsniqI/AAAAAAAAIW0/qql0GcspDzs/s1600/2298.jpg"
           relative_time="10 mins ago"
+          media_source_link=""
       /> 
       <MediaCard
           media="twitter"
@@ -18,6 +19,7 @@ export const App = () => {
           image_link="https://www.motherjones.com/wp-content/uploads/2020/03/trump-coronavirus-3-11-20.jpg?w=990"
           avatar_link="http://2.bp.blogspot.com/-8ms4E7aH4w8/UMztXOsniqI/AAAAAAAAIW0/qql0GcspDzs/s1600/2298.jpg"
           relative_time="4 hours ago"
+          media_source_link=""
       />  
 
   </div>;
