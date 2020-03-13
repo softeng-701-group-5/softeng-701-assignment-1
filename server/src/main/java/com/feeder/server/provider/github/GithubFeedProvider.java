@@ -18,6 +18,7 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
 
   private final String GITHUB_API_BASE_URL = "https://api.github.com";
   private final String GITHUB_v3_MIME_TYPE = "application/vnd.github.v3+json";
+  private String eTag = "";
 
   @Autowired
   ApplicationProperties applicationProperties;
@@ -30,23 +31,21 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
               .baseUrl(GITHUB_API_BASE_URL)
               .defaultHeader(HttpHeaders.CONTENT_TYPE, GITHUB_v3_MIME_TYPE)
               .defaultHeader(HttpHeaders.AUTHORIZATION)
+              .defaultHeader(HttpHeaders.IF_NONE_MATCH, eTag)
               .defaultHeaders(httpHeaders -> httpHeaders.setBasicAuth(applicationProperties.getGithubUsername(), applicationProperties.getGithubPassword()));
     }
     return this.webClientBuilder;
   }
-
+  
   private void assignEtag(List<String> etag) {
-//    System.out.println(etag.getClass().getTypeName());
-//    for (String s: etag) {
-//      this.etag = s;
-//    }
+    for (String s: etag) {
+      this.eTag = s;
+    }
   }
 
   @Override
   public Flux<GithubData> getFeed() {
     // TODO: Github team to implement
-
-    // Add if statement to check and get the etag for the github account
 
     WebClient webClient = getWebClientBuilder().build();
 
