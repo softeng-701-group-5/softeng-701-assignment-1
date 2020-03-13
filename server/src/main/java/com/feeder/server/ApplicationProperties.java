@@ -22,15 +22,13 @@ public class ApplicationProperties {
       @Value("${providers.reddit.clientId}") String redditClientId,
       @Value("${providers.reddit.clientSecret}") String redditClientSecret,
       @Value("${providers.github.username}") String githubUsername,
-      @Value("${providers.github.password}") String githubPassword,
-      @Value("${providers.github.etag}") String githubEtag) {
+      @Value("${providers.github.password}") String githubPassword) {
     this.redditUsername = redditUsername;
     this.redditPassword = redditPassword;
     this.redditClientId = redditClientId;
     this.redditClientSecret = redditClientSecret;
     this.githubUsername = githubUsername;
     this.githubPassword = githubPassword;
-    this.githubEtag = githubEtag;
   }
 
   public String getRedditUsername() {
@@ -55,10 +53,6 @@ public class ApplicationProperties {
 
   public String getGithubPassword() {
     return githubPassword;
-  }
-
-  public String getGithubEtag() {
-    return githubEtag;
   }
 
 }
