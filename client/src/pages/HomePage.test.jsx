@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { mount } from 'enzyme';
-import { FeedPage } from './FeedPage';
+import { HomePage } from './HomePage';
 
-describe('<FeedPage />', () => {
+describe('<HomePage />', () => {
   let subject;
 
   beforeEach(() => {
     subject = mount(
       <Router>
-        <FeedPage />
+        <HomePage />
       </Router>
     );
   });
@@ -23,7 +23,7 @@ describe('<FeedPage />', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <Router>
-        <FeedPage />
+        <HomePage />
       </Router>,
       div
     );
