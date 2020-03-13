@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: red[500],
+    backgroundColor: "#d9d9d9",
   },
 }));
 
@@ -61,7 +61,7 @@ export default function MediaCard(props) {
       case "github":
         return "#010101";
       case "twitter":
-        return "#05ACF0"; // #00acee
+        return "#05ACF0";
       default:
         return "#b3b3b3";
     }
@@ -83,20 +83,10 @@ export default function MediaCard(props) {
   }
 
   return (
-    <Card className={classes.root} style={{ padding: "0", margin: "0", border: "0" }}>
+    <Card className={classes.root}>
       <CardHeader
-        //avatar={
-        //{
-        //    //props.user_icon ?
-        //    props.avatar_link ?
-        //        <Avatar alt="Remy Sharp" src={props.user_icon} className={classes.large} style={{ float: "left", margin: "0.6em" }} /> :
-        //        <Avatar alt="Remy Sharp" src="https://img.icons8.com/windows/64/000000/user.png" style={{ background: "#b3b3b3", float: "left", margin: "0.1em" }} className={classes.large} />
-        //}
-        //}
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
+          <Avatar alt={props.username} src={props.user_icon ? props.user_icon : "https://img.icons8.com/windows/64/000000/user.png"} className={classes.avatar} />
         }
 
         action={
@@ -105,12 +95,12 @@ export default function MediaCard(props) {
           </IconButton>
         }
         title={props.title}
-        subheader={props.relative_time}
+        subheader={props.username + " - " + props.relative_time}
       />
-      <CardMedia
-        className={classes.media}
-        image={props.image_link}
-      />
+      {props.image_link ?
+        <CardMedia className={classes.media} image={props.image_link} /> 
+        : null
+      }
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {props.main_text}
@@ -118,7 +108,6 @@ export default function MediaCard(props) {
       </CardContent>
       <CardActions style={{ backgroundColor: barColour(props.media) }} disableSpacing >
         <img src={mediaIcon(props.media)} />
-
       </CardActions>
     </Card>
   );
