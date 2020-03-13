@@ -43,8 +43,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function MediaCard(props) {
-  const classes = useStyles();
-
+  const classes = useStyles()
   /* Alters colour bar based on which media is passed in
   * colours and logos: 
   * reddit:  #FF4500 https://redditupvoted.files.wordpress.com/2015/10/reddit_icon_twitter_fb.png
@@ -86,7 +85,7 @@ export default function MediaCard(props) {
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar alt={props.username} src={props.user_icon ? props.user_icon : "https://img.icons8.com/windows/64/000000/user.png"} className={classes.avatar} />
+          <Avatar alt={props.username} src={props.avatarLink ? props.avatarLink : "https://img.icons8.com/windows/64/000000/user.png"} className={classes.avatar} />
         }
 
         action={
@@ -95,15 +94,15 @@ export default function MediaCard(props) {
           </IconButton>
         }
         title={props.title}
-        subheader={props.username + " - " + props.relative_time}
+        subheader={props.username + " - " + props.relativeTime}
       />
-      {props.image_link ?
-        <CardMedia className={classes.media} image={props.image_link} /> 
+      {props.imageLink ?
+        <CardMedia className={classes.media} image={props.imageLink} />
         : null
       }
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {props.main_text}
+          {props.mainText}
         </Typography>
       </CardContent>
       <CardActions style={{ backgroundColor: barColour(props.media) }} disableSpacing >
