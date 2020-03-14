@@ -8,6 +8,7 @@ import {
   Grid,
   makeStyles,
 } from '@material-ui/core';
+import { MediaCard } from '../components/MediaCard';
 
 const useStyles = makeStyles(theme => ({
   root: {
