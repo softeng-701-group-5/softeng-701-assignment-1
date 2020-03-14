@@ -31,13 +31,18 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
 
     String apiEndpointReceivedEvents = "/users/" + applicationProperties.getGithubUsername() + "/received_events";
 
-    WebClient webClient = getWebClientBuilder().build();
+    WebClient webClient = getWebClientBuilder()
+            .defaultHeader(HttpHeaders.IF_NONE_MATCH, eTag)
+            .build();
 
     return webClient.get()
             .uri(apiEndpointReceivedEvents)
             .exchange()
             .doOnSuccess(clientResponse -> assignEtag(clientResponse.headers().header("Etag")))
+            .doOnSuccess(clientResponse -> System.out.println(clientResponse.headers().asHttpHeaders()))
             .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
+
+//    return Flux.empty();
 
   }
 
@@ -53,7 +58,6 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
               .baseUrl(GITHUB_API_BASE_URL)
               .defaultHeader(HttpHeaders.CONTENT_TYPE, GITHUB_v3_MIME_TYPE)
               .defaultHeader(HttpHeaders.AUTHORIZATION)
-              .defaultHeader(HttpHeaders.IF_NONE_MATCH, eTag)
               .defaultHeaders(httpHeaders -> httpHeaders.setBasicAuth(applicationProperties.getGithubUsername(), applicationProperties.getGithubPassword()));
     }
     return this.webClientBuilder;
