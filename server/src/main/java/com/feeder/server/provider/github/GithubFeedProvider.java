@@ -18,7 +18,6 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
 
   private final String GITHUB_API_BASE_URL = "https://api.github.com";
   private final String GITHUB_v3_MIME_TYPE = "application/vnd.github.v3+json";
-  private String eTag = "";
   private static final Logger logger = LoggerFactory.getLogger(GithubFeedProvider.class);
 
   @Autowired
@@ -32,24 +31,13 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
     String apiEndpointReceivedEvents = "/users/" + applicationProperties.getGithubUsername() + "/received_events";
 
     WebClient webClient = getWebClientBuilder()
-            .defaultHeader(HttpHeaders.IF_NONE_MATCH, eTag)
             .build();
 
     return webClient.get()
             .uri(apiEndpointReceivedEvents)
             .exchange()
-            .doOnSuccess(clientResponse -> assignEtag(clientResponse.headers().header("Etag")))
-            .doOnSuccess(clientResponse -> System.out.println(clientResponse.headers().asHttpHeaders()))
             .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
 
-//    return Flux.empty();
-
-  }
-
-  private void assignEtag(List<String> etag) {
-    for (String s: etag) {
-      this.eTag = s;
-    }
   }
 
   private WebClient.Builder getWebClientBuilder() {
