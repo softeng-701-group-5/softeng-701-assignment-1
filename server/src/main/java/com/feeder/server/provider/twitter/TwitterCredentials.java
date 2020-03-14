@@ -1,27 +1,31 @@
 package com.feeder.server.provider.twitter;
 
+import com.feeder.server.ApplicationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
+@Configuration
 class TwitterCredentials {
     private TwitterFactory twitterFactory;
-
-    TwitterCredentials() {
+    TwitterCredentials(ApplicationProperties properties) {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
-                .setOAuthConsumerKey("i5JGViH7RbNsAZjxP7wg")
-                .setOAuthConsumerSecret("mJRyuz5mHO5uaV9SJiN50BjdGaaSrJoeoNhU0x1Hqk")
-                .setOAuthAccessToken("2206162813-0UdlOHoueqz8xNKFb3DftaRlPsbg8sZ1Gzj4epf")
-                .setOAuthAccessTokenSecret("BfcjLwkbxIndcIKKMf5FaYCkSdrruJzEJxbzJJgne5W0e");
+                .setOAuthConsumerKey(properties.getTwitterConsumerKey())
+                .setOAuthConsumerSecret(properties.getTwitterConsumerSecret())
+                .setOAuthAccessToken(properties.getTwitterAccessToken())
+                .setOAuthAccessTokenSecret(properties.getTwitterAccessTokenSecret());
         twitterFactory = new TwitterFactory(cb.build());
     }
 
-    public Twitter getTwitterInstance() {
+    @Bean
+    public Twitter getTwitterInstance(ApplicationProperties properties) {
         if (twitterFactory != null) {
             return twitterFactory.getInstance();
         } else {
-            new TwitterCredentials();
+            new TwitterCredentials(properties);
             return twitterFactory.getInstance();
         }
     }

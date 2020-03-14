@@ -2,6 +2,7 @@ package com.feeder.server.provider.twitter;
 
 import com.feeder.server.model.TwitterData;
 import com.feeder.server.provider.FeedProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import twitter4j.Status;
@@ -13,13 +14,14 @@ import java.util.List;
 @Service
 public class TwitterFeedProvider implements FeedProvider<TwitterData> {
 
+  @Autowired private Twitter twitter;
+
   @Override
   public Flux<TwitterData> getFeed() {
     List<Status> statuses;
     List<TwitterData> modelledResponse = new ArrayList<>();
 
     try {
-      Twitter twitter = new TwitterCredentials().getTwitterInstance();
       statuses = twitter.getHomeTimeline();
 
       for (Status status : statuses) {
