@@ -75,7 +75,7 @@ exports[`<FeedPage /> matches snapshot 1`] = `
               className="MuiCardHeader-avatar"
             >
               <div
-                className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-214"
+                className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-216"
               >
                 <img
                   alt="John Smith"
@@ -144,7 +144,7 @@ exports[`<FeedPage /> matches snapshot 1`] = `
               className="MuiCardHeader-avatar"
             >
               <div
-                className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-214"
+                className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-216"
               >
                 <img
                   alt="Donald Duck"
