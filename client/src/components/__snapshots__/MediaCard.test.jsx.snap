@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MediaCard /> matches snapshot 1`] = `
+<div
+  className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <div
+    className="MuiCardHeader-root"
+  >
+    <div
+      className="MuiCardHeader-avatar"
+    >
+      <div
+        className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-3"
+      >
+        <img
+          className="MuiAvatar-img"
+          src="https://img.icons8.com/windows/64/000000/user.png"
+        />
+      </div>
+    </div>
+    <div
+      className="MuiCardHeader-content"
+    >
+      <span
+        className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+      >
+        undefined - undefined
+      </span>
+    </div>
+  </div>
+  <div
+    className="MuiCardContent-root"
+  >
+    <p
+      className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+    />
+  </div>
+  <div
+    className="MuiCardActions-root"
+    style={
+      Object {
+        "backgroundColor": "#b3b3b3",
+      }
+    }
+  >
+    <img
+      alt="undefined logo"
+      src=""
+    />
+  </div>
+</div>
+`;
