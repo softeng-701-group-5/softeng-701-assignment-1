@@ -30,7 +30,7 @@ describe('<HomePage />', () => {
     );
   });
 
-  it('renders correctly', () => {
+  it('matches snapshot', () => {
     const tree = renderer
       .create(
         <Router>

@@ -20,7 +20,7 @@ describe('<MediaCard />', () => {
     ReactDOM.render(<MediaCard />, div);
   });
 
-  it('renders correctly', () => {
+  it('matches snapshot', () => {
     const tree = renderer.create(<MediaCard />).toJSON();
     expect(tree).toMatchSnapshot();
   });
