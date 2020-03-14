@@ -8,7 +8,7 @@ import {
   TextField,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import BackgroundImage from '../assets/bg-4k.jpg';
+import BackgroundImage from '../assets/bg-4k-min.jpg';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -71,7 +71,13 @@ export const HomePage = () => {
             autoComplete="current-password"
             className={classes.textInput}
           />
-          <Button className={classes.buttonLogin} component={Link} to={'/feed'}>
+          <Button
+            className={classes.buttonLogin}
+            component={Link}
+            to={'/feed'}
+            variant="contained"
+            color="primary"
+          >
             Login
           </Button>
         </Paper>
