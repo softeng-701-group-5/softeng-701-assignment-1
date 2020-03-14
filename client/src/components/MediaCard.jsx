@@ -8,7 +8,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import TwitterIcon from './../assets/twitter-icon.svg';
@@ -38,79 +37,85 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: "#d9d9d9",
+    backgroundColor: '#d9d9d9',
   },
 }));
 
 export const MediaCard = props => {
-  const classes = useStyles()
+  const classes = useStyles();
   /* Alters colour bar based on which media is passed in
-  * colours and logos: 
-  * reddit:  #FF4500 https://redditupvoted.files.wordpress.com/2015/10/reddit_icon_twitter_fb.png
-  * spotify: #23D05F https://pbs.twimg.com/profile_images/558366562424332288/8ObpK74F.png
-  * github:  #010101 https://avatars0.githubusercontent.com/u/9919?s=280&v=4
-  * twitter: #05ACF0 https://pmcdeadline2.files.wordpress.com/2016/09/twitter-logo.jpg
-  */
-  const barColour = (param) => {
+   * colours and logos:
+   * reddit:  #FF4500 https://redditupvoted.files.wordpress.com/2015/10/reddit_icon_twitter_fb.png
+   * spotify: #23D05F https://pbs.twimg.com/profile_images/558366562424332288/8ObpK74F.png
+   * github:  #010101 https://avatars0.githubusercontent.com/u/9919?s=280&v=4
+   * twitter: #05ACF0 https://pmcdeadline2.files.wordpress.com/2016/09/twitter-logo.jpg
+   */
+  const barColour = param => {
     switch (param) {
-      case "reddit":
-        return "#FF4500";
-      case "spotify":
-        return "#23D05F";
-      case "github":
-        return "#010101";
-      case "twitter":
-        return "#05ACF0";
+      case 'reddit':
+        return '#FF4500';
+      case 'spotify':
+        return '#23D05F';
+      case 'github':
+        return '#010101';
+      case 'twitter':
+        return '#05ACF0';
       default:
-        return "#b3b3b3";
+        return '#b3b3b3';
     }
-  }
+  };
 
-  const mediaIcon = (param) => {
+  const mediaIcon = param => {
     switch (param) {
-      case "reddit":
+      case 'reddit':
         return RedditIcon;
-      case "spotify":
+      case 'spotify':
         return SpotifyIcon;
-      case "github":
+      case 'github':
         return GithubIcon;
-      case "twitter":
+      case 'twitter':
         return TwitterIcon;
       default:
-        return "";
+        return '';
     }
-  }
+  };
 
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar alt={props.username} src={props.avatarLink ?
-            props.avatarLink :
-            "https://img.icons8.com/windows/64/000000/user.png"} className={classes.avatar}
+          <Avatar
+            alt={props.username}
+            src={
+              props.avatarLink
+                ? props.avatarLink
+                : 'https://img.icons8.com/windows/64/000000/user.png'
+            }
+            className={classes.avatar}
           />
         }
-
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
         title={props.title}
-        subheader={props.username + " - " + props.relativeTime}
+        subheader={props.username + ' - ' + props.relativeTime}
       />
-      {props.imageLink ?
+      {props.imageLink ? (
         <CardMedia className={classes.media} image={props.imageLink} />
-        : null
-      }
+      ) : null}
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {props.mainText}
         </Typography>
       </CardContent>
-      <CardActions style={{ backgroundColor: barColour(props.media) }} disableSpacing >
+      <CardActions
+        style={{ backgroundColor: barColour(props.media) }}
+        disableSpacing
+      >
         <img src={mediaIcon(props.media)} />
       </CardActions>
     </Card>
   );
-}
+};
