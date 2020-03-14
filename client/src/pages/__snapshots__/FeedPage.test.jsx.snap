@@ -15,7 +15,7 @@ exports[`<FeedPage /> matches snapshot 1`] = `
       >
         <a
           aria-disabled={false}
-          className="MuiButtonBase-root MuiIconButton-root makeStyles-homeButton-4 MuiIconButton-colorInherit"
+          className="MuiButtonBase-root MuiIconButton-root makeStyles-homeButton-6 MuiIconButton-colorInherit"
           href="/"
           onBlur={[Function]}
           onClick={[Function]}
@@ -63,10 +63,10 @@ exports[`<FeedPage /> matches snapshot 1`] = `
       className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
     >
       <div
-        className="MuiGrid-root MuiGrid-item"
+        className="MuiGrid-root makeStyles-item-4 MuiGrid-item"
       >
         <div
-          className="MuiPaper-root MuiCard-root makeStyles-root-210 MuiPaper-elevation1 MuiPaper-rounded"
+          className="MuiPaper-root MuiCard-root makeStyles-root-212 MuiPaper-elevation1 MuiPaper-rounded"
         >
           <div
             className="MuiCardHeader-root"
@@ -75,7 +75,7 @@ exports[`<FeedPage /> matches snapshot 1`] = `
               className="MuiCardHeader-avatar"
             >
               <div
-                className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-214"
+                className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-216"
               >
                 <img
                   alt="John Smith"
@@ -138,7 +138,7 @@ exports[`<FeedPage /> matches snapshot 1`] = `
             </div>
           </div>
           <div
-            className="MuiCardMedia-root makeStyles-media-211"
+            className="MuiCardMedia-root makeStyles-media-213"
             style={
               Object {
                 "backgroundImage": "url(\\"https://images.techhive.com/images/article/2015/11/old_nokia_phones-100625503-large.jpg\\")",
@@ -169,10 +169,10 @@ exports[`<FeedPage /> matches snapshot 1`] = `
         </div>
       </div>
       <div
-        className="MuiGrid-root MuiGrid-item"
+        className="MuiGrid-root makeStyles-item-4 MuiGrid-item"
       >
         <div
-          className="MuiPaper-root MuiCard-root makeStyles-root-210 MuiPaper-elevation1 MuiPaper-rounded"
+          className="MuiPaper-root MuiCard-root makeStyles-root-212 MuiPaper-elevation1 MuiPaper-rounded"
         >
           <div
             className="MuiCardHeader-root"
@@ -181,7 +181,7 @@ exports[`<FeedPage /> matches snapshot 1`] = `
               className="MuiCardHeader-avatar"
             >
               <div
-                className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-214"
+                className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-216"
               >
                 <img
                   alt="Donald Duck"
@@ -244,7 +244,7 @@ exports[`<FeedPage /> matches snapshot 1`] = `
             </div>
           </div>
           <div
-            className="MuiCardMedia-root makeStyles-media-211"
+            className="MuiCardMedia-root makeStyles-media-213"
             style={
               Object {
                 "backgroundImage": "url(\\"https://www.motherjones.com/wp-content/uploads/2020/03/trump-coronavirus-3-11-20.jpg?w=990\\")",
