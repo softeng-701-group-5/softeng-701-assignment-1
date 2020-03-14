@@ -1,5 +1,19 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Prerequisites: 
+* You have already forked the repository and cloned your fork to your local machine. More information on this can be found at https://gist.github.com/Chaser324/ce0505fbed06b947d962
+* You have the following installed: 
+  * IntelliJ Community/Ultimate https://www.jetbrains.com/idea/download/
+  * Java JDK 11 https://www.oracle.com/java/technologies/javase-jdk11-downloads.html
+  * Yarn https://classic.yarnpkg.com/en/docs/
+  * Node.js https://nodejs.org/en/
+  
+### Getting Started: 
+
+1. Open the command prompt and set the active directory as the `client` directory of your cloned repository. 
+2. Run `yarn install --frozen-lockfile` to install all the required dependencies
+3. Run `yarn start` to launch the application. Close the application with `ctrl+c` in the command prompt
+
 ## Available Scripts
 
 In the project directory, you can run:
