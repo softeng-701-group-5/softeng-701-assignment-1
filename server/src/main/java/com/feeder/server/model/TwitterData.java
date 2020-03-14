@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
 
 import java.util.Date;
-import java.util.Optional;
 
 @AutoValue
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -23,14 +22,9 @@ public abstract class TwitterData extends GenericData {
         return Type.TWITTER;
     }
 
-    /** This property is required for serialization. This means all posts must contain a title. */
     @JsonProperty("tweet")
     public abstract String tweet();
 
-    /**
-     * {@link java.util.Optional} means this property is NOT required for serialization. Perhaps not
-     * all posts contain images.
-     */
     @JsonProperty("profileImageURI")
     public abstract String profileImageURI();
 
