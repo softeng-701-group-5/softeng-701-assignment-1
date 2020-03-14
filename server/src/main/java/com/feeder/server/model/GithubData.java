@@ -1,38 +1,70 @@
 package com.feeder.server.model;
 
-import com.feeder.server.provider.github.GithubFeedProvider;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.feeder.server.model.github.Actor;
+import com.feeder.server.model.github.Payload;
+import com.feeder.server.model.github.Repository;
+import com.google.auto.value.AutoValue;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
+@AutoValue
+@JsonInclude(Include.NON_ABSENT)
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonDeserialize(builder = AutoValue_GithubData.Builder.class)
 public abstract class GithubData extends GenericData {
 
+  public static Builder newBuilder() {
+    return new AutoValue_GithubData.Builder();
+  }
 
+  @Override
+  public Type feedType() {
+    return Type.GITHUB;
+  }
 
-    /*Does not make sense for now. The model feels more
-    * like an interface to map the frontend to the variables
-    * I should ask Chinmay before making and pushing messed up logic for getting
-    * event data. Do not know how to test as well*/
+  @JsonProperty("type")
+  public abstract Optional<String> type();
 
-//    private GithubFeedProvider githubfeedProvider;
-//
-//
-//    public void getFeed(){
-//        this.githubfeedProvider = new GithubFeedProvider();
-//        System.out.println(githubfeedProvider.getFeed());
-//
-//    }
+  @JsonSerialize(contentUsing = LocalDateTimeSerializer.class)
+  @JsonDeserialize(contentUsing = LocalDateTimeDeserializer.class)
+  @JsonProperty("created_at")
+  public abstract LocalDateTime createdAt();
 
-    /*Based on DemoData.java
-    JSON properties to be added once approved
-    */
+  @JsonProperty("actor")
+  public abstract Actor actor();
 
-    @Override
-    public Type feedType() {return Type.GITHUB;}
+  @JsonProperty("repo")
+  public abstract Repository repository();
 
-    public abstract String eventType();
-    public abstract String eventURL();
-    public abstract Optional <String> eventDescription();
-    public abstract String eventDate();
-    public abstract String userName();
-    public abstract String userAvatar();
+  @JsonProperty("payload")
+  public abstract Payload payload();
+
+  @AutoValue.Builder
+  public interface Builder {
+
+    @JsonProperty("type")
+    Builder type (String type);
+
+    @JsonProperty("created_at")
+    Builder createdAt(LocalDateTime time);
+
+    @JsonProperty("actor")
+    Builder actor(Actor actor);
+
+    @JsonProperty("repo")
+    Builder repository(Repository repository);
+
+    @JsonProperty("payload")
+    Builder payload(Payload payload);
+
+    GithubData build();
+  }
 }
