@@ -41,9 +41,6 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
             .doOnSuccess(clientResponse -> assignEtag(clientResponse.headers().header("Etag")))
             .doOnSuccess(clientResponse -> System.out.println(clientResponse.headers().asHttpHeaders()))
             .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
-
-//    return Flux.empty();
-
   }
 
   private void assignEtag(List<String> etag) {

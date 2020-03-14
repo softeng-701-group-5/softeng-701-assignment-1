@@ -59,10 +59,7 @@ public abstract class Payload {
               .filter(s -> node.has(s.property))
               .findFirst()
               .orElse(Subject.UNKNOWN);
-      String action = "";
-      if (node.has("action")) {
-        action = node.get("action").asText();
-      }
+      String action = node.has("action") ? node.get("action").asText() : "unknown";
       return create(subject, action);
     }
   }
