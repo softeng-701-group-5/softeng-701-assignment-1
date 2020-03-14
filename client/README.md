@@ -10,7 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   
 ### Getting Started: 
 
-1. Open the command prompt and navigate to the client directory of your cloned repository. 
+1. Open the command prompt and set the active directory as the `client` directory of your cloned repository. 
 2. Run `yarn install --frozen-lockfile` to install all the required dependencies
 3. Run `yarn start` to launch the application. Close the application with `ctrl+c` in the command prompt
 
