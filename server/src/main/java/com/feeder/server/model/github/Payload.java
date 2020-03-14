@@ -14,8 +14,18 @@ import java.util.Arrays;
 
 @AutoValue
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonDeserialize(using= Deserializer.class)
+@JsonDeserialize(using = Deserializer.class)
 public abstract class Payload {
+
+  public static Payload create(Subject subject, String action) {
+    return new AutoValue_Payload(subject, action);
+  }
+
+  @JsonProperty("subject")
+  public abstract Subject subject();
+
+  @JsonProperty("action")
+  public abstract String action();
 
   public enum Subject {
     UNKNOWN("unknown"),
@@ -29,16 +39,6 @@ public abstract class Payload {
       this.property = property;
     }
   }
-
-  public static Payload create(Subject subject, String action) {
-    return new AutoValue_Payload(subject, action);
-  }
-
-  @JsonProperty("subject")
-  public abstract Subject subject();
-
-  @JsonProperty("action")
-  public abstract String action();
 
   public static class Deserializer extends StdDeserializer<Payload> {
 
