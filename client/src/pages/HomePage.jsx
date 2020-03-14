@@ -8,10 +8,15 @@ import {
   TextField,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import BackgroundImage from '../assets/bg-4k.jpg';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundImage: "url('public/bg.jpg')",
+    backgroundImage: `url(${BackgroundImage})`,
+    background: '#F5F5F5',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
   },
   containerItems: {
     display: 'flex',
