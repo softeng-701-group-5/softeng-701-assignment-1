@@ -12,6 +12,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
 
 import { MediaCard } from '../components/MediaCard';
+import { getFeed } from '../common/api';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 export const FeedPage = () => {
   const classes = useStyles();
 
-  // TODO: fetch data from server
+  // TODO: remove once server supplies data
   const items = [
     {
       media: 'reddit',
@@ -68,6 +69,17 @@ export const FeedPage = () => {
     },
   ];
 
+  // state management
+  const [feed, setFeed] = React.useState(items);
+
+  // fetches data when page loads
+  React.useEffect(() => {
+    // synchronous function as recommended by react
+    getFeed()
+      .then(data => setFeed(data))
+      .catch(error => console.error(error));
+  }, []);
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -90,7 +102,7 @@ export const FeedPage = () => {
 
       <Container className={classes.container}>
         <Grid container spacing={3} justify="center">
-          {items.map((item, i) => (
+          {feed.map((item, i) => (
             <Grid item key={i} className={classes.item}>
               <MediaCard {...item} className={classes.card} />
             </Grid>
