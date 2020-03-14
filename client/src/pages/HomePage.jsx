@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#f5f5f5',
+    backgroundImage: "url('public/bg.jpg')",
   },
   containerItems: {
     display: 'flex',
