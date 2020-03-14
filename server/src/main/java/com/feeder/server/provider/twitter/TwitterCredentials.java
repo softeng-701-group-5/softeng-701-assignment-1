@@ -22,11 +22,6 @@ class TwitterCredentials {
 
     @Bean
     public Twitter getTwitterInstance(ApplicationProperties properties) {
-        if (twitterFactory != null) {
-            return twitterFactory.getInstance();
-        } else {
-            new TwitterCredentials(properties);
-            return twitterFactory.getInstance();
-        }
+        return twitterFactory.getInstance();
     }
 }
