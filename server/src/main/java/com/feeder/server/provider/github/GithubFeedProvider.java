@@ -37,7 +37,7 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
             .uri(apiEndpointReceivedEvents)
             .exchange()
             .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
-
+    
   }
 
   private WebClient.Builder getWebClientBuilder() {
