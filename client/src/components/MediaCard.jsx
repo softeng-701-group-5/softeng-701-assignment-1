@@ -21,6 +21,9 @@ const useStyles = makeStyles(theme => ({
     padding: 0,
     margin: 0,
     border: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   media: {
     height: 0,

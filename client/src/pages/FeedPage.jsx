@@ -24,6 +24,12 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: 20,
     paddingRight: 20,
   },
+  item: {
+    display: 'flex',
+  },
+  card: {
+    flex: 1,
+  },
   homeButton: {
     marginRight: theme.spacing(2),
     color: '#FFFFFF',
@@ -85,8 +91,8 @@ export const FeedPage = () => {
       <Container className={classes.container}>
         <Grid container spacing={3}>
           {items.map((item, i) => (
-            <Grid item key={i}>
-              <MediaCard {...item} />
+            <Grid item key={i} className={classes.item}>
+              <MediaCard {...item} className={classes.card} />
             </Grid>
           ))}
         </Grid>
