@@ -29,9 +29,12 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class RedditFeedProviderTest {
 
-  @MockBean private RedditClient mockRedditClient;
-  @Mock private Submission mockSubmission;
-  @Autowired private RedditFeedProvider subject;
+  @MockBean
+  private RedditClient mockRedditClient;
+  @Mock
+  private Submission mockSubmission;
+  @Autowired
+  private RedditFeedProvider subject;
 
   @BeforeEach
   public void setUp() {
@@ -50,10 +53,10 @@ public class RedditFeedProviderTest {
     int expectedNumberOfSubmissions = 1;
     DefaultPaginator<Submission> mockPaginator = mock(DefaultPaginator.class);
     DefaultPaginator.Builder<Submission, SubredditSort> builder =
-        mock(DefaultPaginator.Builder.class);
+            mock(DefaultPaginator.Builder.class);
 
     Iterator<Listing<Submission>> mockIterator = spy(Iterator.class);
-    Submission[] submissionsArray = new Submission[] {mockSubmission};
+    Submission[] submissionsArray = new Submission[]{mockSubmission};
     List<Submission> submissions = Arrays.asList(submissionsArray);
     Listing<Submission> mockListings = Listing.create("nextName", submissions);
 

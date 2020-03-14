@@ -19,7 +19,8 @@ import java.util.Iterator;
 @Service
 public class RedditFeedProvider implements FeedProvider<RedditData> {
 
-  @Autowired private RedditClient redditClient;
+  @Autowired
+  private RedditClient redditClient;
 
   @Override
   public Flux<RedditData> getFeed() {

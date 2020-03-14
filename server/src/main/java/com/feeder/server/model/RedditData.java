@@ -14,62 +14,66 @@ import java.util.Optional;
 @JsonDeserialize(builder = AutoValue_RedditData.Builder.class)
 public abstract class RedditData extends GenericData {
 
-    public static Builder newBuilder() {return new AutoValue_RedditData.Builder();}
+  public static Builder newBuilder() {
+    return new AutoValue_RedditData.Builder();
+  }
 
-    @Override
-    public Type feedType() {
-        return Type.REDDIT;
-    }
+  @Override
+  public Type feedType() {
+    return Type.REDDIT;
+  }
 
-    /** This property is required for serialization. This means all posts must contain a title. */
-    @JsonProperty("title")
-    public abstract String title();
+  /**
+   * This property is required for serialization. This means all posts must contain a title.
+   */
+  @JsonProperty("title")
+  public abstract String title();
 
-    @JsonProperty("author")
-    public abstract String author();
+  @JsonProperty("author")
+  public abstract String author();
 
-    @JsonProperty("created")
-    public abstract Date created();
+  @JsonProperty("created")
+  public abstract Date created();
 
-    @JsonProperty("subreddit")
-    public abstract String subreddit();
+  @JsonProperty("subreddit")
+  public abstract String subreddit();
 
-    @JsonProperty("url")
-    public abstract String url();
-
-
-    /**
-     * {@link java.util.Optional} means this property is NOT required for serialization. Perhaps not
-     * all posts contain images. If there is no thumbnail, then the string "self" is returned.
-     */
-    @JsonProperty("thumbnail")
-    public abstract Optional<String> thumbnail();
-
-    /**
-     * Self Text is the text within a post. Not all posts on reddit may contain text. If there is no text, then
-     * an empty string is returned.
-     */
-    @JsonProperty("selftext")
-    public abstract Optional<String> selftext();
+  @JsonProperty("url")
+  public abstract String url();
 
 
-    @AutoValue.Builder
-    @JsonPOJOBuilder(withPrefix = "")
-    public interface Builder {
-        RedditData.Builder title(String title);
+  /**
+   * {@link java.util.Optional} means this property is NOT required for serialization. Perhaps not
+   * all posts contain images. If there is no thumbnail, then the string "self" is returned.
+   */
+  @JsonProperty("thumbnail")
+  public abstract Optional<String> thumbnail();
 
-        RedditData.Builder author(String author);
+  /**
+   * Self Text is the text within a post. Not all posts on reddit may contain text. If there is no text, then
+   * an empty string is returned.
+   */
+  @JsonProperty("selftext")
+  public abstract Optional<String> selftext();
 
-        RedditData.Builder created(Date created);
 
-        RedditData.Builder subreddit(String subreddit);
+  @AutoValue.Builder
+  @JsonPOJOBuilder(withPrefix = "")
+  public interface Builder {
+    RedditData.Builder title(String title);
 
-        RedditData.Builder url(String url);
+    RedditData.Builder author(String author);
 
-        RedditData.Builder thumbnail(String thumbnail);
+    RedditData.Builder created(Date created);
 
-        RedditData.Builder selftext(String selftext);
+    RedditData.Builder subreddit(String subreddit);
 
-        RedditData build();
-    }
+    RedditData.Builder url(String url);
+
+    RedditData.Builder thumbnail(String thumbnail);
+
+    RedditData.Builder selftext(String selftext);
+
+    RedditData build();
+  }
 }
