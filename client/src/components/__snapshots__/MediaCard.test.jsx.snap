@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MediaCard /> renders correctly 1`] = `
+exports[`<MediaCard /> matches snapshot 1`] = `
 <div
   className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
 >
