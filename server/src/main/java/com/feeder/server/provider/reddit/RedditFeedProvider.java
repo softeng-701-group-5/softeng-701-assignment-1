@@ -19,7 +19,8 @@ import java.util.Iterator;
 @Service
 public class RedditFeedProvider implements FeedProvider<RedditData> {
 
-  @Autowired private RedditClient redditClient;
+  @Autowired
+  private RedditClient redditClient;
 
   @Override
   public Flux<RedditData> getFeed() {
@@ -38,7 +39,7 @@ public class RedditFeedProvider implements FeedProvider<RedditData> {
                                     .created(submission.getCreated())
                                     .subreddit(submission.getSubreddit())
                                     .url(submission.getUrl())
-                                    .thumnail(submission.getThumbnail())
+                                    .thumbnail(submission.getThumbnail())
                                     .selftext(submission.getSelfText())
                                     .build()
                     );
