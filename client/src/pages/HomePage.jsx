@@ -1,12 +1,15 @@
 import React from 'react';
-import { Button, Paper, makeStyles, Typography, Grid } from '@material-ui/core';
+import { makeStyles, Container, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
-  loginButton: {
-    backgroundColor: 'blue',
-    color: 'black',
-    padding: 20,
+  containerItems: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  buttonLogin: {
+    color: 'green',
   },
 }));
 
@@ -14,12 +17,8 @@ export const HomePage = () => {
   const classes = useStyles();
 
   return (
-    <Paper>
-      <Grid container>
-        <Button component={Link} to="/feed" className={classes.loginButton}>
-          <Typography>LOGIN</Typography>
-        </Button>
-      </Grid>
-    </Paper>
+    <Container className={classes.containerItems}>
+      <Button className={classes.buttonLogin}>Hello xd</Button>
+    </Container>
   );
 };
