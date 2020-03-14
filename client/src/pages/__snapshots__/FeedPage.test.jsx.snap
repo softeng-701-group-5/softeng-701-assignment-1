@@ -60,7 +60,7 @@ exports[`<FeedPage /> matches snapshot 1`] = `
     className="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
   >
     <div
-      className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+      className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-justify-xs-center"
     >
       <div
         className="MuiGrid-root makeStyles-item-4 MuiGrid-item"

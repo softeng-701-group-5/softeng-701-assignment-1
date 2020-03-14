@@ -89,7 +89,7 @@ export const FeedPage = () => {
       </AppBar>
 
       <Container className={classes.container}>
-        <Grid container spacing={3}>
+        <Grid container spacing={3} justify="center">
           {items.map((item, i) => (
             <Grid item key={i} className={classes.item}>
               <MediaCard {...item} className={classes.card} />
