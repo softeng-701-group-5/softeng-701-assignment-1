@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
-import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.Optional;
@@ -13,7 +12,6 @@ import java.util.Optional;
 @AutoValue
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AutoValue_RedditData.Builder.class)
-@Repository
 public abstract class RedditData extends GenericData {
 
     public static Builder newBuilder() {return new AutoValue_RedditData.Builder();}
