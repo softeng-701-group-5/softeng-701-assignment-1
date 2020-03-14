@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { mount } from 'enzyme';
 import { HomePage } from './HomePage';
+import renderer from 'react-test-renderer';
 
 describe('<HomePage />', () => {
   let subject;
@@ -27,5 +28,16 @@ describe('<HomePage />', () => {
       </Router>,
       div
     );
+  });
+
+  it('matches snapshot', () => {
+    const tree = renderer
+      .create(
+        <Router>
+          <HomePage />
+        </Router>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });

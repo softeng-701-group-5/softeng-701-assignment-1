@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomePage /> matches snapshot 1`] = `
+<div
+  className="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <div
+    className="MuiGrid-root MuiGrid-container"
+  >
+    <a
+      aria-disabled={false}
+      className="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-loginButton-1"
+      href="/feed"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <span
+        className="MuiButton-label"
+      >
+        <p
+          className="MuiTypography-root MuiTypography-body1"
+        >
+          LOGIN
+        </p>
+      </span>
+    </a>
+  </div>
+</div>
+`;
