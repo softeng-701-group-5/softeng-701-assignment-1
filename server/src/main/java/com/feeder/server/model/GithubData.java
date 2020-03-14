@@ -1,76 +1,70 @@
 package com.feeder.server.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.feeder.server.model.github.Actor;
+import com.feeder.server.model.github.Payload;
+import com.feeder.server.model.github.Repository;
 import com.google.auto.value.AutoValue;
-
 import java.time.LocalDateTime;
-import java.util.Map;
 import java.util.Optional;
 
 @AutoValue
-@JsonInclude(JsonInclude.Include.NON_ABSENT)
+@JsonInclude(Include.NON_ABSENT)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonDeserialize(builder = AutoValue_GithubData.Builder.class)
 public abstract class GithubData extends GenericData {
 
-    public static Builder newBuilder() {
-        return new AutoValue_GithubData.Builder();
-    }
+  public static Builder newBuilder() {
+    return new AutoValue_GithubData.Builder();
+  }
 
-    abstract Builder toBuilder();
+  @Override
+  public Type feedType() {
+    return Type.GITHUB;
+  }
 
-    @Override
-    public Type feedType() {return Type.GITHUB;}
+  @JsonProperty("type")
+  public abstract Optional<String> type();
 
-    // Heading
-    // User Icon
-    // User name
-    // Date/time
-    // Text
-    // Image
-    // Media banner
-    // Hyperlink
+  @JsonSerialize(contentUsing = LocalDateTimeSerializer.class)
+  @JsonDeserialize(contentUsing = LocalDateTimeDeserializer.class)
+  @JsonProperty("created_at")
+  public abstract LocalDateTime createdAt();
+
+  @JsonProperty("actor")
+  public abstract Actor actor();
+
+  @JsonProperty("repo")
+  public abstract Repository repository();
+
+  @JsonProperty("payload")
+  public abstract Payload payload();
+
+  @AutoValue.Builder
+  public interface Builder {
 
     @JsonProperty("type")
-    public abstract String getEventType();
+    Builder type (String type);
 
     @JsonProperty("created_at")
-    public abstract String getCreatedAt();
+    Builder createdAt(LocalDateTime time);
 
-//    public abstract String getUsername();
-//
-//    public abstract String getUserIcon();
+    @JsonProperty("actor")
+    Builder actor(Actor actor);
 
-//    @JsonProperty("actor")
-//    public void actorUsername(Map<String, Object> actor) {
-//        toBuilder().setUsername(((String) actor.get("display_login"))).build();
-//    }
-//
-//    @JsonProperty("actor")
-//    public void actorUserIcon(Map<String, Object> actor) {
-//        toBuilder().setUserIcon((String) actor.get("avatar_url")).build();
-//    }
+    @JsonProperty("repo")
+    Builder repository(Repository repository);
 
-//    public abstract String eventURL();
-//    public abstract Optional <String> eventDescription();
-//    public abstract String eventDate();
+    @JsonProperty("payload")
+    Builder payload(Payload payload);
 
-    @AutoValue.Builder
-    @JsonPOJOBuilder(withPrefix = "")
-    public interface Builder {
-        Builder setEventType(String eventType);
-
-        Builder setCreatedAt(String createdAt);
-
-//        Builder setUsername(String username);
-//
-//        Builder setUserIcon(String userIcon);
-
-        GithubData build();
-    }
+    GithubData build();
+  }
 }
