@@ -44,8 +44,8 @@ public abstract class RedditData extends GenericData {
      * {@link java.util.Optional} means this property is NOT required for serialization. Perhaps not
      * all posts contain images. If there is no thumbnail, then the string "self" is returned.
      */
-    @JsonProperty("thumnail")
-    public abstract Optional<String> thumnail();
+    @JsonProperty("thumbnail")
+    public abstract Optional<String> thumbnail();
 
     /**
      * Self Text is the text within a post. Not all posts on reddit may contain text. If there is no text, then
@@ -68,7 +68,7 @@ public abstract class RedditData extends GenericData {
 
         RedditData.Builder url(String url);
 
-        RedditData.Builder thumnail(String thumnail);
+        RedditData.Builder thumbnail(String thumbnail);
 
         RedditData.Builder selftext(String selftext);
 

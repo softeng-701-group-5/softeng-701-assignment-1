@@ -38,7 +38,7 @@ public class RedditFeedProvider implements FeedProvider<RedditData> {
                                     .created(submission.getCreated())
                                     .subreddit(submission.getSubreddit())
                                     .url(submission.getUrl())
-                                    .thumnail(submission.getThumbnail())
+                                    .thumbnail(submission.getThumbnail())
                                     .selftext(submission.getSelfText())
                                     .build()
                     );
