@@ -2,7 +2,6 @@ package com.feeder.server.controller;
 
 import com.feeder.server.model.DemoData;
 import com.feeder.server.model.GenericData;
-import com.feeder.server.model.GenericData.Type;
 import com.feeder.server.model.GithubData;
 import com.feeder.server.model.RedditData;
 import com.feeder.server.model.SpotifyData;
@@ -54,10 +53,6 @@ public class MultiFeedController {
 
   @GetMapping("/demo")
   public Flux<DemoData> serializationDemoFlow() {
-    return Flux.just(
-        DemoData.newBuilder()
-            .title("Cat")
-            .imageURI("http://cat.jpg")
-            .build());
+    return Flux.just(DemoData.newBuilder().title("Cat").imageURI("http://cat.jpg").build());
   }
 }
