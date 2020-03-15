@@ -8,7 +8,7 @@ public abstract class GenericData {
     DEMO,
     REDDIT,
     GITHUB,
-    SPOTIFY,
+    HACKERNEWS,
     TWITTER
   }
 
