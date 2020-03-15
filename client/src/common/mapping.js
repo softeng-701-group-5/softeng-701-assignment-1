@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const mapFeedItem = item => {
   // TODO: add support for hackernews feed
   switch (item.feedType) {
@@ -17,7 +19,7 @@ const mapRedditItem = item => ({
   title: item.title,
   username: item.author,
   mainText: item.selftext,
-  relativeTime: new Date(item.created), // TODO: make date relative
+  relativeTime: moment(item.created).fromNow(),
   mediaSourceLink: item.url,
 });
 
@@ -27,7 +29,7 @@ const mapGitHubItem = item => ({
   username: item.actor.display_login,
   mainText: item.repo.name,
   avatarLink: item.actor.avatar_url,
-  relativeTime: new Date(item.created_at),
+  relativeTime: moment(item.created_at).fromNow(),
   mediaSourceLink: item.repo.url,
 });
 
@@ -37,5 +39,5 @@ const mapTwitterItem = item => ({
   username: item.profileUsername,
   mainText: item.tweet, // TODO: extract image from tweet
   avatarLink: item.profileImageURI,
-  relativeTime: new Date(item.tweetPostDate),
+  relativeTime: moment(item.tweetPostDate).fromNow(),
 });
