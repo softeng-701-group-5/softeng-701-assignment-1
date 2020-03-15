@@ -1,5 +1,20 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Prerequisites: 
+* You have already forked the repository and cloned your fork to your local machine. More information on this, and the fork and pull model in general, see the [gist post](https://gist.github.com/Chaser324/ce0505fbed06b947d962) on the subject. 
+* You have the following installed: 
+
+  * [Java JDK 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+  * [Yarn](https://classic.yarnpkg.com/en/docs/install)
+  * [Node.js](https://nodejs.org/en/)
+  * [Maven](https://maven.apache.org/install.html)
+  
+### Getting Started: 
+
+1. Open the command prompt and set the working directory as the `client` directory of your cloned repository. (`cd client`)
+2. Run `yarn install --frozen-lockfile` to install all the required dependencies
+3. Run `yarn start` to launch the application. Close the application with `ctrl+c` in the command prompt
+
 ## Available Scripts
 
 In the project directory, you can run:
