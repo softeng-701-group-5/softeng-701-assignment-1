@@ -17,10 +17,16 @@ export const getFeed = async () => {
   return mappedData;
 };
 
+// sorts feed from newest to oldest
 const sortFeed = feed => {
   return feed.sort((a, b) => {
-    const aDate = new Date(a.created || a.created_at || a.tweetPostDate);
-    const bDate = new Date(b.created || b.created_at || b.tweetPostDate);
+    // parse date, while not assuming feed type
+    const aDate = new Date(
+      a.created || a.created_at || a.tweetPostDate || a.time * 1000
+    );
+    const bDate = new Date(
+      b.created || b.created_at || b.tweetPostDate || a.time * 1000
+    );
 
     return bDate - aDate;
   });
