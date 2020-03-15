@@ -11,7 +11,7 @@ exports[`<MediaCard /> matches snapshot 1`] = `
       className="MuiCardHeader-avatar"
     >
       <div
-        className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-5"
+        className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-3"
       >
         <img
           className="MuiAvatar-img"
@@ -27,44 +27,6 @@ exports[`<MediaCard /> matches snapshot 1`] = `
       >
         undefined - undefined
       </span>
-    </div>
-    <div
-      className="MuiCardHeader-action"
-    >
-      <button
-        aria-label="settings"
-        className="MuiButtonBase-root MuiIconButton-root"
-        disabled={false}
-        onBlur={[Function]}
-        onDragLeave={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <span
-          className="MuiIconButton-label"
-        >
-          <svg
-            aria-hidden="true"
-            className="MuiSvgIcon-root"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
-            />
-          </svg>
-        </span>
-      </button>
     </div>
   </div>
   <div
@@ -83,6 +45,7 @@ exports[`<MediaCard /> matches snapshot 1`] = `
     }
   >
     <img
+      alt="undefined logo"
       src=""
     />
   </div>
