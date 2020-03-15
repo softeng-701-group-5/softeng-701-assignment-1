@@ -25,7 +25,10 @@ const mapRedditItem = item => ({
 
 const mapGitHubItem = item => ({
   media: 'github',
-  title: `${item.payload.subject} ${item.payload.action}`, // TODO: format heading
+  title: `${item.payload.subject} ${item.payload.action}`
+    .replace('_', ' ')
+    .replace('unknown', '')
+    .toLowerCase(),
   username: item.actor.display_login,
   mainText: item.repo.name,
   avatarLink: item.actor.avatar_url,
