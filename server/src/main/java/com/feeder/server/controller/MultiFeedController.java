@@ -36,17 +36,7 @@ public class MultiFeedController {
   }
 
   @GetMapping("/HackerNews")
-  public Flux<HackerNewsData> HackerNewsFlow() {
-    return Flux.just(
-            HackerNewsData.newBuilder()
-                    .title()
-                    .by()
-                    .time()
-                    .url()
-                    .score()
-                    .text()
-                    .build());
-    return HackerNewsFeedProvider.getFeed();
+  public Flux<HackerNewsData> HackerNewsFlow() { return HackerNewsFeedProvider.getFeed();
   }
 
   @GetMapping("/twitter")

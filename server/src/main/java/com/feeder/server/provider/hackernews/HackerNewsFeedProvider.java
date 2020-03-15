@@ -5,6 +5,7 @@ import com.feeder.server.provider.FeedProvider;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
+@Service
 public class HackerNewsFeedProvider implements FeedProvider<HackerNewsData> {
     @Override
     public Flux<HackerNewsData> getFeed() {
