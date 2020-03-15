@@ -7,6 +7,9 @@ import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
+/**
+ * This class is package-private to limit the use of the credential class outside the scope of the twitter package
+ */
 @Configuration
 class TwitterCredentials {
     private TwitterFactory twitterFactory;
