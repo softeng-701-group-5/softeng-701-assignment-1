@@ -7,10 +7,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationProperties {
 
+
   private String redditUsername="";
   private String redditPassword="";
   private String redditClientId="";
   private String redditClientSecret="";
+
+  private String githubUsername="";
+  private String githubPassword="";
 
   private String twitterConsumerKey="";
   private String twitterConsumerSecret="";
@@ -23,15 +27,19 @@ public class ApplicationProperties {
       @Value("${providers.reddit.password}") String redditPassword,
       @Value("${providers.reddit.clientId}") String redditClientId,
       @Value("${providers.reddit.clientSecret}") String redditClientSecret,
+      @Value("${providers.github.username}") String githubUsername,
+      @Value("${providers.github.password}") String githubPassword,
       @Value("${providers.twitter.consumerKey}") String twitterConsumerKey,
       @Value("${providers.twitter.consumerSecret}") String twitterConsumerSecret,
       @Value("${providers.twitter.accessToken}") String twitterAccessToken,
-      @Value("${providers.twitter.accessTokenSecret}") String twitterAccessTokenSecret
-      ) {
+      @Value("${providers.twitter.accessTokenSecret}") String twitterAccessTokenSecret) {
     this.redditUsername = redditUsername;
     this.redditPassword = redditPassword;
     this.redditClientId = redditClientId;
     this.redditClientSecret = redditClientSecret;
+
+    this.githubUsername = githubUsername;
+    this.githubPassword = githubPassword;
 
     this.twitterConsumerKey = twitterConsumerKey;
     this.twitterConsumerSecret = twitterConsumerSecret;
@@ -61,6 +69,14 @@ public class ApplicationProperties {
     return redditClientSecret;
   }
 
+  public String getGithubUsername() {
+    return githubUsername;
+  }
+
+  public String getGithubPassword() {
+    return githubPassword;
+  }
+
   public String getTwitterConsumerKey() {
     return twitterConsumerKey;
   }
@@ -76,4 +92,5 @@ public class ApplicationProperties {
   public String getTwitterAccessTokenSecret() {
     return twitterAccessTokenSecret;
   }
+
 }
