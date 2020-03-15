@@ -7,19 +7,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationProperties {
 
+  private String redditUsername = "";
+  private String redditPassword = "";
+  private String redditClientId = "";
+  private String redditClientSecret = "";
 
-  private String redditUsername="";
-  private String redditPassword="";
-  private String redditClientId="";
-  private String redditClientSecret="";
+  private String githubUsername = "";
+  private String githubPassword = "";
 
-  private String githubUsername="";
-  private String githubPassword="";
-
-  private String twitterConsumerKey="";
-  private String twitterConsumerSecret="";
-  private String twitterAccessToken="";
-  private String twitterAccessTokenSecret="";
+  private String twitterConsumerKey = "";
+  private String twitterConsumerSecret = "";
+  private String twitterAccessToken = "";
+  private String twitterAccessTokenSecret = "";
 
   @Autowired
   public ApplicationProperties(
@@ -47,11 +46,8 @@ public class ApplicationProperties {
     this.twitterAccessTokenSecret = twitterAccessTokenSecret;
   }
 
-  /**
-   * Constructor used when mocking application properties in testing
-   */
-  public ApplicationProperties() {
-  }
+  /** Constructor used when mocking application properties in testing */
+  public ApplicationProperties() {}
 
   public String getRedditUsername() {
     return redditUsername;
@@ -92,5 +88,4 @@ public class ApplicationProperties {
   public String getTwitterAccessTokenSecret() {
     return twitterAccessTokenSecret;
   }
-
 }

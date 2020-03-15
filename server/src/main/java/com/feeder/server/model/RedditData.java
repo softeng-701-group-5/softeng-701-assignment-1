@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
-
 import java.util.Date;
 import java.util.Optional;
 
@@ -23,9 +22,7 @@ public abstract class RedditData extends GenericData {
     return Type.REDDIT;
   }
 
-  /**
-   * This property is required for serialization. This means all posts must contain a title.
-   */
+  /** This property is required for serialization. This means all posts must contain a title. */
   @JsonProperty("title")
   public abstract String title();
 
@@ -41,7 +38,6 @@ public abstract class RedditData extends GenericData {
   @JsonProperty("url")
   public abstract String url();
 
-
   /**
    * {@link java.util.Optional} means this property is NOT required for serialization. Perhaps not
    * all posts contain images. If there is no thumbnail, then the string "self" is returned.
@@ -50,12 +46,11 @@ public abstract class RedditData extends GenericData {
   public abstract Optional<String> thumbnail();
 
   /**
-   * Self Text is the text within a post. Not all posts on reddit may contain text. If there is no text, then
-   * an empty string is returned.
+   * Self Text is the text within a post. Not all posts on reddit may contain text. If there is no
+   * text, then an empty string is returned.
    */
   @JsonProperty("selftext")
   public abstract Optional<String> selftext();
-
 
   @AutoValue.Builder
   @JsonPOJOBuilder(withPrefix = "")

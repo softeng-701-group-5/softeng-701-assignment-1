@@ -18,35 +18,38 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
   private final String GITHUB_v3_MIME_TYPE = "application/vnd.github.v3+json";
   private static final Logger logger = LoggerFactory.getLogger(GithubFeedProvider.class);
 
-  @Autowired
-  ApplicationProperties applicationProperties;
+  @Autowired ApplicationProperties applicationProperties;
 
   private WebClient.Builder webClientBuilder;
 
   @Override
   public Flux<GithubData> getFeed() {
 
-    String apiEndpointReceivedEvents = "/users/" + applicationProperties.getGithubUsername() + "/received_events";
+    String apiEndpointReceivedEvents =
+        "/users/" + applicationProperties.getGithubUsername() + "/received_events";
 
-    WebClient webClient = getWebClientBuilder()
-            .build();
+    WebClient webClient = getWebClientBuilder().build();
 
-    return webClient.get()
-            .uri(apiEndpointReceivedEvents)
-            .exchange()
-            .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
-
+    return webClient
+        .get()
+        .uri(apiEndpointReceivedEvents)
+        .exchange()
+        .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
   }
 
   private WebClient.Builder getWebClientBuilder() {
     if (this.webClientBuilder == null) {
-      this.webClientBuilder = WebClient.builder()
+      this.webClientBuilder =
+          WebClient.builder()
               .baseUrl(GITHUB_API_BASE_URL)
               .defaultHeader(HttpHeaders.CONTENT_TYPE, GITHUB_v3_MIME_TYPE)
               .defaultHeader(HttpHeaders.AUTHORIZATION)
-              .defaultHeaders(httpHeaders -> httpHeaders.setBasicAuth(applicationProperties.getGithubUsername(), applicationProperties.getGithubPassword()));
+              .defaultHeaders(
+                  httpHeaders ->
+                      httpHeaders.setBasicAuth(
+                          applicationProperties.getGithubUsername(),
+                          applicationProperties.getGithubPassword()));
     }
     return this.webClientBuilder;
   }
-
 }
