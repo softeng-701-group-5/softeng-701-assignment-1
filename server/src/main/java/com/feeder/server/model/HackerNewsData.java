@@ -24,9 +24,6 @@ public abstract class HackerNewsData extends GenericData {
         return Type.HACKERNEWS;
     }
 
-    /**
-     * This property is required for serialization. This means all posts must contain a title.
-     */
     @JsonProperty("title")
     public abstract Optional<String> title();
 
@@ -44,12 +41,7 @@ public abstract class HackerNewsData extends GenericData {
 
     @JsonProperty("score")
     public abstract Optional<Integer> score();
-
-    /**
-     * {@link java.util.Optional} means this property is NOT required for serialization. Perhaps not
-     * all posts contain images.
-     */
-
+    
     @AutoValue.Builder
     @JsonPOJOBuilder(withPrefix = "")
 
