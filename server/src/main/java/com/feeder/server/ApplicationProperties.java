@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 public class ApplicationProperties {
 
 
-  private String redditUsername;
-  private String redditPassword;
-  private String redditClientId;
-  private String redditClientSecret;
+  private String redditUsername="";
+  private String redditPassword="";
+  private String redditClientId="";
+  private String redditClientSecret="";
 
-  private String githubUsername;
-  private String githubPassword;
+  private String githubUsername="";
+  private String githubPassword="";
 
   private String twitterConsumerKey="";
   private String twitterConsumerSecret="";
