@@ -39,8 +39,6 @@ public class HackerNewsFeedProvider implements FeedProvider<HackerNewsData> {
                                     .score(data.score().get())
                                     .build()));
 
-    System.out.println(feed.count());
-
     return feed;
   }
 }
