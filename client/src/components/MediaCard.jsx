@@ -17,7 +17,7 @@ import RedditIcon from './../assets/reddit-icon.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: 345,
+    width: 300,
     padding: 0,
     margin: 0,
     border: 0,
