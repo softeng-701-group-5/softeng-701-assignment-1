@@ -24,7 +24,9 @@ public abstract class HackerNewsData extends GenericData {
         return Type.HACKERNEWS;
     }
 
-    /** This property is required for serialization. This means all posts must contain a title. */
+    /**
+     * This property is required for serialization. This means all posts must contain a title.
+     */
     @JsonProperty("title")
     public abstract Optional<String> title();
 
@@ -53,11 +55,17 @@ public abstract class HackerNewsData extends GenericData {
 
     public interface Builder {
         Builder title(String title);
+
         Builder by(String by);
+
         Builder time(Integer time);
+
         Builder url(String url);
+
         Builder score(Integer score);
+
         Builder text(String text);
+
         HackerNewsData build();
     }
 }
