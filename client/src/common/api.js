@@ -8,8 +8,20 @@ export const getFeed = async () => {
   const response = await fetch(`${BASE_URL}/`);
   const data = await response.json();
 
+  // sort data
+  const sortedData = sortFeed(data);
+
   // map data
-  const mappedData = data.map(item => mapFeedItem(item));
+  const mappedData = sortedData.map(item => mapFeedItem(item));
 
   return mappedData;
+};
+
+const sortFeed = feed => {
+  return feed.sort((a, b) => {
+    const aDate = new Date(a.created || a.created_at || a.tweetPostDate);
+    const bDate = new Date(b.created || b.created_at || b.tweetPostDate);
+
+    return bDate - aDate;
+  });
 };
