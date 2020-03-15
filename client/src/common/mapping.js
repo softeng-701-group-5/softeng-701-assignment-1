@@ -50,7 +50,7 @@ const mapTwitterItem = item => ({
 const mapHackerNewsItem = item => ({
   media: 'hackernews',
   title: item.title,
-  username: item.by,
+  username: item.username,
   mainText: item.text,
   relativeTime: moment(item.time * 1000).fromNow(),
   mediaSourceLink: item.url,
