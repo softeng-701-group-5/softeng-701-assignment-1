@@ -25,14 +25,19 @@ public abstract class HackerNewsData extends GenericData {
     /** This property is required for serialization. This means all posts must contain a title. */
     @JsonProperty("title")
     public abstract Optional<String> title();
+
     @JsonProperty("username")
     public abstract Optional<String> by();
+
     @JsonProperty("time")
     public abstract Optional<Integer> time();
+
     @JsonProperty("url")
     public abstract Optional<String> url();
+
     @JsonProperty("body")
     public abstract Optional<String> text();
+
     @JsonProperty("score")
     public abstract Optional<Integer> score();
 
