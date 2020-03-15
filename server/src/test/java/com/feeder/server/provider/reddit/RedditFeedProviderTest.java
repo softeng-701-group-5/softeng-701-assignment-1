@@ -1,6 +1,14 @@
 package com.feeder.server.provider.reddit;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
 import com.feeder.server.model.RedditData;
+import java.time.Instant;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import net.dean.jraw.RedditClient;
 import net.dean.jraw.models.Listing;
 import net.dean.jraw.models.Submission;
@@ -16,25 +24,13 @@ import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import reactor.core.publisher.Flux;
 
-import java.time.Instant;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
-
 @WebFluxTest(controllers = RedditFeedProvider.class)
 @ExtendWith(MockitoExtension.class)
 public class RedditFeedProviderTest {
 
-  @MockBean
-  private RedditClient mockRedditClient;
-  @Mock
-  private Submission mockSubmission;
-  @Autowired
-  private RedditFeedProvider subject;
+  @MockBean private RedditClient mockRedditClient;
+  @Mock private Submission mockSubmission;
+  @Autowired private RedditFeedProvider subject;
 
   @BeforeEach
   public void setUp() {
@@ -53,10 +49,10 @@ public class RedditFeedProviderTest {
     int expectedNumberOfSubmissions = 1;
     DefaultPaginator<Submission> mockPaginator = mock(DefaultPaginator.class);
     DefaultPaginator.Builder<Submission, SubredditSort> builder =
-            mock(DefaultPaginator.Builder.class);
+        mock(DefaultPaginator.Builder.class);
 
     Iterator<Listing<Submission>> mockIterator = spy(Iterator.class);
-    Submission[] submissionsArray = new Submission[]{mockSubmission};
+    Submission[] submissionsArray = new Submission[] {mockSubmission};
     List<Submission> submissions = Arrays.asList(submissionsArray);
     Listing<Submission> mockListings = Listing.create("nextName", submissions);
 

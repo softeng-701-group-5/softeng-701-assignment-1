@@ -23,6 +23,9 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/server/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
+    - name: Check Code Style
+      working-directory: ./server
+      run: mvn fmt:check
     - name: Build with Maven
       working-directory: ./server
       run: mvn clean compile
