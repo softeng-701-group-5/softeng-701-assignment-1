@@ -34,6 +34,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const truncateString = (str, num) => {
+  if (str.length <= num) {
+    return str;
+  }
+
+  return str.slice(0, num) + '...';
+};
+
 export const MediaCard = props => {
   const classes = useStyles();
   /* Alters colour bar based on which media is passed in
@@ -96,7 +104,7 @@ export const MediaCard = props => {
 
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {props.mainText}
+          {truncateString(props.mainText, 200)}
         </Typography>
       </CardContent>
 
