@@ -1,11 +1,6 @@
 package com.feeder.server.controller;
 
-import com.feeder.server.model.DemoData;
-import com.feeder.server.model.GenericData;
-import com.feeder.server.model.GithubData;
-import com.feeder.server.model.RedditData;
-import com.feeder.server.model.SpotifyData;
-import com.feeder.server.model.TwitterData;
+import com.feeder.server.model.*;
 import com.feeder.server.provider.FeedProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,12 +16,12 @@ public class MultiFeedController {
 
   @Autowired private FeedProvider<RedditData> redditFeedProvider;
   @Autowired private FeedProvider<GithubData> githubFeedProvider;
-  @Autowired private FeedProvider<SpotifyData> spotifyFeedProvider;
+  @Autowired private FeedProvider<HackerNewsData> hackernewsFeedProvider;
   @Autowired private FeedProvider<TwitterData> twitterFeedProvider;
 
   @GetMapping("/")
   public Flux<? extends GenericData> multiFeedMixerFlow() {
-    return Flux.merge(redditFlow(), githubFlow(), spotifyFlow(), twitterFlow());
+    return Flux.merge(redditFlow(), githubFlow(), hackernewsFlow(), twitterFlow());
   }
 
   @GetMapping("/reddit")
@@ -39,9 +34,9 @@ public class MultiFeedController {
     return githubFeedProvider.getFeed();
   }
 
-  @GetMapping("/spotify")
-  public Flux<SpotifyData> spotifyFlow() {
-    return spotifyFeedProvider.getFeed();
+  @GetMapping("/hackernews")
+  public Flux<HackerNewsData> hackernewsFlow() {
+    return hackernewsFeedProvider.getFeed();
   }
 
   @GetMapping("/twitter")
