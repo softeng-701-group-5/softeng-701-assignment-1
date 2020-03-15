@@ -1,7 +1,7 @@
 ### Prerequisites: 
 * You have already forked the repository and cloned your fork to your local machine. More information on this, and the fork and pull model in general, see the [gist post](https://gist.github.com/Chaser324/ce0505fbed06b947d962) on the subject. 
 * You have the following installed: 
-  * [IntelliJ Community/Ultimate (or alternative Java IDE)](https://www.jetbrains.com/idea/download/)
+
   * [Java JDK 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
   * [Yarn](https://classic.yarnpkg.com/en/docs/install)
   * [Node.js](https://nodejs.org/en/)
