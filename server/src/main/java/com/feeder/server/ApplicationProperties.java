@@ -14,10 +14,10 @@ public class ApplicationProperties {
 
   @Autowired
   public ApplicationProperties(
-      @Value("${providers.reddit.username}") String redditUsername,
-      @Value("${providers.reddit.password}") String redditPassword,
-      @Value("${providers.reddit.clientId}") String redditClientId,
-      @Value("${providers.reddit.clientSecret}") String redditClientSecret) {
+      @Value("se701-group5-user") String redditUsername,
+      @Value("JuN4vW0$!f5t") String redditPassword,
+      @Value("9cVkgwkN9fhj9g") String redditClientId,
+      @Value("zGjwl2XD0PKdO4IJcYvsGxinffE") String redditClientSecret) {
     this.redditUsername = redditUsername;
     this.redditPassword = redditPassword;
     this.redditClientId = redditClientId;

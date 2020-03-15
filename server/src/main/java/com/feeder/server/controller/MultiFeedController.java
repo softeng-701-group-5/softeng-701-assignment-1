@@ -1,12 +1,7 @@
 package com.feeder.server.controller;
 
-import com.feeder.server.model.DemoData;
-import com.feeder.server.model.GenericData;
+import com.feeder.server.model.*;
 import com.feeder.server.model.GenericData.Type;
-import com.feeder.server.model.GithubData;
-import com.feeder.server.model.RedditData;
-import com.feeder.server.model.SpotifyData;
-import com.feeder.server.model.TwitterData;
 import com.feeder.server.provider.FeedProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,9 +35,12 @@ public class MultiFeedController {
     return githubFeedProvider.getFeed();
   }
 
-  @GetMapping("/spotify")
-  public Flux<SpotifyData> spotifyFlow() {
-    return spotifyFeedProvider.getFeed();
+  @GetMapping("//HackerNews")
+  public Flux<HackerNewsData> HackerNewsFlow() {
+    return Flux.just(
+            HackerNewsData.newBuilder().title().username().time().url().score().body().build());
+    )
+    return HackerNewsFeedProvider.getFeed();
   }
 
   @GetMapping("/twitter")
