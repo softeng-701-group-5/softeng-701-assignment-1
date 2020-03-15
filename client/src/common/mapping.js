@@ -9,6 +9,8 @@ export const mapFeedItem = item => {
       return mapGitHubItem(item);
     case 'TWITTER':
       return mapTwitterItem(item);
+    case 'HACKERNEWS':
+      return mapHackerNewsItem(item);
     default:
       throw new Error(`feedType ${item.feedType} unsupported`);
   }
@@ -43,4 +45,13 @@ const mapTwitterItem = item => ({
   mainText: item.tweet, // TODO: extract image from tweet
   avatarLink: item.profileImageURI,
   relativeTime: moment(item.tweetPostDate).fromNow(),
+});
+
+const mapHackerNewsItem = item => ({
+  media: 'hackernews',
+  title: item.title,
+  username: item.by,
+  mainText: item.text,
+  relativeTime: moment(item.time * 1000).fromNow(),
+  mediaSourceLink: item.url,
 });

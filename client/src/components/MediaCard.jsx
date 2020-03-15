@@ -10,10 +10,10 @@ import {
   makeStyles,
 } from '@material-ui/core';
 
-import TwitterIcon from './../assets/twitter-icon.svg';
-import SpotifyIcon from './../assets/spotify-icon.svg';
-import GithubIcon from './../assets/github-icon.svg';
-import RedditIcon from './../assets/reddit-icon.svg';
+import TwitterIcon from '../assets/twitter-icon.svg';
+import GithubIcon from '../assets/github-icon.svg';
+import RedditIcon from '../assets/reddit-icon.svg';
+import HackerNewsIcon from '../assets/hackernews-icon.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -55,8 +55,8 @@ export const MediaCard = props => {
     switch (param) {
       case 'reddit':
         return '#FF4500';
-      case 'spotify':
-        return '#23D05F';
+      case 'hackernews':
+        return '#FF6D00';
       case 'github':
         return '#010101';
       case 'twitter':
@@ -70,8 +70,8 @@ export const MediaCard = props => {
     switch (param) {
       case 'reddit':
         return RedditIcon;
-      case 'spotify':
-        return SpotifyIcon;
+      case 'hackernews':
+        return HackerNewsIcon;
       case 'github':
         return GithubIcon;
       case 'twitter':
@@ -112,7 +112,11 @@ export const MediaCard = props => {
         style={{ backgroundColor: barColour(props.media) }}
         disableSpacing
       >
-        <img src={mediaIcon(props.media)} alt={`${props.media} logo`} />
+        <img
+          src={mediaIcon(props.media)}
+          alt={`${props.media} logo`}
+          height="20px"
+        />
       </CardActions>
     </Card>
   );
