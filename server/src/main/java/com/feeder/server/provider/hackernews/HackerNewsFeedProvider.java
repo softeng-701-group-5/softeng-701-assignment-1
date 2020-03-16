@@ -26,4 +26,8 @@ public class HackerNewsFeedProvider implements FeedProvider<HackerNewsData> {
                     .retrieve()
                     .bodyToFlux(HackerNewsData.class));
   }
+
+  public void setClient(WebClient client) {
+    this.client = client;
+  }
 }
