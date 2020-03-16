@@ -37,12 +37,11 @@ public class TwitterFeedProvider implements FeedProvider<TwitterData> {
         .flatMapMany(Flux::fromIterable)
         .map(
             status -> {
-                TwitterData.Builder twitterBuilder = TwitterData.newBuilder();
-                  for (MediaEntity m : status.getMediaEntities()) {
-                    String url = m.getMediaURLHttps();
-                    if (url != null)
-                          twitterBuilder.tweetMediaURL(url);
-                  }
+              TwitterData.Builder twitterBuilder = TwitterData.newBuilder();
+              for (MediaEntity m : status.getMediaEntities()) {
+                String url = m.getMediaURLHttps();
+                if (url != null) twitterBuilder.tweetMediaURL(url);
+              }
               return twitterBuilder
                   .tweet(status.getText())
                   .profileUsername(status.getUser().getName())
