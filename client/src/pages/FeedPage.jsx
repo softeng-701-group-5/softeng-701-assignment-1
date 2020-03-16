@@ -14,6 +14,8 @@ import { Link } from 'react-router-dom';
 import { MediaCard } from '../components/MediaCard';
 import { getFeed } from '../common/api';
 
+import ClipLoader from 'react-spinners/ClipLoader';
+
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#f5f5f5',
@@ -35,6 +37,10 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2),
     color: '#FFFFFF',
   },
+  load: {
+    size: 9000,
+    color: '#123abc',
+  },
 }));
 
 export const FeedPage = () => {
@@ -42,12 +48,14 @@ export const FeedPage = () => {
 
   // state management
   const [feed, setFeed] = React.useState([]);
+  const [loader, setLoader] = React.useState(true);
 
   // fetches data when page loads
   React.useEffect(() => {
     // synchronous function as recommended by react
     getFeed()
       .then(data => setFeed(data))
+      .then(() => setLoader(false))
       .catch(error => console.error(error));
   }, []);
 
@@ -73,6 +81,7 @@ export const FeedPage = () => {
 
       <Container className={classes.container}>
         <Grid container spacing={3} justify="center">
+          {<ClipLoader size={120} color={'#123abc'} loading={loader} />}
           {feed.map((item, i) => (
             <Grid item key={i} className={classes.item}>
               <MediaCard {...item} className={classes.card} />
