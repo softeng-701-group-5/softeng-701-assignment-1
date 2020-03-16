@@ -46,6 +46,7 @@ exports[`<MediaCard /> matches snapshot 1`] = `
   >
     <img
       alt="undefined logo"
+      height="20px"
       src=""
     />
   </div>
