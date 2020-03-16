@@ -2,8 +2,8 @@ package com.feeder.server.controller;
 
 import com.feeder.server.model.DemoData;
 import com.feeder.server.model.GithubData;
+import com.feeder.server.model.HackerNewsData;
 import com.feeder.server.model.RedditData;
-import com.feeder.server.model.SpotifyData;
 import com.feeder.server.model.TwitterData;
 import com.feeder.server.provider.FeedProvider;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ public class MultiFeedControllerIntegrationTest {
 
   // For now we mock all dependencies since they are not implemented
   @MockBean FeedProvider<RedditData> mockRedditFeedProvider;
-  @MockBean FeedProvider<SpotifyData> mockSpotifyFeedProvider;
+  @MockBean FeedProvider<HackerNewsData> mockHackerNewsFeedProvider;
   @MockBean FeedProvider<GithubData> mockGithubFeedProvider;
   @MockBean FeedProvider<TwitterData> mockTwitterFeedProvider;
 

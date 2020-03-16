@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
 import java.util.Optional;
+import org.springframework.web.util.HtmlUtils;
 
 @AutoValue
 @JsonInclude(Include.NON_ABSENT)
@@ -21,6 +22,9 @@ public abstract class HackerNewsData extends GenericData {
   public Type feedType() {
     return Type.HACKERNEWS;
   }
+
+  @JsonProperty("id")
+  public abstract int id();
 
   @JsonProperty("title")
   public abstract Optional<String> title();
@@ -41,20 +45,34 @@ public abstract class HackerNewsData extends GenericData {
   public abstract Optional<Integer> score();
 
   @AutoValue.Builder
-  @JsonPOJOBuilder(withPrefix = "")
-  public interface Builder {
-    Builder title(String title);
+  @JsonPOJOBuilder(withPrefix = "set")
+  public abstract static class Builder {
+    public abstract Builder setId(int id);
 
-    Builder by(String by);
+    public abstract Builder setTitle(String title);
 
-    Builder time(Integer time);
+    public abstract Builder setBy(String by);
 
-    Builder url(String url);
+    public abstract Builder setTime(Integer time);
 
-    Builder score(Integer score);
+    public abstract Builder setUrl(String url);
 
-    Builder text(String text);
+    public abstract Builder setScore(Integer score);
 
-    HackerNewsData build();
+    public abstract Builder setText(String text);
+
+    abstract int id();
+
+    abstract Optional<String> url();
+
+    abstract Optional<String> text();
+
+    abstract HackerNewsData autoBuild();
+
+    public HackerNewsData build() {
+      setUrl(url().orElse("https://news.ycombinator.com/ask/" + id()));
+      setText(HtmlUtils.htmlUnescape(text().orElse("")));
+      return autoBuild();
+    }
   }
 }
