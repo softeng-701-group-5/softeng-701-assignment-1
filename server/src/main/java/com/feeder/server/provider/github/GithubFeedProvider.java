@@ -14,8 +14,8 @@ import reactor.core.publisher.Flux;
 @Service
 public class GithubFeedProvider implements FeedProvider<GithubData> {
 
-  private final String GITHUB_API_BASE_URL = "https://api.github.com";
-  private final String GITHUB_v3_MIME_TYPE = "application/vnd.github.v3+json";
+  private static final String GITHUB_API_BASE_URL = "https://api.github.com";
+  private static final String GITHUB_v3_MIME_TYPE = "application/vnd.github.v3+json";
   private static final Logger logger = LoggerFactory.getLogger(GithubFeedProvider.class);
 
   @Autowired ApplicationProperties applicationProperties;
