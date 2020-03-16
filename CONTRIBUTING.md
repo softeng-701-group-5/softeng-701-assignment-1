@@ -16,6 +16,7 @@ Create a bug report or feature request by following these steps:
 2. If creating a bug report, follow all instructions in the [bug report template](./.github/ISSUE_TEMPLATE/bug_report.md)
 3. If creating a feature request, follow all instructions in the [feature request template](./.github/ISSUE_TEMPLATE/feature_request.md)
 4. If creating a user story, follow all instructions in the [user story template](./.github/ISSUE_TEMPLATE/user_story.md)
+5. For any issue, you must also follow the guidelines as defined in [Creating an Issue](https://github.com/softeng-701-group-5/softeng-701-assignment-1/wiki/Approval-Process)
 
 ### Pull Requests
 
