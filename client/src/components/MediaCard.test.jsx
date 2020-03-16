@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { MediaCard } from './MediaCard';
 import renderer from 'react-test-renderer';
 
@@ -20,8 +20,19 @@ describe('<MediaCard />', () => {
     ReactDOM.render(<MediaCard />, div);
   });
 
-  it('matches snapshot', () => {
-    const tree = renderer.create(<MediaCard />).toJSON();
+  it.each(
+    'REDDIT',
+    'GITHUB',
+    'TWITTER',
+    'HACKERNEWS',
+    'default'
+  )('matches each snapshots', media => {
+    const mediaProps = [
+      {
+        media: media,
+      },
+    ];
+    const tree = renderer.create(<MediaCard {...mediaProps} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
