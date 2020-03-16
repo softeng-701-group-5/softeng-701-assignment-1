@@ -42,7 +42,7 @@ public class HackerNewsFeedProviderTest {
     @Test
     public void testGetFeed() {
         // arrange
-        int expectedFeedSize = 1;
+        int expectedFeedSize = 5;
 
         WebClient.RequestHeadersUriSpec mockRequestHeadersUriSpec = mock(WebClient.RequestHeadersUriSpec.class);
         WebClient.RequestHeadersSpec mockRequestHeaderSpec = mock(WebClient.RequestHeadersSpec.class);
@@ -52,14 +52,17 @@ public class HackerNewsFeedProviderTest {
         when(mockRequestHeadersUriSpec.uri("https://hacker-news.firebaseio.com/v0/askstories.json?print=pretty"))
                 .thenReturn(mockRequestHeaderSpec);
         when(mockRequestHeaderSpec.retrieve()).thenReturn(mockResponseSpec);
-        when(mockResponseSpec.bodyToFlux(Integer.class)).thenReturn(Flux.range(expectedFeedSize - 1,expectedFeedSize));
-        when(mockRequestHeadersUriSpec.uri("https://hacker-news.firebaseio.com/v0/item/" + (expectedFeedSize - 1) + ".json"))
-                .thenReturn(mockRequestHeaderSpec);
+        when(mockResponseSpec.bodyToFlux(Integer.class)).thenReturn(Flux.range(0, expectedFeedSize));
+        // Each of the requests for the news items expected needs to be mocked.
+        for (int i = 0; i < expectedFeedSize; i++) {
+            when(mockRequestHeadersUriSpec.uri("https://hacker-news.firebaseio.com/v0/item/" + i + ".json"))
+                    .thenReturn(mockRequestHeaderSpec);
+        }
         when(mockResponseSpec.bodyToFlux(HackerNewsData.class)).thenReturn(Flux.just(mockData));
 
         // act
         Flux<HackerNewsData> result = subject.getFeed();
         // assert
-        assertEquals(1, result.collectList().block().size());
+        assertEquals(expectedFeedSize, result.collectList().block().size());
     }
 }
