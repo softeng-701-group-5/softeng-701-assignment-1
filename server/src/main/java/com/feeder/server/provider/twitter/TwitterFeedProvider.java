@@ -45,6 +45,6 @@ public class TwitterFeedProvider implements FeedProvider<TwitterData> {
   }
 
   ResponseList<Status> getLastResponse() {
-      return lastResponse;
+    return lastResponse;
   }
 }
