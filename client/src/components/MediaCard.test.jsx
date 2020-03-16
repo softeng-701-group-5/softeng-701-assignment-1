@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { MediaCard } from './MediaCard';
 import renderer from 'react-test-renderer';
 
