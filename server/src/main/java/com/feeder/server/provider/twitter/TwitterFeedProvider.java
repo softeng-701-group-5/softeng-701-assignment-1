@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
+import twitter4j.MediaEntity;
 import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
-import twitter4j.MediaEntity;
 
 @Service
 public class TwitterFeedProvider implements FeedProvider<TwitterData> {
@@ -37,18 +37,13 @@ public class TwitterFeedProvider implements FeedProvider<TwitterData> {
         .flatMapMany(Flux::fromIterable)
         .map(
             status -> {
-              for (MediaEntity m : status.getMediaEntities()) {
-                String url = m.getMediaURLHttps();
-                if (url != null)
-                  return TwitterData.newBuilder()
-                      .tweet(status.getText())
-                      .profileUsername(status.getUser().getName())
-                      .profileImageURI(status.getUser().get400x400ProfileImageURL())
-                      .tweetPostDate(status.getCreatedAt())
-                      .tweetMediaURL(url)
-                      .build();
-              }
-              return TwitterData.newBuilder()
+                TwitterData.Builder twitterBuilder = TwitterData.newBuilder();
+                  for (MediaEntity m : status.getMediaEntities()) {
+                    String url = m.getMediaURLHttps();
+                    if (url != null)
+                          twitterBuilder.tweetMediaURL(url);
+                  }
+              return twitterBuilder
                   .tweet(status.getText())
                   .profileUsername(status.getUser().getName())
                   .profileImageURI(status.getUser().get400x400ProfileImageURL())
