@@ -43,4 +43,8 @@ public class TwitterFeedProvider implements FeedProvider<TwitterData> {
                     .tweetPostDate(status.getCreatedAt())
                     .build());
   }
+
+  ResponseList<Status> getLastResponse() {
+      return lastResponse;
+  }
 }
