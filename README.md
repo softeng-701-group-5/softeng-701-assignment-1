@@ -1,4 +1,6 @@
 # Media Feed Aggregator
+![](https://github.com/softeng-701-group-5/softeng-701-assignment-1/workflows/feeder-workflow-ci/badge.svg)
+
 A webapp for aggregrating media feeds from various services into a single, uniform display for user convenience.
 
 We are using the React framework to manage the front-end UI and using a Java server utilising the Spring framework for the back-end. The back-end will call the API for the relevant media service and the front-end will visualise this data.
