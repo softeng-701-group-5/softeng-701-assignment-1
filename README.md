@@ -1,5 +1,5 @@
 # Media Feed Aggregator
-![](https://github.com/softeng-701-group-5/softeng-701-assignment-1/workflows/feeder-workflow-ci/badge.svg)
+![](https://github.com/softeng-701-group-5/softeng-701-assignment-1/workflows/feeder-workflow-ci/badge.svg?event=push)
 
 A webapp for aggregrating media feeds from various services into a single, uniform display for user convenience.
 
