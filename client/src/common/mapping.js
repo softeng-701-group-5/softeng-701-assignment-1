@@ -42,7 +42,8 @@ const mapTwitterItem = item => ({
   media: 'twitter',
   title: 'New Tweet',
   username: item.profileUsername,
-  mainText: item.tweet, // TODO: extract image from tweet
+  mainText: item.tweet,
+  imageLink: item.imageLink,
   avatarLink: item.profileImageURI,
   relativeTime: moment(item.tweetPostDate).fromNow(),
 });
