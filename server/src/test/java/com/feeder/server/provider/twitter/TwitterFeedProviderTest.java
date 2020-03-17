@@ -33,36 +33,34 @@ public class TwitterFeedProviderTest {
   @Mock private Status mockStatus;
   @Mock private User mockUser;
   @Autowired private TwitterFeedProvider subject;
-  private Flux<TwitterData> mockFeed;
 
   @BeforeEach
-  public void setUp() {
+  public void setUp() throws TwitterException {
     List<Status> concreteResponseList = new ArrayList<>();
     concreteResponseList.add(mockStatus);
     ResponseList<Status> mockResponseList =
         mock(ResponseList.class, delegatesTo(concreteResponseList));
-    try {
-      when(mockTwitterClient.getHomeTimeline()).thenReturn(mockResponseList);
-    } catch (TwitterException ignored) {
-    }
 
+    when(mockTwitterClient.getHomeTimeline()).thenReturn(mockResponseList);
     when(mockUser.getName()).thenReturn("testUser");
     when(mockUser.get400x400ProfileImageURL()).thenReturn("testProfileImageURL");
     when(mockStatus.getUser()).thenReturn(mockUser);
     when(mockStatus.getText()).thenReturn("testText");
     when(mockStatus.getCreatedAt()).thenReturn(Date.from(Instant.EPOCH));
-
-    mockFeed = subject.getFeed();
   }
 
   @Test
   public void testGetFeed() {
     int expectedNumberOfStatuses = 1;
+    Flux<TwitterData> mockFeed = subject.getFeed();
+
     assertEquals(expectedNumberOfStatuses, mockFeed.collectList().block().size());
   }
 
   @Test
   public void testFeedCaching() {
+    Flux<TwitterData> mockFeed = subject.getFeed();
+
     assertEquals(mockFeed.collectList().block().size(), subject.getLastResponse().size());
   }
 }
