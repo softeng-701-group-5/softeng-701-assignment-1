@@ -39,9 +39,7 @@ const useStyles = makeStyles(theme => ({
   loader: {
     width: '100%',
     animationDuration: '550ms',
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
+    marginTop: theme.spacing(2),
   },
 }));
 
