@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import reactor.core.publisher.Flux;
+import twitter4j.MediaEntity;
 import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -32,6 +33,7 @@ public class TwitterFeedProviderTest {
   @MockBean private Twitter mockTwitterClient;
   @Mock private Status mockStatus;
   @Mock private User mockUser;
+  @Mock private MediaEntity mockMediaEntity;
   @Autowired private TwitterFeedProvider subject;
 
   @BeforeEach
@@ -44,7 +46,9 @@ public class TwitterFeedProviderTest {
     when(mockTwitterClient.getHomeTimeline()).thenReturn(mockResponseList);
     when(mockUser.getName()).thenReturn("testUser");
     when(mockUser.get400x400ProfileImageURL()).thenReturn("testProfileImageURL");
+    when(mockMediaEntity.getMediaURLHttps()).thenReturn("testURL");
     when(mockStatus.getUser()).thenReturn(mockUser);
+    when(mockStatus.getMediaEntities()).thenReturn(new MediaEntity[] {mockMediaEntity});
     when(mockStatus.getText()).thenReturn("testText");
     when(mockStatus.getCreatedAt()).thenReturn(Date.from(Instant.EPOCH));
   }
