@@ -7,14 +7,13 @@ import {
   Grid,
   makeStyles,
   IconButton,
+  CircularProgress,
 } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
 
 import { MediaCard } from '../components/MediaCard';
 import { getFeed } from '../common/api';
-
-import ClipLoader from 'react-spinners/ClipLoader';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,9 +36,12 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2),
     color: '#FFFFFF',
   },
-  load: {
-    size: 9000,
-    color: '#123abc',
+  loader: {
+    width: '100%',
+    animationDuration: '550ms',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
   },
 }));
 
@@ -81,7 +83,9 @@ export const FeedPage = () => {
 
       <Container className={classes.container}>
         <Grid container spacing={3} justify="center">
-          {<ClipLoader size={120} color={'#123abc'} loading={loader} />}
+          {loader && (
+            <CircularProgress className={classes.loader}></CircularProgress>
+          )}
           {feed.map((item, i) => (
             <Grid item key={i} className={classes.item}>
               <MediaCard {...item} className={classes.card} />
