@@ -90,34 +90,6 @@ export const MediaCard = props => {
     }
   };
 
-  const displayLink = param => {
-    switch (param) {
-      case 'reddit':
-        return true;
-      case 'hackernews':
-        return true;
-      case 'github':
-        return false;
-      case 'twitter':
-        return false;
-      default:
-        return false;
-    }
-  };
-
-  function DisplayLink(props) {
-    const toDisplayLink = props.toDisplayLink;
-    const refLink = props.refLink;
-    if (toDisplayLink) {
-      return (
-        <a href={refLink} target="_blank" rel="noopener noreferrer">
-          <img src={ExternalLinkIcon} className={classes.link} />
-        </a>
-      );
-    }
-    return '';
-  }
-
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -154,10 +126,17 @@ export const MediaCard = props => {
           alt={`${props.media} logo`}
           height="20px"
         />
-        <DisplayLink
-          toDisplayLink={displayLink(props.media)}
-          refLink={props.mediaSourceLink}
-        />
+        <div>
+          {props.mediaSourceLink && (
+            <a
+              href={props.mediaSourceLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={ExternalLinkIcon} className={classes.link} />
+            </a>
+          )}
+        </div>
       </CardActions>
     </Card>
   );
