@@ -7,6 +7,7 @@ import {
   Grid,
   makeStyles,
   IconButton,
+  CircularProgress,
 } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
@@ -35,6 +36,11 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2),
     color: '#FFFFFF',
   },
+  loader: {
+    width: '100%',
+    animationDuration: '550ms',
+    marginTop: theme.spacing(2),
+  },
 }));
 
 export const FeedPage = () => {
@@ -42,12 +48,14 @@ export const FeedPage = () => {
 
   // state management
   const [feed, setFeed] = React.useState([]);
+  const [loader, setLoader] = React.useState(true);
 
   // fetches data when page loads
   React.useEffect(() => {
     // synchronous function as recommended by react
     getFeed()
       .then(data => setFeed(data))
+      .then(() => setLoader(false))
       .catch(error => console.error(error));
   }, []);
 
@@ -73,6 +81,9 @@ export const FeedPage = () => {
 
       <Container className={classes.container}>
         <Grid container spacing={3} justify="center">
+          {loader && (
+            <CircularProgress className={classes.loader}></CircularProgress>
+          )}
           {feed.map((item, i) => (
             <Grid item key={i} className={classes.item}>
               <MediaCard {...item} className={classes.card} />
