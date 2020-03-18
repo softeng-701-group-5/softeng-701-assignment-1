@@ -45,7 +45,7 @@ public class HackerNewsFeedProviderTest {
         .thenReturn(mockRequestHeaderSpec);
     when(mockRequestHeaderSpec.retrieve()).thenReturn(mockResponseSpec);
     when(mockResponseSpec.bodyToFlux(Integer.class)).thenReturn(Flux.range(0, expectedFeedSize));
-    // Each of the requests for the news items expected needs to be mocked.
+    // Each of the URI method calls needs to be mocked.
     for (int i = 0; i < expectedFeedSize; i++) {
       when(mockRequestHeadersUriSpec.uri(
               "https://hacker-news.firebaseio.com/v0/item/" + i + ".json"))
