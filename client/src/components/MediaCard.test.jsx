@@ -20,19 +20,15 @@ describe('<MediaCard />', () => {
     ReactDOM.render(<MediaCard />, div);
   });
 
-  it.each(
-    'REDDIT',
-    'GITHUB',
-    'TWITTER',
-    'HACKERNEWS',
-    'default'
-  )('matches each snapshots', media => {
-    const mediaProps = [
-      {
-        media: media,
-      },
-    ];
-    const tree = renderer.create(<MediaCard {...mediaProps} />).toJSON();
+  const providers = [
+    ['reddit'],
+    ['github'],
+    ['twitter'],
+    ['hackernews'],
+    ['default'],
+  ];
+  it.each(providers)('matches each snapshots', media => {
+    const tree = renderer.create(<MediaCard media={media} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
