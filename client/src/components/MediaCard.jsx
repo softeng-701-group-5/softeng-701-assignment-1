@@ -14,6 +14,7 @@ import TwitterIcon from '../assets/twitter-icon.svg';
 import GithubIcon from '../assets/github-icon.svg';
 import RedditIcon from '../assets/reddit-icon.svg';
 import HackerNewsIcon from '../assets/hackernews-icon.svg';
+import ExternalLinkIcon from '../assets/external-link.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,6 +32,14 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     backgroundColor: '#d9d9d9',
+  },
+  link: {
+    marginLeft: '20px',
+    marginTop: '5px',
+    color: 'black',
+    opacity: '0.5',
+    width: '40%',
+    height: '40%',
   },
 }));
 
@@ -81,6 +90,34 @@ export const MediaCard = props => {
     }
   };
 
+  const displayLink = param => {
+    switch (param) {
+      case 'reddit':
+        return true;
+      case 'hackernews':
+        return true;
+      case 'github':
+        return false;
+      case 'twitter':
+        return false;
+      default:
+        return false;
+    }
+  };
+
+  function DisplayLink(props) {
+    const toDisplayLink = props.toDisplayLink;
+    const refLink = props.refLink;
+    if (toDisplayLink) {
+      return (
+        <a href={refLink} target="_blank" rel="noopener noreferrer">
+          <img src={ExternalLinkIcon} className={classes.link} />
+        </a>
+      );
+    }
+    return '';
+  }
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -116,6 +153,10 @@ export const MediaCard = props => {
           src={mediaIcon(props.media)}
           alt={`${props.media} logo`}
           height="20px"
+        />
+        <DisplayLink
+          toDisplayLink={displayLink(props.media)}
+          refLink={props.mediaSourceLink}
         />
       </CardActions>
     </Card>
