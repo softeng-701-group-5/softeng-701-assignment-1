@@ -27,9 +27,7 @@ public class HackerNewsFeedProvider implements FeedProvider<HackerNewsData> {
                     .bodyToFlux(HackerNewsData.class));
   }
 
-  /**
-   * For testing only.
-   */
+  /** For testing only. */
   void setClient(WebClient client) {
     this.client = client;
   }
