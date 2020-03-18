@@ -50,4 +50,8 @@ public class TwitterFeedProvider implements FeedProvider<TwitterData> {
                   .build();
             });
   }
+
+  ResponseList<Status> getLastResponse() {
+    return lastResponse;
+  }
 }
