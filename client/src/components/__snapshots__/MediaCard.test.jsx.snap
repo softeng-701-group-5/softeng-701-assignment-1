@@ -49,6 +49,7 @@ exports[`<MediaCard /> matches each snapshots 1`] = `
       height="20px"
       src="reddit-icon.svg"
     />
+    <div />
   </div>
 </div>
 `;
@@ -102,6 +103,7 @@ exports[`<MediaCard /> matches each snapshots 2`] = `
       height="20px"
       src="github-icon.svg"
     />
+    <div />
   </div>
 </div>
 `;
@@ -155,6 +157,7 @@ exports[`<MediaCard /> matches each snapshots 3`] = `
       height="20px"
       src="twitter-icon.svg"
     />
+    <div />
   </div>
 </div>
 `;
@@ -208,6 +211,7 @@ exports[`<MediaCard /> matches each snapshots 4`] = `
       height="20px"
       src="hackernews-icon.svg"
     />
+    <div />
   </div>
 </div>
 `;
