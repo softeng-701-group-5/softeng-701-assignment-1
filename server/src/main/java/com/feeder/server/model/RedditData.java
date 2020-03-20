@@ -8,6 +8,7 @@ import com.google.auto.value.AutoValue;
 import java.util.Date;
 import java.util.Optional;
 
+/** A RedditData type represents the properties of a Reddit feed post */
 @AutoValue
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AutoValue_RedditData.Builder.class)
@@ -22,7 +23,7 @@ public abstract class RedditData extends GenericData {
     return Type.REDDIT;
   }
 
-  /** This property is required for serialization. This means all posts must contain a title. */
+  /** These properties are required for serialization. This means all posts must contain a title. */
   @JsonProperty("title")
   public abstract String title();
 
