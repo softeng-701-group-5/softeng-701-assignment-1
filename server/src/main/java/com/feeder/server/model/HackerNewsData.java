@@ -9,6 +9,9 @@ import com.google.auto.value.AutoValue;
 import java.util.Optional;
 import org.springframework.web.util.HtmlUtils;
 
+/**
+ * A HackerNewsData type represents the properties of an "AskHN" post
+ */
 @AutoValue
 @JsonInclude(Include.NON_ABSENT)
 @JsonDeserialize(builder = AutoValue_HackerNewsData.Builder.class)

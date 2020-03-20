@@ -15,6 +15,9 @@ import com.feeder.server.model.github.Repository;
 import com.google.auto.value.AutoValue;
 import java.time.LocalDateTime;
 
+/**
+ * A GithubData type represents the properties of a Github event post
+ */
 @AutoValue
 @JsonInclude(Include.NON_ABSENT)
 @JsonIgnoreProperties(ignoreUnknown = true)

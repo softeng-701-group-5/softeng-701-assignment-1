@@ -8,6 +8,9 @@ import com.google.auto.value.AutoValue;
 import java.util.Date;
 import java.util.Optional;
 
+/**
+ * A TwitterData type represents the properties of a tweet
+ */
 @AutoValue
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AutoValue_TwitterData.Builder.class)
