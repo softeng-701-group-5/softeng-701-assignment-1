@@ -15,9 +15,7 @@ import com.feeder.server.model.github.Repository;
 import com.google.auto.value.AutoValue;
 import java.time.LocalDateTime;
 
-/**
- * A GithubData type represents the properties of a Github event post
- */
+/** A GithubData type represents the properties of a Github event post */
 @AutoValue
 @JsonInclude(Include.NON_ABSENT)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -34,7 +32,6 @@ public abstract class GithubData extends GenericData {
   }
 
   /** These properties are required for serialization. This means all posts must contain a title. */
-
   @JsonProperty("type")
   public abstract String type();
 

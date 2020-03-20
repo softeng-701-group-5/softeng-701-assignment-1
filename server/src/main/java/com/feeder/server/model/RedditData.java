@@ -8,9 +8,7 @@ import com.google.auto.value.AutoValue;
 import java.util.Date;
 import java.util.Optional;
 
-/**
- * A RedditData type represents the properties of a Reddit feed post
- */
+/** A RedditData type represents the properties of a Reddit feed post */
 @AutoValue
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AutoValue_RedditData.Builder.class)
@@ -42,9 +40,8 @@ public abstract class RedditData extends GenericData {
   public abstract String url();
 
   /**
-   * {@link java.util.Optional} means this property is NOT required for serialization.
-   * Perhaps not all posts contain images. If there is no thumbnail, then the string "self"
-   * is returned.
+   * {@link java.util.Optional} means this property is NOT required for serialization. Perhaps not
+   * all posts contain images. If there is no thumbnail, then the string "self" is returned.
    */
   @JsonProperty("thumbnail")
   public abstract Optional<String> thumbnail();
