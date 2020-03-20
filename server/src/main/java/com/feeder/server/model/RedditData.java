@@ -22,7 +22,7 @@ public abstract class RedditData extends GenericData {
     return Type.REDDIT;
   }
 
-  /** This property is required for serialization. This means all posts must contain a title. */
+  /** These properties are required for serialization. This means all posts must contain a title. */
   @JsonProperty("title")
   public abstract String title();
 
@@ -39,8 +39,9 @@ public abstract class RedditData extends GenericData {
   public abstract String url();
 
   /**
-   * {@link java.util.Optional} means this property is NOT required for serialization. Perhaps not
-   * all posts contain images. If there is no thumbnail, then the string "self" is returned.
+   * {@link java.util.Optional} means this property is NOT required for serialization.
+   * Perhaps not all posts contain images. If there is no thumbnail, then the string "self"
+   * is returned.
    */
   @JsonProperty("thumbnail")
   public abstract Optional<String> thumbnail();

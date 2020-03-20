@@ -22,6 +22,8 @@ public abstract class TwitterData extends GenericData {
     return Type.TWITTER;
   }
 
+  /** These properties are required for serialization, all posts must contain them. */
+
   @JsonProperty("tweet")
   public abstract String tweet();
 
@@ -34,6 +36,9 @@ public abstract class TwitterData extends GenericData {
   @JsonProperty("tweetPostDate")
   public abstract Date tweetPostDate();
 
+  /**
+   * {@link java.util.Optional} means these properties are NOT required for serialization.
+   */
   // Tweets can contain multiple images, But only need to display one for now
   @JsonProperty("imageLink")
   public abstract Optional<String> tweetMediaURL();

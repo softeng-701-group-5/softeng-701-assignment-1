@@ -23,8 +23,14 @@ public abstract class HackerNewsData extends GenericData {
     return Type.HACKERNEWS;
   }
 
+  /** This property is required for serialization. This means all posts must contain an id. */
+
   @JsonProperty("id")
   public abstract int id();
+
+  /**
+   * {@link java.util.Optional} means these properties are NOT required for serialization.
+   */
 
   @JsonProperty("title")
   public abstract Optional<String> title();

@@ -30,6 +30,8 @@ public abstract class GithubData extends GenericData {
     return Type.GITHUB;
   }
 
+  /** These properties are required for serialization. This means all posts must contain a title. */
+
   @JsonProperty("type")
   public abstract String type();
 
