@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { FilterBar } from './FilterBar';
+
 import renderer from 'react-test-renderer';
 
 describe('<FilterBar />', () => {
   let subject;
 
   beforeEach(() => {
-    subject = mount(<FilterBar />);
+    subject = shallow(<FilterBar />);
   });
 
   afterEach(() => {
