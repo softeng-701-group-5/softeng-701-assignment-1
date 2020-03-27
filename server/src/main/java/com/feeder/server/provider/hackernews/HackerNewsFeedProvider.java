@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
+/**
+ * A HackerNewsFeedProvider is responsible for retrieving Hacker News posts from the "Ask HN" page
+ * using the HackerNews API
+ */
 @Service
 public class HackerNewsFeedProvider implements FeedProvider<HackerNewsData> {
 
@@ -13,6 +17,7 @@ public class HackerNewsFeedProvider implements FeedProvider<HackerNewsData> {
 
   @Override
   public Flux<HackerNewsData> getFeed() {
+    // Gets all "Ask HN" posts. Build a HackerNewsData type for each post retrieved
     return client
         .get()
         .uri("https://hacker-news.firebaseio.com/v0/askstories.json?print=pretty")

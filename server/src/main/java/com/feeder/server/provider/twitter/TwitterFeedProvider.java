@@ -13,6 +13,10 @@ import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
+/**
+ * A TwitterFeedProvider is responsible for retrieving Tweets posts from a user's Twitter feed using
+ * the Twitter API.
+ */
 @Service
 public class TwitterFeedProvider implements FeedProvider<TwitterData> {
 
@@ -22,6 +26,7 @@ public class TwitterFeedProvider implements FeedProvider<TwitterData> {
 
   @Override
   public Flux<TwitterData> getFeed() {
+    // Gets the twitter posts from the user's home feed
     return Mono.fromCallable(() -> twitter.getHomeTimeline())
         .subscribeOn(Schedulers.elastic())
         .doOnSuccess(
@@ -37,6 +42,8 @@ public class TwitterFeedProvider implements FeedProvider<TwitterData> {
         .flatMapMany(Flux::fromIterable)
         .map(
             status -> {
+              // If the tweet has a media elements (e.g. photos), add the
+              // media to the data builder
               TwitterData.Builder twitterBuilder = TwitterData.newBuilder();
               for (MediaEntity m : status.getMediaEntities()) {
                 String url = m.getMediaURLHttps();

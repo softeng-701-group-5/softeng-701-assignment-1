@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
+/**
+ * A GithubFeedProvider is responsible for retrieving Github events from the user's Github home
+ * page, using the Github API
+ */
 @Service
 public class GithubFeedProvider implements FeedProvider<GithubData> {
 
@@ -30,6 +34,7 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
 
     WebClient webClient = getWebClientBuilder().build();
 
+    // For each Github event retrieved, build the GithubData type
     return webClient
         .get()
         .uri(apiEndpointReceivedEvents)
@@ -37,6 +42,12 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
         .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
   }
 
+  /**
+   * Builds the client with the correct headers for auth and content type specification, required to
+   * call the API
+   *
+   * @return WebClient.Builder
+   */
   private WebClient.Builder getWebClientBuilder() {
     if (this.webClientBuilder == null) {
       this.webClientBuilder =
