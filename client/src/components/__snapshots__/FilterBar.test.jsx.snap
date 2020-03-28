@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FilterBar /> matches snapshot 1`] = `
+<div
+  className="makeStyles-root-1"
+>
+  <div
+    className="MuiChip-root makeStyles-chip-2 MuiChip-deletable"
+    onKeyUp={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <span
+      aria-hidden={true}
+      className="material-icons MuiIcon-root MuiChip-icon fab fa-reddit"
+    />
+    <span
+      className="MuiChip-label"
+    >
+      Reddit
+    </span>
+    <svg
+      aria-hidden="true"
+      className="MuiSvgIcon-root MuiChip-deleteIcon"
+      focusable="false"
+      onClick={[Function]}
+      role="presentation"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"
+      />
+    </svg>
+  </div>
+  <div
+    className="MuiChip-root makeStyles-chip-2 MuiChip-deletable"
+    onKeyUp={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <span
+      aria-hidden={true}
+      className="material-icons MuiIcon-root MuiChip-icon fab fa-hacker-news"
+    />
+    <span
+      className="MuiChip-label"
+    >
+      Hackernews
+    </span>
+    <svg
+      aria-hidden="true"
+      className="MuiSvgIcon-root MuiChip-deleteIcon"
+      focusable="false"
+      onClick={[Function]}
+      role="presentation"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"
+      />
+    </svg>
+  </div>
+  <div
+    className="MuiChip-root makeStyles-chip-2 MuiChip-deletable"
+    onKeyUp={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <span
+      aria-hidden={true}
+      className="material-icons MuiIcon-root MuiChip-icon fab fa-github"
+    />
+    <span
+      className="MuiChip-label"
+    >
+      Github
+    </span>
+    <svg
+      aria-hidden="true"
+      className="MuiSvgIcon-root MuiChip-deleteIcon"
+      focusable="false"
+      onClick={[Function]}
+      role="presentation"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"
+      />
+    </svg>
+  </div>
+  <div
+    className="MuiChip-root makeStyles-chip-2 MuiChip-deletable"
+    onKeyUp={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <span
+      aria-hidden={true}
+      className="material-icons MuiIcon-root MuiChip-icon fab fa-twitter"
+    />
+    <span
+      className="MuiChip-label"
+    >
+      Twitter
+    </span>
+    <svg
+      aria-hidden="true"
+      className="MuiSvgIcon-root MuiChip-deleteIcon"
+      focusable="false"
+      onClick={[Function]}
+      role="presentation"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"
+      />
+    </svg>
+  </div>
+</div>
+`;
