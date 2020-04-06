@@ -1,266 +1,286 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<MediaCard /> matches each snapshots 1`] = `
-<div
-  className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
->
+<div>
   <div
-    className="MuiCardHeader-root"
+    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+    onClick={[Function]}
   >
     <div
-      className="MuiCardHeader-avatar"
+      className="MuiCardHeader-root"
     >
       <div
-        className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-3"
+        className="MuiCardHeader-avatar"
       >
-        <img
-          className="MuiAvatar-img"
-          src="https://img.icons8.com/windows/64/000000/user.png"
-        />
+        <div
+          className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-3"
+        >
+          <img
+            className="MuiAvatar-img"
+            src="https://img.icons8.com/windows/64/000000/user.png"
+          />
+        </div>
+      </div>
+      <div
+        className="MuiCardHeader-content"
+      >
+        <span
+          className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+        >
+          undefined - undefined
+        </span>
       </div>
     </div>
     <div
-      className="MuiCardHeader-content"
+      className="MuiCardContent-root"
     >
-      <span
-        className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
-      >
-        undefined - undefined
-      </span>
+      <p
+        className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+      />
+    </div>
+    <div
+      className="MuiCardActions-root"
+      style={
+        Object {
+          "backgroundColor": "#FF4500",
+        }
+      }
+    >
+      <img
+        alt="reddit logo"
+        height="20px"
+        src="reddit-icon.svg"
+      />
     </div>
   </div>
-  <div
-    className="MuiCardContent-root"
-  >
-    <p
-      className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
-    />
-  </div>
-  <div
-    className="MuiCardActions-root"
-    style={
-      Object {
-        "backgroundColor": "#FF4500",
-      }
-    }
-  >
-    <img
-      alt="reddit logo"
-      height="20px"
-      src="reddit-icon.svg"
-    />
-  </div>
+  <div />
 </div>
 `;
 
 exports[`<MediaCard /> matches each snapshots 2`] = `
-<div
-  className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
->
+<div>
   <div
-    className="MuiCardHeader-root"
+    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+    onClick={[Function]}
   >
     <div
-      className="MuiCardHeader-avatar"
+      className="MuiCardHeader-root"
     >
       <div
-        className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-3"
+        className="MuiCardHeader-avatar"
       >
-        <img
-          className="MuiAvatar-img"
-          src="https://img.icons8.com/windows/64/000000/user.png"
-        />
+        <div
+          className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-3"
+        >
+          <img
+            className="MuiAvatar-img"
+            src="https://img.icons8.com/windows/64/000000/user.png"
+          />
+        </div>
+      </div>
+      <div
+        className="MuiCardHeader-content"
+      >
+        <span
+          className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+        >
+          undefined - undefined
+        </span>
       </div>
     </div>
     <div
-      className="MuiCardHeader-content"
+      className="MuiCardContent-root"
     >
-      <span
-        className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
-      >
-        undefined - undefined
-      </span>
+      <p
+        className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+      />
+    </div>
+    <div
+      className="MuiCardActions-root"
+      style={
+        Object {
+          "backgroundColor": "#010101",
+        }
+      }
+    >
+      <img
+        alt="github logo"
+        height="20px"
+        src="github-icon.svg"
+      />
     </div>
   </div>
-  <div
-    className="MuiCardContent-root"
-  >
-    <p
-      className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
-    />
-  </div>
-  <div
-    className="MuiCardActions-root"
-    style={
-      Object {
-        "backgroundColor": "#010101",
-      }
-    }
-  >
-    <img
-      alt="github logo"
-      height="20px"
-      src="github-icon.svg"
-    />
-  </div>
+  <div />
 </div>
 `;
 
 exports[`<MediaCard /> matches each snapshots 3`] = `
-<div
-  className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
->
+<div>
   <div
-    className="MuiCardHeader-root"
+    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+    onClick={[Function]}
   >
     <div
-      className="MuiCardHeader-avatar"
+      className="MuiCardHeader-root"
     >
       <div
-        className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-3"
+        className="MuiCardHeader-avatar"
       >
-        <img
-          className="MuiAvatar-img"
-          src="https://img.icons8.com/windows/64/000000/user.png"
-        />
+        <div
+          className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-3"
+        >
+          <img
+            className="MuiAvatar-img"
+            src="https://img.icons8.com/windows/64/000000/user.png"
+          />
+        </div>
+      </div>
+      <div
+        className="MuiCardHeader-content"
+      >
+        <span
+          className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+        >
+          undefined - undefined
+        </span>
       </div>
     </div>
     <div
-      className="MuiCardHeader-content"
+      className="MuiCardContent-root"
     >
-      <span
-        className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
-      >
-        undefined - undefined
-      </span>
+      <p
+        className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+      />
+    </div>
+    <div
+      className="MuiCardActions-root"
+      style={
+        Object {
+          "backgroundColor": "#05ACF0",
+        }
+      }
+    >
+      <img
+        alt="twitter logo"
+        height="20px"
+        src="twitter-icon.svg"
+      />
     </div>
   </div>
-  <div
-    className="MuiCardContent-root"
-  >
-    <p
-      className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
-    />
-  </div>
-  <div
-    className="MuiCardActions-root"
-    style={
-      Object {
-        "backgroundColor": "#05ACF0",
-      }
-    }
-  >
-    <img
-      alt="twitter logo"
-      height="20px"
-      src="twitter-icon.svg"
-    />
-  </div>
+  <div />
 </div>
 `;
 
 exports[`<MediaCard /> matches each snapshots 4`] = `
-<div
-  className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
->
+<div>
   <div
-    className="MuiCardHeader-root"
+    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+    onClick={[Function]}
   >
     <div
-      className="MuiCardHeader-avatar"
+      className="MuiCardHeader-root"
     >
       <div
-        className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-3"
+        className="MuiCardHeader-avatar"
       >
-        <img
-          className="MuiAvatar-img"
-          src="https://img.icons8.com/windows/64/000000/user.png"
-        />
+        <div
+          className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-3"
+        >
+          <img
+            className="MuiAvatar-img"
+            src="https://img.icons8.com/windows/64/000000/user.png"
+          />
+        </div>
+      </div>
+      <div
+        className="MuiCardHeader-content"
+      >
+        <span
+          className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+        >
+          undefined - undefined
+        </span>
       </div>
     </div>
     <div
-      className="MuiCardHeader-content"
+      className="MuiCardContent-root"
     >
-      <span
-        className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
-      >
-        undefined - undefined
-      </span>
+      <p
+        className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+      />
+    </div>
+    <div
+      className="MuiCardActions-root"
+      style={
+        Object {
+          "backgroundColor": "#FF6D00",
+        }
+      }
+    >
+      <img
+        alt="hackernews logo"
+        height="20px"
+        src="hackernews-icon.svg"
+      />
     </div>
   </div>
-  <div
-    className="MuiCardContent-root"
-  >
-    <p
-      className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
-    />
-  </div>
-  <div
-    className="MuiCardActions-root"
-    style={
-      Object {
-        "backgroundColor": "#FF6D00",
-      }
-    }
-  >
-    <img
-      alt="hackernews logo"
-      height="20px"
-      src="hackernews-icon.svg"
-    />
-  </div>
+  <div />
 </div>
 `;
 
 exports[`<MediaCard /> matches each snapshots 5`] = `
-<div
-  className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
->
+<div>
   <div
-    className="MuiCardHeader-root"
+    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+    onClick={[Function]}
   >
     <div
-      className="MuiCardHeader-avatar"
+      className="MuiCardHeader-root"
     >
       <div
-        className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-3"
+        className="MuiCardHeader-avatar"
       >
-        <img
-          className="MuiAvatar-img"
-          src="https://img.icons8.com/windows/64/000000/user.png"
-        />
+        <div
+          className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-3"
+        >
+          <img
+            className="MuiAvatar-img"
+            src="https://img.icons8.com/windows/64/000000/user.png"
+          />
+        </div>
+      </div>
+      <div
+        className="MuiCardHeader-content"
+      >
+        <span
+          className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+        >
+          undefined - undefined
+        </span>
       </div>
     </div>
     <div
-      className="MuiCardHeader-content"
+      className="MuiCardContent-root"
     >
-      <span
-        className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
-      >
-        undefined - undefined
-      </span>
+      <p
+        className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+      />
+    </div>
+    <div
+      className="MuiCardActions-root"
+      style={
+        Object {
+          "backgroundColor": "#b3b3b3",
+        }
+      }
+    >
+      <img
+        alt="default logo"
+        height="20px"
+        src=""
+      />
     </div>
   </div>
-  <div
-    className="MuiCardContent-root"
-  >
-    <p
-      className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
-    />
-  </div>
-  <div
-    className="MuiCardActions-root"
-    style={
-      Object {
-        "backgroundColor": "#b3b3b3",
-      }
-    }
-  >
-    <img
-      alt="default logo"
-      height="20px"
-      src=""
-    />
-  </div>
+  <div />
 </div>
 `;
