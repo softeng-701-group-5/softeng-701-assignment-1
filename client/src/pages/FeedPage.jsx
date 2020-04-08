@@ -13,6 +13,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
 import { MediaCard } from '../components/MediaCard';
 import { FilterBar } from '../components/FilterBar';
+import { SearchBox } from '../components/SearchBox';
 import { getFeed } from '../common/api';
 
 const useStyles = makeStyles(theme => ({
@@ -55,6 +56,7 @@ export const FeedPage = () => {
     'github',
     'twitter',
   ]);
+  const [search, setSearch] = React.useState([]);
 
   // fetches data when page loads
   React.useEffect(() => {
@@ -81,6 +83,7 @@ export const FeedPage = () => {
             <Typography className={classes.title} variant="h6">
               Feedr
             </Typography>
+            <SearchBox setSearch={setSearch} />
           </Toolbar>
         </Container>
       </AppBar>
@@ -94,7 +97,14 @@ export const FeedPage = () => {
           )}
           {feed.map(
             (item, i) =>
-              filters.includes(item.media) && (
+              filters.includes(item.media) &&
+              // Only checking the mainText if there is text to check, untherwise it will come up as 'undefined'
+              (typeof item.mainText !== 'undefined'
+                ? item.mainText.toLowerCase().includes(search) ||
+                  item.username.toLowerCase().includes(search) ||
+                  item.title.toLowerCase().includes(search)
+                : item.username.toLowerCase().includes(search) ||
+                  item.title.toLowerCase().includes(search)) && (
                 <Grid item key={i} className={classes.item}>
                   <MediaCard {...item} className={classes.card} />
                 </Grid>
