@@ -121,9 +121,9 @@ export const FeedPage = () => {
               className={classes.headerButtons}
             >
               {layout === 'grid' ? (
-                <AppsRoundedIcon />
-              ) : (
                 <ViewStreamRoundedIcon />
+              ) : (
+                <AppsRoundedIcon />
               )}
             </IconButton>
             <IconButton
