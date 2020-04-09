@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   AppBar,
+  //Typography,
   Toolbar,
   Container,
   Grid,
@@ -47,7 +48,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export const FeedPage = () => {
+export const FavouritesPage = () => {
   const classes = useStyles();
 
   // state management
@@ -84,20 +85,20 @@ export const FeedPage = () => {
               <HomeIcon />
             </IconButton>
             <Button
-              className={classes.title}
-              variant="h6"
               component={Link}
               to={'feed'}
+              className={classes.button}
+              color="inherit"
             >
-              Feedr
+              FEEDR
             </Button>
             <Button
-              className={classes.title}
-              variant="h6"
               component={Link}
               to={'favourites'}
+              className={classes.button}
+              color="inherit"
             >
-              Favourites
+              FAVOURITES
             </Button>
             <SearchBox setSearch={setSearch} />
           </Toolbar>
