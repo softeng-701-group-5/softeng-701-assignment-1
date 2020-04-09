@@ -2,14 +2,13 @@ import React from 'react';
 import {
   AppBar,
   Typography,
-  Toolbar,
   Container,
   Grid,
-  makeStyles,
   IconButton,
   CircularProgress,
 } from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
+import { makeStyles } from '@material-ui/core/styles';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Link } from 'react-router-dom';
 import { MediaCard } from '../components/MediaCard';
 import { FilterBar } from '../components/FilterBar';
@@ -19,6 +18,17 @@ import { getFeed } from '../common/api';
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#f5f5f5',
+  },
+  title: {
+    marginRight: theme.spacing(2),
+  },
+  appBar: {
+    display: 'flex',
+    marginRight: theme.spacing(3),
+    marginLeft: theme.spacing(3),
+  },
+  appBarContents: {
+    display: 'flex',
   },
   container: {
     marginTop: 30,
@@ -33,8 +43,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     flex: 1,
   },
-  homeButton: {
-    marginRight: theme.spacing(2),
+  logoutButton: {
     color: '#FFFFFF',
   },
   loader: {
@@ -70,22 +79,26 @@ export const FeedPage = () => {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Container>
-          <Toolbar>
-            <IconButton
-              component={Link}
-              to={'/'}
-              color="inherit"
-              className={classes.homeButton}
-            >
-              <HomeIcon />
-            </IconButton>
+        <Grid
+          className={classes.appBar}
+          alignItems={'center'}
+          justify={'space-between'}
+        >
+          <div className={classes.appBarContents}>
             <Typography className={classes.title} variant="h6">
               Feedr
             </Typography>
             <SearchBox setSearch={setSearch} />
-          </Toolbar>
-        </Container>
+          </div>
+          <IconButton
+            component={Link}
+            to={'/'}
+            color="inherit"
+            className={classes.logoutButton}
+          >
+            <ExitToAppIcon />
+          </IconButton>
+        </Grid>
       </AppBar>
 
       {!loader && <FilterBar setFilters={setFilters} />}
