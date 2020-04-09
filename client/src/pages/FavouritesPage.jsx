@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   AppBar,
-  Typography,
+  //Typography,
   Toolbar,
   Container,
   Grid,
