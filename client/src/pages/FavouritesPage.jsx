@@ -1,8 +1,6 @@
 import React from 'react';
 import {
   AppBar,
-  //Typography,
-  Toolbar,
   Container,
   Grid,
   makeStyles,
@@ -10,7 +8,7 @@ import {
   CircularProgress,
   Button,
 } from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Link } from 'react-router-dom';
 import { MediaCard } from '../components/MediaCard';
 import { FilterBar } from '../components/FilterBar';
@@ -20,6 +18,14 @@ import { getFeed } from '../common/api';
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#f5f5f5',
+  },
+  appBar: {
+    display: 'flex',
+    marginRight: theme.spacing(3),
+    marginLeft: theme.spacing(3),
+  },
+  appBarContents: {
+    display: 'flex',
   },
   container: {
     marginTop: 30,
@@ -34,12 +40,11 @@ const useStyles = makeStyles(theme => ({
   card: {
     flex: 1,
   },
-  homeButton: {
-    marginRight: theme.spacing(2),
+  logoutButton: {
     color: '#FFFFFF',
   },
   button: {
-    colour: '#FFFFFF',
+    color: '#FFFFFF',
   },
   loader: {
     width: '100%',
@@ -74,35 +79,39 @@ export const FavouritesPage = () => {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Container>
-          <Toolbar>
-            <IconButton
-              component={Link}
-              to={'/'}
-              color="inherit"
-              className={classes.homeButton}
-            >
-              <HomeIcon />
-            </IconButton>
+        <Grid
+          className={classes.appBar}
+          alignItems={'center'}
+          justify={'space-between'}
+        >
+          <div className={classes.appBarContents}>
             <Button
+              className={classes.button}
+              variant="h6"
               component={Link}
               to={'feed'}
-              className={classes.button}
-              color="inherit"
             >
-              FEEDR
+              Feedr
             </Button>
             <Button
+              className={classes.button}
+              variant="h6"
               component={Link}
               to={'favourites'}
-              className={classes.button}
-              color="inherit"
             >
-              FAVOURITES
+              Favourites
             </Button>
             <SearchBox setSearch={setSearch} />
-          </Toolbar>
-        </Container>
+          </div>
+          <IconButton
+            component={Link}
+            to={'/'}
+            color="inherit"
+            className={classes.logoutButton}
+          >
+            <ExitToAppIcon />
+          </IconButton>
+        </Grid>
       </AppBar>
 
       {!loader && <FilterBar setFilters={setFilters} />}

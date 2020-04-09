@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#f5f5f5',
   },
   title: {
-    marginRight: theme.spacing(2),
+    color: 'white',
   },
   appBar: {
     display: 'flex',
