@@ -9,6 +9,9 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
+import ViewStreamRoundedIcon from '@material-ui/icons/ViewStreamRounded';
+
 import { Link } from 'react-router-dom';
 import { MediaCard } from '../components/MediaCard';
 import { FilterBar } from '../components/FilterBar';
@@ -43,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     flex: 1,
   },
-  logoutButton: {
+  headerButtons: {
     color: '#FFFFFF',
   },
   button: {
@@ -60,6 +63,7 @@ export const FeedPage = () => {
   const classes = useStyles();
 
   // state management
+  const [layout, setLayout] = React.useState('grid');
   const [feed, setFeed] = React.useState([]);
   const [loader, setLoader] = React.useState(true);
   const [filters, setFilters] = React.useState([
@@ -78,6 +82,10 @@ export const FeedPage = () => {
       .then(() => setLoader(false))
       .catch(error => console.error(error));
   }, []);
+
+  const handleClick = layoutSelected => {
+    setLayout(layoutSelected);
+  };
 
   return (
     <div className={classes.root}>
@@ -106,21 +114,40 @@ export const FeedPage = () => {
             </Button>
             <SearchBox setSearch={setSearch} />
           </div>
-          <IconButton
-            component={Link}
-            to={'/'}
-            color="inherit"
-            className={classes.logoutButton}
-          >
-            <ExitToAppIcon />
-          </IconButton>
+          <div className={classes.appBarContents}>
+            <IconButton
+              onClick={() => handleClick(layout === 'grid' ? 'row' : 'grid')}
+              color="inherit"
+              className={classes.headerButtons}
+            >
+              {layout === 'grid' ? (
+                <AppsRoundedIcon />
+              ) : (
+                <ViewStreamRoundedIcon />
+              )}
+            </IconButton>
+            <IconButton
+              component={Link}
+              to={'/'}
+              color="inherit"
+              className={classes.headerButtons}
+            >
+              <ExitToAppIcon />
+            </IconButton>
+          </div>
         </Grid>
       </AppBar>
 
       {!loader && <FilterBar setFilters={setFilters} />}
 
       <Container className={classes.container}>
-        <Grid container spacing={3} justify="center">
+        <Grid
+          container
+          direction={layout === 'grid' ? 'row' : 'column'}
+          spacing={3}
+          alignContent={'center'}
+          justify="center"
+        >
           {loader && (
             <CircularProgress className={classes.loader}></CircularProgress>
           )}
