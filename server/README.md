@@ -30,6 +30,6 @@ have any credentials see section [Creating new credentials](#creating-new-creden
 - **Reddit** - These attributes can be obtained after creating an app [here](https://www.reddit.com/prefs/apps). Choose a `script` app type. Use the username and password of the account that created the app. 
 - **Github** - [Basic authentication](https://developer.github.com/v3/auth/#basic-authentication) is used, so use the username and password of a newly created GitHub account.
 - **HackerNews** - Since HackerNews has a public API only, authentication is not required.
-
+- **Weather** - An api key must be retrieved from [OpenWeatherApp](https://openweathermap.org/api)
 > Note: It is recommended you do not use personal accounts for the above credentials. Also, it is more convenient if your team 
 shares a set of credentials.
