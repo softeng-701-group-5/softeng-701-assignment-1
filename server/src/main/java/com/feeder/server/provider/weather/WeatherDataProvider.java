@@ -17,7 +17,7 @@ public class WeatherDataProvider implements FeedProvider<WeatherData> {
     return client
         .get()
         .uri(
-            "api.openweathermap.org/data/2.5/weather?q=auckland&appid=fed5f6b010d51f1e212951f886b8d87f")
+            "https://api.openweathermap.org/data/2.5/weather?q=auckland&appid=fed5f6b010d51f1e212951f886b8d87f")
         .retrieve()
         .bodyToFlux(WeatherData.class);
   }

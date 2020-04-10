@@ -21,30 +21,56 @@ public abstract class WeatherData extends GenericData {
   }
 
   /** This property is required for serialization. This means all posts must contain an id. */
-  @JsonProperty("id")
-  public abstract int id();
+
 
   @JsonProperty("name")
   public abstract Optional<String> name();
 
   @JsonProperty("main")
-  public abstract Optional<String> main();
+  public abstract Optional<Object> main();
+  @JsonProperty("weather")
+  public abstract Optional<Object> weather();
+  @JsonProperty("visibility")
+  public abstract Optional<Object> visibility();
+  @JsonProperty("base")
+  public abstract Optional<Object> base();
+  @JsonProperty("timezone")
+  public abstract Optional<Object> timezone();
+  @JsonProperty("wind")
+  public abstract Optional<Object> wind();
+  @JsonProperty("dt")
+  public abstract Optional<Object> dt();
+  @JsonProperty("clouds")
+  public abstract Optional<Object> clouds();
+  @JsonProperty("sys")
+  public abstract Optional<Object> sys();
+  @JsonProperty("id")
+  public abstract Optional<Object> id();
+  @JsonProperty("cod")
+  public abstract Optional<Object> cod();
 
   @AutoValue.Builder
-  @JsonPOJOBuilder(withPrefix = "")
+  @JsonPOJOBuilder(withPrefix = "set")
   public abstract static class Builder {
-    public abstract Builder setId(int id);
 
     public abstract Builder setName(String name);
 
-    public abstract Builder setMain(String main);
+    public abstract Builder setMain(Object main);
+    public abstract Builder setVisibility(Object visibility);
+    public abstract Builder setWeather(Object weather);
+    public abstract Builder setBase(Object base);
+    public abstract Builder setTimezone(Object timezone);
+    public abstract Builder setWind(Object wind);
+    public abstract Builder setDt(Object dt);
+    public abstract Builder setClouds(Object clouds);
+    public abstract Builder setSys(Object sys);
+    public abstract Builder setId(Object id);
+    public abstract Builder setCod(Object cod);
 
-    abstract int id();
-
+    public abstract Optional<Object> cod();
     abstract WeatherData autoBuild();
 
     public WeatherData build() {
-      id();
       return autoBuild();
     }
   }
