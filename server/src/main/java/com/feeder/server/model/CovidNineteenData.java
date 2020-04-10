@@ -17,57 +17,57 @@ public abstract class CovidNineteenData extends GenericData {
     public Type feedType() { return Type.COVIDNINETEEN; }
 
     @JsonProperty("totalConfirmed")
-    public abstract int totalConfirmed();
+    public abstract String totalConfirmed();
 
     @JsonProperty("totalDeaths")
-    public abstract int totalDeaths();
+    public abstract String totalDeaths();
 
     @JsonProperty("totalProbable")
-    public abstract int totalProbable();
+    public abstract String totalProbable();
 
     @JsonProperty("totalRecovered")
-    public abstract int totalRecovered();
+    public abstract String totalRecovered();
 
     @JsonProperty("totalHospitalised")
-    public abstract int totalHospitalised();
+    public abstract String totalHospitalised();
 
     @JsonProperty("newConfirmed")
-    public abstract int newConfirmed();
+    public abstract String newConfirmed();
 
     @JsonProperty("newDeaths")
-    public abstract int newDeaths();
+    public abstract String newDeaths();
 
     @JsonProperty("newProbable")
-    public abstract int newProbable();
+    public abstract String newProbable();
 
     @JsonProperty("newRecovered")
-    public abstract int newRecovered();
+    public abstract String newRecovered();
 
     @JsonProperty("newHospitalised")
-    public abstract int newHospitalised();
+    public abstract String newHospitalised();
 
     @AutoValue.Builder
     @JsonPOJOBuilder(withPrefix = "")
     public interface Builder {
-        CovidNineteenData.Builder totalConfirmed(int totalConfirmed);
+        CovidNineteenData.Builder totalConfirmed(String totalConfirmed);
 
-        CovidNineteenData.Builder totalDeaths(int totalDeaths);
+        CovidNineteenData.Builder totalDeaths(String totalDeaths);
 
-        CovidNineteenData.Builder totalProbable(int totalProbable);
+        CovidNineteenData.Builder totalProbable(String totalProbable);
 
-        CovidNineteenData.Builder totalRecovered(int totalRecovered);
+        CovidNineteenData.Builder totalRecovered(String totalRecovered);
 
-        CovidNineteenData.Builder totalHospitalised(int totalHospitalised);
+        CovidNineteenData.Builder totalHospitalised(String totalHospitalised);
 
-        CovidNineteenData.Builder newConfirmed(int newConfirmed);
+        CovidNineteenData.Builder newConfirmed(String newConfirmed);
 
-        CovidNineteenData.Builder newDeaths(int newDeaths);
+        CovidNineteenData.Builder newDeaths(String newDeaths);
 
-        CovidNineteenData.Builder newProbable(int newProbable);
+        CovidNineteenData.Builder newProbable(String newProbable);
 
-        CovidNineteenData.Builder newRecovered(int newRecovered);
+        CovidNineteenData.Builder newRecovered(String newRecovered);
 
-        CovidNineteenData.Builder newHospitalised(int newHospitalised);
+        CovidNineteenData.Builder newHospitalised(String newHospitalised);
 
         CovidNineteenData build();
     }
