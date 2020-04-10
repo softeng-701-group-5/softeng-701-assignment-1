@@ -11,10 +11,14 @@ import com.google.auto.value.AutoValue;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AutoValue_CovidNineteenData.Builder.class)
 public abstract class CovidNineteenData extends GenericData {
-  public static Builder newBuilder() { return new AutoValue_CovidNineteenData.Builder(); }
+  public static Builder newBuilder() {
+    return new AutoValue_CovidNineteenData.Builder();
+  }
 
   @Override
-  public Type feedType() { return Type.COVIDNINETEEN; }
+  public Type feedType() {
+    return Type.COVIDNINETEEN;
+  }
 
   /** These properties are required for serialization, all posts must contain them. */
   @JsonProperty("totalConfirmed")
