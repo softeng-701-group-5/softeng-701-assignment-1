@@ -1,22 +1,31 @@
 import React from 'react';
-import { Input, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { InputBase } from '@material-ui/core';
+import { fade, makeStyles } from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles(theme => ({
-  box: {
-    display: 'flex',
-    width: '70%',
-  },
   button: {
     marginLeft: theme.spacing(1),
   },
   search: {
-    marginLeft: theme.spacing(5),
-    width: 300,
-    backgroundColor: '#FFFFFF',
-    borderStyle: 'solid',
-    borderWidth: 'thick',
-    borderColor: '#FFFFFF',
+    display: 'flex',
+    alignItems: 'center',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+  },
+  searchIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 2),
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
   },
 }));
 
@@ -46,45 +55,27 @@ const SearchBox = ({ setSearch }) => {
   };
 
   return (
-    <div className={classes.box}>
-      {buttonData.map(data => {
-        return (
-          <React.Fragment>
-            <Input
-              type="text"
-              id="search"
-              placeholder="Search Content"
-              className={classes.search}
-            />
-            <Button
-              // Getting the users input on click
-              onClick={() =>
-                handleClick(
-                  document.getElementById('search').value.toLowerCase()
-                )
-              }
-              variant="contained"
-              color="#00acee"
-              className={classes.button}
-              size="small"
-            >
-              {' '}
-              Search{' '}
-            </Button>
-            <Button
-              // Setting the input as clear
-              onClick={() => handleClick('Clear')}
-              variant="contained"
-              color="#00acee"
-              className={classes.button}
-              size="small"
-            >
-              {' '}
-              Clear{' '}
-            </Button>
-          </React.Fragment>
-        );
-      })}
+    <div className={classes.search}>
+      <div className={classes.searchIcon}>
+        <SearchIcon />
+      </div>
+      <InputBase
+        type="search"
+        placeholder="Search Content"
+        classes={{
+          root: classes.inputRoot,
+          input: classes.inputInput,
+        }}
+        inputProps={{
+          'aria-label': 'search',
+        }}
+        id="search"
+        multiline={false}
+        fullWidth={true}
+        onChange={() =>
+          handleClick(document.getElementById('search').value.toLowerCase())
+        }
+      />
     </div>
   );
 };
