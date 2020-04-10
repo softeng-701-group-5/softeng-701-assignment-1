@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
 
+/** A CovidNineteenData type represents properties of the web scraped covid19 data */
 @AutoValue
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AutoValue_CovidNineteenData.Builder.class)
@@ -16,6 +17,7 @@ public abstract class CovidNineteenData extends GenericData {
     @Override
     public Type feedType() { return Type.COVIDNINETEEN; }
 
+    /** These properties are required for serialization, all posts must contain them. */
     @JsonProperty("totalConfirmed")
     public abstract String totalConfirmed();
 
