@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.feeder.server.ApplicationProperties;
 import com.feeder.server.model.WeatherData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ public class WeatherFeedProviderTest {
   @MockBean private WebClient mockWebClient;
   @Autowired private WeatherDataProvider subject;
   @Mock private WeatherData mockData;
+  @MockBean private ApplicationProperties applicationProperties;
 
   @BeforeEach
   public void setUp() {
@@ -41,7 +43,8 @@ public class WeatherFeedProviderTest {
 
     when(mockWebClient.get()).thenReturn(mockRequestHeadersUriSpec);
     when(mockRequestHeadersUriSpec.uri(
-            "https://api.openweathermap.org/data/2.5/weather?q=auckland&appid=fed5f6b010d51f1e212951f886b8d87f"))
+            "https://api.openweathermap.org/data/2.5/weather?q=auckland&appid="
+                + applicationProperties.getWeatherApiKey()))
         .thenReturn(mockRequestHeaderSpec);
     when(mockRequestHeaderSpec.retrieve()).thenReturn(mockResponseSpec);
     when(mockResponseSpec.bodyToFlux(WeatherData.class)).thenReturn(Flux.just(mockData));
