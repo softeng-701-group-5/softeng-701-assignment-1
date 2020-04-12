@@ -16,6 +16,7 @@ import { MediaCard } from '../components/MediaCard';
 import { FilterBar } from '../components/FilterBar';
 import { SearchBox } from '../components/SearchBox';
 import { getFeed } from '../common/api';
+import { useAuth } from '../context/AuthContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -60,6 +61,7 @@ const useStyles = makeStyles(theme => ({
 
 export const FeedPage = () => {
   const classes = useStyles();
+  const { signOut } = useAuth();
 
   // state management
   const [layout, setLayout] = React.useState('grid');
@@ -130,6 +132,7 @@ export const FeedPage = () => {
               to={'/'}
               color="inherit"
               className={classes.headerButtons}
+              onClick={signOut}
             >
               <ExitToAppIcon />
             </IconButton>

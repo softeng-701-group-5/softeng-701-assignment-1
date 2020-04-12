@@ -5,10 +5,9 @@ import {
   Button,
   Paper,
   Typography,
-  TextField,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import BackgroundImage from '../assets/bg-4k-min.jpg';
+import { useAuth } from '../context/AuthContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 
 export const HomePage = () => {
   const classes = useStyles();
-
+  const { signIn } = useAuth();
   return (
     <div className={classes.root}>
       <Container className={classes.containerItems}>
@@ -52,33 +51,13 @@ export const HomePage = () => {
           <Typography className={classes.title} component="h3" variant="h2">
             Feedr
           </Typography>
-          <TextField
-            margin="normal"
-            required
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            className={classes.textInput}
-          />
-          <TextField
-            margin="normal"
-            required
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            className={classes.textInput}
-          />
           <Button
             className={classes.buttonLogin}
-            component={Link}
-            to={'/feed'}
+            onClick={signIn}
             variant="contained"
             color="primary"
           >
-            Login
+            Sign in with Google
           </Button>
         </Paper>
       </Container>
