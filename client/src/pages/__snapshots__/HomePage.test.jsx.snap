@@ -15,88 +15,10 @@ exports[`<HomePage /> matches snapshot 1`] = `
       >
         Feedr
       </h3>
-      <div
-        className="MuiFormControl-root MuiTextField-root makeStyles-textInput-5 MuiFormControl-marginNormal"
-      >
-        <label
-          className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-required Mui-required"
-          data-shrink={false}
-          htmlFor="email"
-          id="email-label"
-        >
-          Email Address
-          <span
-            className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-          >
-             
-            *
-          </span>
-        </label>
-        <div
-          className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-          onClick={[Function]}
-        >
-          <input
-            aria-invalid={false}
-            autoComplete="email"
-            autoFocus={false}
-            className="MuiInputBase-input MuiInput-input"
-            disabled={false}
-            id="email"
-            name="email"
-            onAnimationStart={[Function]}
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            required={true}
-            type="text"
-          />
-        </div>
-      </div>
-      <div
-        className="MuiFormControl-root MuiTextField-root makeStyles-textInput-5 MuiFormControl-marginNormal"
-      >
-        <label
-          className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-required Mui-required"
-          data-shrink={false}
-          htmlFor="password"
-          id="password-label"
-        >
-          Password
-          <span
-            className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-          >
-             
-            *
-          </span>
-        </label>
-        <div
-          className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-          onClick={[Function]}
-        >
-          <input
-            aria-invalid={false}
-            autoComplete="current-password"
-            autoFocus={false}
-            className="MuiInputBase-input MuiInput-input"
-            disabled={false}
-            id="password"
-            name="password"
-            onAnimationStart={[Function]}
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            required={true}
-            type="password"
-          />
-        </div>
-      </div>
-      <a
-        aria-disabled={false}
+      <button
         className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-buttonLogin-4 MuiButton-containedPrimary"
-        href="/feed"
+        disabled={false}
         onBlur={[Function]}
-        onClick={[Function]}
         onDragLeave={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -107,15 +29,15 @@ exports[`<HomePage /> matches snapshot 1`] = `
         onTouchEnd={[Function]}
         onTouchMove={[Function]}
         onTouchStart={[Function]}
-        role="button"
         tabIndex={0}
+        type="button"
       >
         <span
           className="MuiButton-label"
         >
-          Login
+          Sign in with Google
         </span>
-      </a>
+      </button>
     </div>
   </div>
 </div>
