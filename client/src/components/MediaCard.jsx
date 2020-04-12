@@ -41,7 +41,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
   },
   paper: {
-    padding: 0,
     width: 600,
     outline: 'none',
     borderRadius: 5,
