@@ -14,6 +14,7 @@ import TwitterIcon from '../assets/twitter-icon.svg';
 import GithubIcon from '../assets/github-icon.svg';
 import RedditIcon from '../assets/reddit-icon.svg';
 import HackerNewsIcon from '../assets/hackernews-icon.svg';
+import classNames from 'classnames';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,12 +26,20 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
+  lightTheme: {
+    backgroundColor: '#E2E2E2',
+    color: '#363537',
+  },
+  darkTheme: {
+    backgroundColor: '#363537',
+    color: '#FAFAFA',
+  },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
   avatar: {
-    backgroundColor: '#d9d9d9',
+    backgroundColor: '#c9c7c7',
   },
 }));
 
@@ -82,7 +91,12 @@ export const MediaCard = props => {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card
+      className={classNames(
+        classes.root,
+        props.getTheme === 'light' ? classes.lightTheme : classes.darkTheme
+      )}
+    >
       <CardHeader
         avatar={
           <Avatar
@@ -95,15 +109,23 @@ export const MediaCard = props => {
           />
         }
         title={props.title}
-        subheader={`${props.username} - ${props.relativeTime}`}
+        subheader={
+          <Typography
+            variant={'subtitle2'}
+          >{`${props.username} - ${props.relativeTime}`}</Typography>
+        }
       />
 
       {props.imageLink && (
         <CardMedia className={classes.media} image={props.imageLink} />
       )}
 
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+      <CardContent
+        className={
+          props.getTheme === 'light' ? classes.lightTheme : classes.darkTheme
+        }
+      >
+        <Typography variant="body2" component="p">
           {truncateString(props.mainText, 200)}
         </Typography>
       </CardContent>

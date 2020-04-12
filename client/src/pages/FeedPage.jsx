@@ -8,6 +8,7 @@ import {
   makeStyles,
   IconButton,
   CircularProgress,
+  Switch,
 } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
@@ -16,8 +17,13 @@ import { FilterBar } from '../components/FilterBar';
 import { getFeed } from '../common/api';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: '#f5f5f5',
+  lightTheme: {
+    backgroundColor: '#fff',
+    color: '#333',
+  },
+  darkTheme: {
+    backgroundColor: '#1a1919',
+    color: '#999',
   },
   container: {
     marginTop: 30,
@@ -41,10 +47,24 @@ const useStyles = makeStyles(theme => ({
     animationDuration: '550ms',
     marginTop: theme.spacing(2),
   },
+  themeToggle: {
+    marginLeft: '70vw',
+  },
 }));
 
 export const FeedPage = () => {
   const classes = useStyles();
+
+  // theme toggle
+  const [theme, setTheme] = React.useState('light');
+
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
 
   // state management
   const [feed, setFeed] = React.useState([]);
@@ -66,7 +86,7 @@ export const FeedPage = () => {
   }, []);
 
   return (
-    <div className={classes.root}>
+    <div className={theme === 'light' ? classes.lightTheme : classes.darkTheme}>
       <AppBar position="static">
         <Container>
           <Toolbar>
@@ -81,6 +101,7 @@ export const FeedPage = () => {
             <Typography className={classes.title} variant="h6">
               Feedr
             </Typography>
+            <Switch className={classes.themeToggle} onChange={toggleTheme} />
           </Toolbar>
         </Container>
       </AppBar>
@@ -96,7 +117,11 @@ export const FeedPage = () => {
             (item, i) =>
               filters.includes(item.media) && (
                 <Grid item key={i} className={classes.item}>
-                  <MediaCard {...item} className={classes.card} />
+                  <MediaCard
+                    {...item}
+                    className={classes.card}
+                    getTheme={theme}
+                  />
                 </Grid>
               )
           )}
