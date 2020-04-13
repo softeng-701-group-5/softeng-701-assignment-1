@@ -44,6 +44,7 @@ const authorizeGithub = () => {
   console.log('authorizing!!');
   const { authUrl, clientId, redirectUrl } = APPS.github;
 
+  // Get user authorization
   window.location.assign(
     `${authUrl}?client_id=${clientId}&redirect_uri=${redirectUrl}`
   );
@@ -53,21 +54,43 @@ const getGithubToken = args => {
   const code = parseUrlQuery(args).code;
   const { tokenUrl, clientId, clientSecret } = APPS.github;
 
-  const opt = {
+  axios({
     method: 'POST',
     url: `${tokenUrl}?client_id=${clientId}&client_secret=${clientSecret}&code=${code}`,
     headers: {
       accept: 'application/json',
     },
-  };
-
-  axios(opt)
+  })
     .then(resp => console.log(resp.data))
     .catch(err => console.error(err));
 };
 
 /** Twitter */
-const authorizeTwitter = () => {};
+const authorizeTwitter = () => {
+  const { reqUrl, authUrl, clientId, redirectUrl } = APPS.twitter;
+
+  console.log('GETTING TWITTER TOKEN');
+  console.log({ reqUrl, authUrl, clientId, redirectUrl });
+
+  // Get request token from Twitter
+  axios({
+    method: 'POST',
+    url: `${reqUrl}`,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST',
+      'Access-Control-Allow-Headers': 'Origin, Methods, Content-Type',
+    },
+    data: {
+      oauth_consumer_key: clientId,
+      oauth_callback: encodeURIComponent(redirectUrl),
+    },
+  }).then(resp => {
+    console.log(resp);
+  });
+
+  // Get user authorization
+};
 
 const getTwitterToken = args => {};
 

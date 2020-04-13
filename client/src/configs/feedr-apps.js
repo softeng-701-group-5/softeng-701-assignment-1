@@ -27,8 +27,9 @@ const APPS = {
   },
   twitter: {
     name: 'twitter',
-    authUrl: '',
-    tokenUrl: '',
+    reqUrl: 'https://api.twitter.com/oauth/request_token', // Twitter has an extra step for auth
+    authUrl: 'https://api.twitter.com/oauth/authorize',
+    tokenUrl: 'https://api.twitter.com/oauth/access_token',
     redirectUrl: `${REACT_APP_BASE_URL}/oauth/callback/twitter`,
     clientId: REACT_APP_TWITTER_CLIENT_ID,
     clientSecret: REACT_APP_TWITTER_CLIENT_SECRET,
