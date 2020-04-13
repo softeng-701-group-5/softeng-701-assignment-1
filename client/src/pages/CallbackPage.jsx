@@ -6,11 +6,8 @@ export const CallbackPage = props => {
   const params = useParams();
 
   useEffect(() => {
-    console.log('~~~~');
-    console.log(params.app);
-    console.log(props.location.search);
-
-    oauth.accessApp(params.app, props.location.search);
+    oauth.getAppToken(params.app, props.location.search.substring(1));
+    // TODO: Handle going back to connect page
   });
 
   return (

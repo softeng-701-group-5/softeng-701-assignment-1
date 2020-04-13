@@ -1,21 +1,21 @@
 import React from 'react';
 import { oauth } from '../common/oauth';
-import { APPS } from '../config/feedr-apps';
+import APPS from '../configs/feedr-apps';
 
 /**
  * THIS PAGE IS FOR DEMONSTRATION PURPOSES ONLY AND SHOULD BE REMOVED IN THE FUTURE
  */
-export const TempPage = () => {
+export const ConnectPage = () => {
   const r = () => {
-    oauth.connectApp(APPS.reddit);
+    oauth.authorizeApp(APPS.reddit.name);
   };
 
   const g = () => {
-    oauth.connectApp(APPS.github);
+    oauth.authorizeApp(APPS.github.name);
   };
 
   const t = () => {
-    oauth.connectApp(APPS.twitter);
+    oauth.authorizeApp(APPS.twitter.name);
   };
 
   return (

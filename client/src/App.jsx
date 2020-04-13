@@ -5,7 +5,7 @@ import { FavouritesPage } from './pages/FavouritesPage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import { Loader } from './components/Loader';
-import { TempPage } from './pages/TempPage';
+import { ConnectPage } from './pages/ConnectPage';
 import { CallbackPage } from './pages/CallbackPage';
 // require('./common/oauth');
 
@@ -35,8 +35,12 @@ export const App = () => {
       <Switch>
         <PrivateRoute exact path="/" component={FeedPage} />
         <PrivateRoute exact path="/favourites" component={FavouritesPage} />
-        <PrivateRoute exact path="/connect" component={TempPage} />
-        <PrivateRoute exact path="/oauth/callback/:app" component={CallbackPage} />
+        <PrivateRoute exact path="/connect" component={ConnectPage} />
+        <PrivateRoute
+          exact
+          path="/oauth/callback/:app"
+          component={CallbackPage}
+        />
       </Switch>
     </Router>
   );
