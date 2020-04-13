@@ -1,10 +1,11 @@
-package com.feeder.server.model;
+package com.feeder.server.model.data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.feeder.server.model.data.AutoValue_DemoData;
 import com.google.auto.value.AutoValue;
 import java.util.Optional;
 

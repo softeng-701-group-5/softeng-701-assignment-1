@@ -1,7 +1,7 @@
 package com.feeder.server.provider.github;
 
 import com.feeder.server.ApplicationProperties;
-import com.feeder.server.model.GithubData;
+import com.feeder.server.model.data.GithubData;
 import com.feeder.server.provider.FeedProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

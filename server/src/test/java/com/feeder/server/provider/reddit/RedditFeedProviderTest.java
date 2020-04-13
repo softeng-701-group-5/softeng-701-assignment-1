@@ -3,7 +3,7 @@ package com.feeder.server.provider.reddit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-import com.feeder.server.model.RedditData;
+import com.feeder.server.model.data.RedditData;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Date;

@@ -1,6 +1,6 @@
 package com.feeder.server.provider;
 
-import com.feeder.server.model.GenericData;
+import com.feeder.server.model.data.GenericData;
 import reactor.core.publisher.Flux;
 
 /**

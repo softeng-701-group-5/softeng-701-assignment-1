@@ -1,10 +1,10 @@
 package com.feeder.server.controller;
 
-import com.feeder.server.model.DemoData;
-import com.feeder.server.model.GithubData;
-import com.feeder.server.model.HackerNewsData;
-import com.feeder.server.model.RedditData;
-import com.feeder.server.model.TwitterData;
+import com.feeder.server.model.data.DemoData;
+import com.feeder.server.model.data.GithubData;
+import com.feeder.server.model.data.HackerNewsData;
+import com.feeder.server.model.data.RedditData;
+import com.feeder.server.model.data.TwitterData;
 import com.feeder.server.provider.FeedProvider;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

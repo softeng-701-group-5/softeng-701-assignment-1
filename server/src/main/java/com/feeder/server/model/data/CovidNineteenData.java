@@ -1,9 +1,10 @@
-package com.feeder.server.model;
+package com.feeder.server.model.data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.feeder.server.model.data.AutoValue_CovidNineteenData;
 import com.google.auto.value.AutoValue;
 
 /** A CovidNineteenData type represents properties of the web scraped covid19 data */

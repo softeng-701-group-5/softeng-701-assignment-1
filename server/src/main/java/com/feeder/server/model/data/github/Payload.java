@@ -1,4 +1,4 @@
-package com.feeder.server.model.github;
+package com.feeder.server.model.data.github;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import com.feeder.server.model.github.Payload.Deserializer;
+import com.feeder.server.model.data.github.Payload.Deserializer;
 import com.google.auto.value.AutoValue;
 import java.io.IOException;
 import java.util.Arrays;

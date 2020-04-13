@@ -1,4 +1,4 @@
-package com.feeder.server.model;
+package com.feeder.server.model.data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

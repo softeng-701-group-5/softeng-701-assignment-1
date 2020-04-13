@@ -5,7 +5,7 @@ import static org.mockito.AdditionalAnswers.delegatesTo;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import com.feeder.server.model.TwitterData;
+import com.feeder.server.model.data.TwitterData;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;

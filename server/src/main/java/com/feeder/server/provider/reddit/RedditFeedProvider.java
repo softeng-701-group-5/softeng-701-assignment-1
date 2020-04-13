@@ -1,6 +1,6 @@
 package com.feeder.server.provider.reddit;
 
-import com.feeder.server.model.RedditData;
+import com.feeder.server.model.data.RedditData;
 import com.feeder.server.provider.FeedProvider;
 import java.util.Iterator;
 import net.dean.jraw.RedditClient;
