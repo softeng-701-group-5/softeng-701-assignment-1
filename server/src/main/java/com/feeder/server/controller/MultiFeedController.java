@@ -28,6 +28,7 @@ public class MultiFeedController {
   @Autowired private FeedProvider<TwitterData> twitterFeedProvider;
   @Autowired private FeedProvider<WeatherData> weatherDataProvider;
 
+
   @GetMapping("/")
   public Flux<? extends GenericData> multiFeedMixerFlow() {
     return Flux.merge(redditFlow(), githubFlow(), hackerNewsFlow(), twitterFlow(), weatherFlow());
@@ -62,4 +63,5 @@ public class MultiFeedController {
   public Flux<DemoData> serializationDemoFlow() {
     return Flux.just(DemoData.newBuilder().title("Cat").imageURI("http://cat.jpg").build());
   }
+
 }
