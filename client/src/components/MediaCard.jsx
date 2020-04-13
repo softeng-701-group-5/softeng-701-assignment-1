@@ -8,6 +8,9 @@ import {
   Avatar,
   Typography,
   makeStyles,
+  Modal,
+  Backdrop,
+  Fade,
 } from '@material-ui/core';
 
 import TwitterIcon from '../assets/twitter-icon.svg';
@@ -41,6 +44,31 @@ const useStyles = makeStyles(theme => ({
   avatar: {
     backgroundColor: '#c9c7c7',
   },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    width: 600,
+    outline: 'none',
+    borderRadius: 5,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+  modalTitle: {
+    width: 600,
+    textAlign: 'center',
+    fontSize: 20,
+    paddingTop: 30,
+  },
+  modalContent: {
+    paddingTop: 30,
+    paddingBottom: 30,
+    paddingLeft: 50,
+    paddingRight: 50,
+  },
 }));
 
 const truncateString = (str, num) => {
@@ -53,6 +81,16 @@ const truncateString = (str, num) => {
 
 export const MediaCard = props => {
   const classes = useStyles();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   /* Alters colour bar based on which media is passed in
    * colours and logos:
    * reddit:  #FF4500 https://redditupvoted.files.wordpress.com/2015/10/reddit_icon_twitter_fb.png
@@ -91,55 +129,103 @@ export const MediaCard = props => {
   };
 
   return (
-    <Card
-      className={classNames(
-        classes.root,
-        props.getTheme === 'light' ? classes.lightTheme : classes.darkTheme
-      )}
-    >
-      <CardHeader
-        avatar={
-          <Avatar
-            alt={props.username}
-            src={
-              props.avatarLink ||
-              'https://img.icons8.com/windows/64/000000/user.png'
-            }
-            className={classes.avatar}
-          />
-        }
-        title={props.title}
-        subheader={
-          <Typography
-            variant={'subtitle2'}
-          >{`${props.username} - ${props.relativeTime}`}</Typography>
-        }
-      />
-
-      {props.imageLink && (
-        <CardMedia className={classes.media} image={props.imageLink} />
-      )}
-
-      <CardContent
-        className={
+    <div>
+      <Card
+        className={classNames(
+          classes.root,
           props.getTheme === 'light' ? classes.lightTheme : classes.darkTheme
-        }
+        )}
+        onClick={handleOpen}
       >
-        <Typography variant="body2" component="p">
-          {truncateString(props.mainText, 200)}
-        </Typography>
-      </CardContent>
-
-      <CardActions
-        style={{ backgroundColor: barColour(props.media) }}
-        disableSpacing
-      >
-        <img
-          src={mediaIcon(props.media)}
-          alt={`${props.media} logo`}
-          height="20px"
+        <CardHeader
+          avatar={
+            <Avatar
+              alt={props.username}
+              src={
+                props.avatarLink ||
+                'https://img.icons8.com/windows/64/000000/user.png'
+              }
+              className={classes.avatar}
+            />
+          }
+          title={props.title}
+          subheader={
+            <Typography
+              variant={'subtitle2'}
+            >{`${props.username} - ${props.relativeTime}`}</Typography>
+          }
         />
-      </CardActions>
-    </Card>
+
+        {props.imageLink && (
+          <CardMedia className={classes.media} image={props.imageLink} />
+        )}
+
+        <CardContent
+          className={
+            props.getTheme === 'light' ? classes.lightTheme : classes.darkTheme
+          }
+        >
+          <Typography variant="body2" component="p">
+            {truncateString(props.mainText, 200)}
+          </Typography>
+        </CardContent>
+
+        <CardActions
+          style={{ backgroundColor: barColour(props.media) }}
+          disableSpacing
+        >
+          <img
+            src={mediaIcon(props.media)}
+            alt={`${props.media} logo`}
+            height="20px"
+          />
+        </CardActions>
+      </Card>
+      <div>
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          className={classes.modal}
+          open={open}
+          disableAutoFocus={true}
+          onBackdropClick={handleClose}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={open} style={{ padding: '0px 0px 0px 0px' }}>
+            <div className={classes.paper}>
+              <CardActions
+                style={{ backgroundColor: barColour(props.media) }}
+                disableSpacing
+              >
+                <img
+                  src={mediaIcon(props.media)}
+                  alt={`${props.media} logo`}
+                  height="20px"
+                />
+              </CardActions>
+              <Typography className={classes.modalTitle}>
+                {props.title}
+              </Typography>
+
+              <Typography className={classes.modalContent}>
+                <Typography variant="body" color="textSecondary" component="p">
+                  {props.mainText}
+                </Typography>
+
+                <br />
+                <Typography>
+                  {`${props.username} - ${props.relativeTime}`}
+                </Typography>
+              </Typography>
+            </div>
+          </Fade>
+        </Modal>
+      </div>
+    </div>
   );
 };

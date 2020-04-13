@@ -1,20 +1,24 @@
 import React from 'react';
 import {
   AppBar,
-  Typography,
-  Toolbar,
   Container,
   Grid,
-  makeStyles,
   IconButton,
   CircularProgress,
   Switch,
+  Button,
+  Typography,
 } from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
+import { makeStyles } from '@material-ui/core/styles';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
+import ViewStreamRoundedIcon from '@material-ui/icons/ViewStreamRounded';
 import { Link } from 'react-router-dom';
 import { MediaCard } from '../components/MediaCard';
 import { FilterBar } from '../components/FilterBar';
+import { SearchBox } from '../components/SearchBox';
 import { getFeed } from '../common/api';
+import { useAuth } from '../context/AuthContext';
 
 const useStyles = makeStyles(theme => ({
   lightTheme: {
@@ -24,6 +28,17 @@ const useStyles = makeStyles(theme => ({
   darkTheme: {
     backgroundColor: '#1a1919',
     color: '#999',
+  },
+  title: {
+    color: 'white',
+  },
+  appBar: {
+    display: 'flex',
+    marginRight: theme.spacing(3),
+    marginLeft: theme.spacing(3),
+  },
+  appBarContents: {
+    display: 'flex',
   },
   container: {
     marginTop: 30,
@@ -38,9 +53,11 @@ const useStyles = makeStyles(theme => ({
   card: {
     flex: 1,
   },
-  homeButton: {
-    marginRight: theme.spacing(2),
+  headerButtons: {
     color: '#FFFFFF',
+  },
+  button: {
+    colour: '#FFFFFF',
   },
   loader: {
     width: '100%',
@@ -48,12 +65,13 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
   },
   themeToggle: {
-    marginLeft: '70vw',
+    marginLeft: '60vw',
   },
 }));
 
 export const FeedPage = () => {
   const classes = useStyles();
+  const { signOut } = useAuth();
 
   // theme toggle
   const [theme, setTheme] = React.useState('light');
@@ -67,6 +85,7 @@ export const FeedPage = () => {
   };
 
   // state management
+  const [layout, setLayout] = React.useState('grid');
   const [feed, setFeed] = React.useState([]);
   const [loader, setLoader] = React.useState(true);
   const [filters, setFilters] = React.useState([
@@ -75,6 +94,7 @@ export const FeedPage = () => {
     'github',
     'twitter',
   ]);
+  const [search, setSearch] = React.useState([]);
 
   // fetches data when page loads
   React.useEffect(() => {
@@ -85,37 +105,89 @@ export const FeedPage = () => {
       .catch(error => console.error(error));
   }, []);
 
+  const handleClick = layoutSelected => {
+    setLayout(layoutSelected);
+  };
+
   return (
     <div className={theme === 'light' ? classes.lightTheme : classes.darkTheme}>
       <AppBar position="static">
-        <Container>
-          <Toolbar>
+        <Grid
+          className={classes.appBar}
+          alignItems={'center'}
+          justify={'space-between'}
+        >
+          <div className={classes.appBarContents}>
+            <Button
+              className={classes.title}
+              variant="h6"
+              component={Link}
+              to={'feed'}
+            >
+              Feedr
+            </Button>
+            <Button
+              className={classes.title}
+              variant="h6"
+              component={Link}
+              to={'favourites'}
+            >
+              Favourites
+            </Button>
+            <SearchBox setSearch={setSearch} />
+          </div>
+          <div className={classes.appBarContents}>
+            <IconButton
+              onClick={() => handleClick(layout === 'grid' ? 'row' : 'grid')}
+              color="inherit"
+              className={classes.headerButtons}
+            >
+              {layout === 'grid' ? (
+                <ViewStreamRoundedIcon />
+              ) : (
+                <AppsRoundedIcon />
+              )}
+            </IconButton>
             <IconButton
               component={Link}
               to={'/'}
               color="inherit"
-              className={classes.homeButton}
+              className={classes.headerButtons}
+              onClick={signOut}
             >
-              <HomeIcon />
+              <ExitToAppIcon />
             </IconButton>
             <Typography className={classes.title} variant="h6">
               Feedr
             </Typography>
             <Switch className={classes.themeToggle} onChange={toggleTheme} />
-          </Toolbar>
-        </Container>
+          </div>
+        </Grid>
       </AppBar>
 
       {!loader && <FilterBar setFilters={setFilters} />}
 
       <Container className={classes.container}>
-        <Grid container spacing={3} justify="center">
+        <Grid
+          container
+          direction={layout === 'grid' ? 'row' : 'column'}
+          spacing={3}
+          alignContent={'center'}
+          justify="center"
+        >
           {loader && (
             <CircularProgress className={classes.loader}></CircularProgress>
           )}
           {feed.map(
             (item, i) =>
-              filters.includes(item.media) && (
+              filters.includes(item.media) &&
+              // Only checking the mainText if there is text to check, untherwise it will come up as 'undefined'
+              (typeof item.mainText !== 'undefined'
+                ? item.mainText.toLowerCase().includes(search) ||
+                  item.username.toLowerCase().includes(search) ||
+                  item.title.toLowerCase().includes(search)
+                : item.username.toLowerCase().includes(search) ||
+                  item.title.toLowerCase().includes(search)) && (
                 <Grid item key={i} className={classes.item}>
                   <MediaCard
                     {...item}
