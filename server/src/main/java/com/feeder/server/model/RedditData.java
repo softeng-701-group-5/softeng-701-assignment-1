@@ -1,10 +1,10 @@
-package com.feeder.server.model.data;
+package com.feeder.server.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import com.feeder.server.model.data.AutoValue_RedditData;
+import com.feeder.server.model.AutoValue_RedditData;
 import com.google.auto.value.AutoValue;
 import java.util.Date;
 import java.util.Optional;

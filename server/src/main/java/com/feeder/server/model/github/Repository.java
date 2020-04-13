@@ -1,4 +1,4 @@
-package com.feeder.server.model.data.github;
+package com.feeder.server.model.github;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

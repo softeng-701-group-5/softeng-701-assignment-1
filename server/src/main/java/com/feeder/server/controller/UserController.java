@@ -12,9 +12,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/user/{id}")
-    public User getUser(@PathVariable("id") String id){
-        return userService.getUser(id);
-    }
+    public User getUser(@PathVariable("id") String id){ return userService.getUser(id); }
 
     @PostMapping("/user")
     public void saveUser(@RequestBody User user){ userService.saveUser(user); }

@@ -20,6 +20,12 @@ public class User{
 
     public void setId(String id){ this.uid = id; }
 
+    public String getUid(){ return uid;}
+
+    public String getProfilePicture(){ return profilePicture; }
+
+    public String getName(){ return name; }
+
     @Override
     public String toString(){ return uid; }
 }

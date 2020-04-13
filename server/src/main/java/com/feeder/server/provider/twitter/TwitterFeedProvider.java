@@ -1,6 +1,6 @@
 package com.feeder.server.provider.twitter;
 
-import com.feeder.server.model.data.TwitterData;
+import com.feeder.server.model.TwitterData;
 import com.feeder.server.provider.FeedProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

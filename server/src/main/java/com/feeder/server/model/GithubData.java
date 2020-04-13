@@ -1,4 +1,4 @@
-package com.feeder.server.model.data;
+package com.feeder.server.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -9,10 +9,10 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import com.feeder.server.model.data.AutoValue_GithubData;
-import com.feeder.server.model.data.github.Actor;
-import com.feeder.server.model.data.github.Payload;
-import com.feeder.server.model.data.github.Repository;
+import com.feeder.server.model.github.Actor;
+import com.feeder.server.model.github.Payload;
+import com.feeder.server.model.github.Repository;
+import com.feeder.server.model.AutoValue_GithubData;
 import com.google.auto.value.AutoValue;
 import java.time.LocalDateTime;
 

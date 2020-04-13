@@ -1,6 +1,6 @@
 package com.feeder.server.provider.hackernews;
 
-import com.feeder.server.model.data.HackerNewsData;
+import com.feeder.server.model.HackerNewsData;
 import com.feeder.server.provider.FeedProvider;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;

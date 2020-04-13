@@ -1,11 +1,11 @@
-package com.feeder.server.model.data;
+package com.feeder.server.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import com.feeder.server.model.data.AutoValue_HackerNewsData;
+import com.feeder.server.model.AutoValue_HackerNewsData;
 import com.google.auto.value.AutoValue;
 import java.util.Optional;
 import org.springframework.web.util.HtmlUtils;
