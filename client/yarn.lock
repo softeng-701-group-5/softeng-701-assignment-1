@@ -9214,6 +9214,11 @@ react-transition-group@^4.3.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-use-googlelogin@^0.11.2:
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/react-use-googlelogin/-/react-use-googlelogin-0.11.2.tgz#4fb2894fa06710dd2847f6cbceb5816f0f562b04"
+  integrity sha512-kWAajmPUuiu+rKwTpAhF7Ty7kB8O8XPFEgqdjUfUKcbN2MNe8idsd85vsFq2mM5GIpUuAcUPIYebfwC/p3uWVg==
+
 react@^16.13.0:
   version "16.13.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.0.tgz#d046eabcdf64e457bbeed1e792e235e1b9934cf7"
