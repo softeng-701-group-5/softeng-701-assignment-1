@@ -5,6 +5,9 @@ import { FavouritesPage } from './pages/FavouritesPage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import { Loader } from './components/Loader';
+import { TempPage } from './pages/TempPage';
+import { CallbackPage } from './pages/CallbackPage';
+// require('./common/oauth');
 
 const PrivateRoute = ({ component: Component, ...props }) => {
   const { isSignedIn, isInitialized } = useAuth();
@@ -32,6 +35,8 @@ export const App = () => {
       <Switch>
         <PrivateRoute exact path="/" component={FeedPage} />
         <PrivateRoute exact path="/favourites" component={FavouritesPage} />
+        <PrivateRoute exact path="/connect" component={TempPage} />
+        <PrivateRoute exact path="/oauth/callback/:app" component={CallbackPage} />
       </Switch>
     </Router>
   );
