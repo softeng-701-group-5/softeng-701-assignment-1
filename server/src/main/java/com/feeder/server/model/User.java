@@ -4,28 +4,37 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class User{
+public class User {
 
-    @Id
-    private String uid;
+  @Id private String uid;
 
-    private String profilePicture;
-    private String name;
+  private String profilePicture;
+  private String name;
 
-    public User(String uid, String profilePicture, String name){
-        this.uid = uid;
-        this.profilePicture = profilePicture;
-        this.name = name;
-    }
+  public User(String uid, String profilePicture, String name) {
+    this.uid = uid;
+    this.profilePicture = profilePicture;
+    this.name = name;
+  }
 
-    public void setId(String id){ this.uid = id; }
+  public void setId(String id) {
+    this.uid = id;
+  }
 
-    public String getUid(){ return uid;}
+  public String getUid() {
+    return uid;
+  }
 
-    public String getProfilePicture(){ return profilePicture; }
+  public String getProfilePicture() {
+    return profilePicture;
+  }
 
-    public String getName(){ return name; }
+  public String getName() {
+    return name;
+  }
 
-    @Override
-    public String toString(){ return uid; }
+  @Override
+  public String toString() {
+    return uid;
+  }
 }
