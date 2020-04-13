@@ -12,7 +12,6 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.feeder.server.model.github.Actor;
 import com.feeder.server.model.github.Payload;
 import com.feeder.server.model.github.Repository;
-import com.feeder.server.model.AutoValue_GithubData;
 import com.google.auto.value.AutoValue;
 import java.time.LocalDateTime;
 
