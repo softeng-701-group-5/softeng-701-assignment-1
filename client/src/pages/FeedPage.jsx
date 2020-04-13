@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
 import ViewStreamRoundedIcon from '@material-ui/icons/ViewStreamRounded';
+import InfiniteScroll from 'react-infinite-scroller';
 import { Link } from 'react-router-dom';
 import { MediaCard } from '../components/MediaCard';
 import { FilterBar } from '../components/FilterBar';
@@ -57,6 +58,12 @@ const useStyles = makeStyles(theme => ({
     animationDuration: '550ms',
     marginTop: theme.spacing(2),
   },
+  loaderContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 20,
+    marginBottom: 20,
+  },
 }));
 
 export const FeedPage = () => {
@@ -66,6 +73,9 @@ export const FeedPage = () => {
   // state management
   const [layout, setLayout] = React.useState('grid');
   const [feed, setFeed] = React.useState([]);
+  const [mappedFeed] = React.useState([]);
+  const [hasMore, setHasMore] = React.useState(true);
+  const [feedIndex, setFeedIndex] = React.useState(0);
   const [loader, setLoader] = React.useState(true);
   const [filters, setFilters] = React.useState([
     'reddit',
@@ -86,6 +96,19 @@ export const FeedPage = () => {
 
   const handleClick = layoutSelected => {
     setLayout(layoutSelected);
+  };
+
+  const loadFeed = page => {
+    const feedsPerLoad = 6;
+    if (feed.length > feedIndex) {
+      Array.prototype.push.apply(
+        mappedFeed,
+        feed.slice(feedIndex, feedIndex + feedsPerLoad)
+      );
+      setFeedIndex(feedIndex + feedsPerLoad);
+    } else if (!loader) {
+      setHasMore(false);
+    }
   };
 
   return (
@@ -142,34 +165,41 @@ export const FeedPage = () => {
 
       {!loader && <FilterBar setFilters={setFilters} />}
 
-      <Container className={classes.container}>
-        <Grid
-          container
-          direction={layout === 'grid' ? 'row' : 'column'}
-          spacing={3}
-          alignContent={'center'}
-          justify="center"
-        >
-          {loader && (
+      <InfiniteScroll
+        loadMore={loadFeed.bind(this)}
+        hasMore={hasMore}
+        loader={
+          <div className={classes.loaderContainer}>
             <CircularProgress className={classes.loader}></CircularProgress>
-          )}
-          {feed.map(
-            (item, i) =>
-              filters.includes(item.media) &&
-              // Only checking the mainText if there is text to check, untherwise it will come up as 'undefined'
-              (typeof item.mainText !== 'undefined'
-                ? item.mainText.toLowerCase().includes(search) ||
-                  item.username.toLowerCase().includes(search) ||
-                  item.title.toLowerCase().includes(search)
-                : item.username.toLowerCase().includes(search) ||
-                  item.title.toLowerCase().includes(search)) && (
-                <Grid item key={i} className={classes.item}>
-                  <MediaCard {...item} className={classes.card} />
-                </Grid>
-              )
-          )}
-        </Grid>
-      </Container>
+          </div>
+        }
+      >
+        <Container className={classes.container}>
+          <Grid
+            container
+            direction={layout === 'grid' ? 'row' : 'column'}
+            spacing={3}
+            alignContent={'center'}
+            justify="center"
+          >
+            {mappedFeed.map(
+              (item, i) =>
+                filters.includes(item.media) &&
+                // Only checking the mainText if there is text to check, untherwise it will come up as 'undefined'
+                (typeof item.mainText !== 'undefined'
+                  ? item.mainText.toLowerCase().includes(search) ||
+                    item.username.toLowerCase().includes(search) ||
+                    item.title.toLowerCase().includes(search)
+                  : item.username.toLowerCase().includes(search) ||
+                    item.title.toLowerCase().includes(search)) && (
+                  <Grid item key={i} className={classes.item}>
+                    <MediaCard {...item} className={classes.card} />
+                  </Grid>
+                )
+            )}
+          </Grid>
+        </Container>
+      </InfiniteScroll>
     </div>
   );
 };
