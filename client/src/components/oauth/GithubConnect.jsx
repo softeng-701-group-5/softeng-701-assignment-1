@@ -13,9 +13,9 @@ export const GithubConnect = props => {
   );
   /**
    * Successful authorization returns an object with the form:
-  {
-    code: "5cae4ba1139e6f33d2f6"
-  }
+    {
+      code: "xxxxxxxxxxxxxxxxxxxx"
+    }
    */
   const successHandler = data => {
     CookieManager.setUserToken(data, github.name);
@@ -41,6 +41,9 @@ export const GithubConnect = props => {
     />
   ) : (
     // TODO: Change this into a disconnect button
-    <h1>CONNECTED TO GITHUB!!!</h1>
+    <div>
+      <h1>CONNECTED TO GITHUB!!!</h1>
+      <h4>COOKIE = {CookieManager.getUserToken(github.name)}</h4>
+    </div>
   );
 };

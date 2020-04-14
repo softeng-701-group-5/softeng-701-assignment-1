@@ -14,12 +14,12 @@ export const TwitterConnect = props => {
 
   /**
    * Successful authorization returns an object with the form:
-  {
-    "oauth_token": "0000000000000000000-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    "oauth_token_secret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    "user_id": "0000000000000000000",
-    "screen_name": "Group205149975"
-  }
+    {
+      "oauth_token": "0000000000000000000-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "oauth_token_secret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "user_id": "0000000000000000000",
+      "screen_name": "Group205149975"
+    }
   */
   const authHandler = (err, data) => {
     if (!err) {
@@ -45,6 +45,10 @@ export const TwitterConnect = props => {
       buttonTheme="light_short"
     />
   ) : (
-    <h1>CONNECTED TO TWITTER!!!</h1>
+    // TODO: Change this into a disconnect button
+    <div>
+      <h1>CONNECTED TO TWITTER!!!</h1>
+      <h4>COOKIE = {CookieManager.getUserToken(twitter.name)}</h4>
+    </div>
   );
 };
