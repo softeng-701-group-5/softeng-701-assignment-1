@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
-import java.util.Optional;
 
 @AutoValue
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
@@ -21,40 +20,40 @@ public abstract class WeatherData extends GenericData {
   }
 
   @JsonProperty("name")
-  public abstract Optional<String> name();
+  public abstract String name();
 
   @JsonProperty("main")
-  public abstract Optional<Object> main();
+  public abstract Object main();
 
   @JsonProperty("weather")
-  public abstract Optional<Object> weather();
+  public abstract Object weather();
 
   @JsonProperty("visibility")
-  public abstract Optional<String> visibility();
+  public abstract String visibility();
 
   @JsonProperty("base")
-  public abstract Optional<String> base();
+  public abstract String base();
 
   @JsonProperty("timezone")
-  public abstract Optional<String> timezone();
+  public abstract String timezone();
 
   @JsonProperty("wind")
-  public abstract Optional<Object> wind();
+  public abstract Object wind();
 
   @JsonProperty("dt")
-  public abstract Optional<String> dt();
+  public abstract String dt();
 
   @JsonProperty("clouds")
-  public abstract Optional<Object> clouds();
+  public abstract Object clouds();
 
   @JsonProperty("sys")
-  public abstract Optional<Object> sys();
+  public abstract Object sys();
 
   @JsonProperty("id")
-  public abstract Optional<String> id();
+  public abstract String id();
 
   @JsonProperty("cod")
-  public abstract Optional<String> cod();
+  public abstract String cod();
 
   @AutoValue.Builder
   @JsonPOJOBuilder(withPrefix = "set")
@@ -84,7 +83,7 @@ public abstract class WeatherData extends GenericData {
 
     public abstract Builder setCod(String cod);
 
-    public abstract Optional<String> cod();
+    public abstract String cod();
 
     abstract WeatherData autoBuild();
 
