@@ -53,7 +53,6 @@ exports[`<MediaCard /> matches each snapshots 1`] = `
       />
     </div>
   </div>
-  <div />
 </div>
 `;
 
@@ -110,7 +109,6 @@ exports[`<MediaCard /> matches each snapshots 2`] = `
       />
     </div>
   </div>
-  <div />
 </div>
 `;
 
@@ -167,7 +165,6 @@ exports[`<MediaCard /> matches each snapshots 3`] = `
       />
     </div>
   </div>
-  <div />
 </div>
 `;
 
@@ -224,7 +221,6 @@ exports[`<MediaCard /> matches each snapshots 4`] = `
       />
     </div>
   </div>
-  <div />
 </div>
 `;
 
@@ -281,6 +277,5 @@ exports[`<MediaCard /> matches each snapshots 5`] = `
       />
     </div>
   </div>
-  <div />
 </div>
 `;
