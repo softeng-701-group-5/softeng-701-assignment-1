@@ -1,39 +1,15 @@
 import React from 'react';
-import {
-  AppBar,
-  Container,
-  Grid,
-  IconButton,
-  CircularProgress,
-  Button,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
-import ViewStreamRoundedIcon from '@material-ui/icons/ViewStreamRounded';
-import { Link } from 'react-router-dom';
+import { Grid, CircularProgress, makeStyles } from '@material-ui/core';
 import { MediaCard } from '../components/MediaCard';
 import { FilterBar } from '../components/FilterBar';
-import { SearchBox } from '../components/SearchBox';
+import { Header } from '../components/Header';
 import { getFeed } from '../common/api';
-import { useAuth } from '../context/AuthContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#f5f5f5',
   },
-  title: {
-    color: 'white',
-  },
-  appBar: {
-    display: 'flex',
-    marginRight: theme.spacing(3),
-    marginLeft: theme.spacing(3),
-  },
-  appBarContents: {
-    display: 'flex',
-  },
-  container: {
+  feedContainer: {
     marginTop: 30,
   },
   paperContainer: {
@@ -46,12 +22,6 @@ const useStyles = makeStyles(theme => ({
   card: {
     flex: 1,
   },
-  headerButtons: {
-    color: '#FFFFFF',
-  },
-  button: {
-    colour: '#FFFFFF',
-  },
   loader: {
     width: '100%',
     animationDuration: '550ms',
@@ -61,7 +31,6 @@ const useStyles = makeStyles(theme => ({
 
 export const FeedPage = () => {
   const classes = useStyles();
-  const { signOut } = useAuth();
 
   // state management
   const [layout, setLayout] = React.useState('grid');
@@ -84,92 +53,39 @@ export const FeedPage = () => {
       .catch(error => console.error(error));
   }, []);
 
-  const handleClick = layoutSelected => {
-    setLayout(layoutSelected);
-  };
-
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Grid
-          className={classes.appBar}
-          alignItems={'center'}
-          justify={'space-between'}
-        >
-          <div className={classes.appBarContents}>
-            <Button
-              className={classes.title}
-              variant="h6"
-              component={Link}
-              to={'feed'}
-            >
-              Feedr
-            </Button>
-            <Button
-              className={classes.title}
-              variant="h6"
-              component={Link}
-              to={'favourites'}
-            >
-              Favourites
-            </Button>
-            <SearchBox setSearch={setSearch} />
-          </div>
-          <div className={classes.appBarContents}>
-            <IconButton
-              onClick={() => handleClick(layout === 'grid' ? 'row' : 'grid')}
-              color="inherit"
-              className={classes.headerButtons}
-            >
-              {layout === 'grid' ? (
-                <ViewStreamRoundedIcon />
-              ) : (
-                <AppsRoundedIcon />
-              )}
-            </IconButton>
-            <IconButton
-              component={Link}
-              to={'/'}
-              color="inherit"
-              className={classes.headerButtons}
-              onClick={signOut}
-            >
-              <ExitToAppIcon />
-            </IconButton>
-          </div>
-        </Grid>
-      </AppBar>
-
+      <Header setLayout={setLayout} setSearch={setSearch} layout={layout} />
       {!loader && <FilterBar setFilters={setFilters} />}
-
-      <Container className={classes.container}>
-        <Grid
-          container
-          direction={layout === 'grid' ? 'row' : 'column'}
-          spacing={3}
-          alignContent={'center'}
-          justify="center"
-        >
-          {loader && (
-            <CircularProgress className={classes.loader}></CircularProgress>
-          )}
-          {feed.map(
-            (item, i) =>
-              filters.includes(item.media) &&
-              // Only checking the mainText if there is text to check, untherwise it will come up as 'undefined'
-              (typeof item.mainText !== 'undefined'
-                ? item.mainText.toLowerCase().includes(search) ||
-                  item.username.toLowerCase().includes(search) ||
-                  item.title.toLowerCase().includes(search)
-                : item.username.toLowerCase().includes(search) ||
-                  item.title.toLowerCase().includes(search)) && (
-                <Grid item key={i} className={classes.item}>
-                  <MediaCard {...item} className={classes.card} />
-                </Grid>
-              )
-          )}
-        </Grid>
-      </Container>
+      <Grid
+        className={classes.feedContainer}
+        container
+        direction={layout === 'grid' ? 'row' : 'column'}
+        spacing={3}
+        alignContent={'center'}
+        justify="center"
+      >
+        {loader && <CircularProgress className={classes.loader} />}
+        {feed.map(
+          (item, i) =>
+            filters.includes(item.media) &&
+            isSearchedPost(search, item) && (
+              <Grid item key={i} className={classes.item}>
+                <MediaCard {...item} className={classes.card} />
+              </Grid>
+            )
+        )}
+      </Grid>
     </div>
   );
+};
+
+const isSearchedPost = (search, item) => {
+  // Only checking the mainText if there is text to check, untherwise it will come up as 'undefined'
+  return !!item.mainText
+    ? item.mainText.toLowerCase().includes(search) ||
+        item.username.toLowerCase().includes(search) ||
+        item.title.toLowerCase().includes(search)
+    : item.username.toLowerCase().includes(search) ||
+        item.title.toLowerCase().includes(search);
 };
