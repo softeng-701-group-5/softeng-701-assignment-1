@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, CircularProgress, makeStyles } from '@material-ui/core';
+import Masonry from 'react-masonry-component';
+import { CircularProgress, makeStyles } from '@material-ui/core';
 import { MediaCard } from '../components/MediaCard';
 import { FilterBar } from '../components/FilterBar';
 import { Header } from '../components/Header';
@@ -10,23 +11,16 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#f5f5f5',
   },
-  feedContainer: {
-    marginTop: 30,
-  },
-  paperContainer: {
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  item: {
-    display: 'flex',
-  },
-  card: {
-    flex: 1,
-  },
   loader: {
     width: '100%',
     animationDuration: '550ms',
     marginTop: theme.spacing(2),
+  },
+  loaderContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 20,
+    marginBottom: 20,
   },
 }));
 
@@ -57,27 +51,18 @@ export const FavouritesPage = () => {
     <div className={classes.root}>
       <Header setLayout={setLayout} setSearch={setSearch} layout={layout} />
       {!loader && <FilterBar setFilters={setFilters} />}
-      <Grid
-        className={classes.container}
-        container
-        direction={layout === 'grid' ? 'row' : 'column'}
-        spacing={3}
-        justify="center"
-        alignContent={'center'}
-      >
-        {loader && (
+      {loader && (
+        <div className={classes.loaderContainer}>
           <CircularProgress className={classes.loader}></CircularProgress>
-        )}
+        </div>
+      )}
+      <Masonry>
         {feed.map(
           (item, i) =>
             filters.includes(item.media) &&
-            isSearchedPost(search, item) && (
-              <Grid item key={i} className={classes.item}>
-                <MediaCard {...item} className={classes.card} />
-              </Grid>
-            )
+            isSearchedPost(search, item) && <MediaCard {...item} />
         )}
-      </Grid>
+      </Masonry>
     </div>
   );
 };
