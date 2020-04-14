@@ -21,7 +21,7 @@ const APPS = {
     name: 'github',
     authUrl: 'https://github.com/login/oauth/authorize',
     tokenUrl: 'https://github.com/login/oauth/access_token',
-    redirectUrl: `${REACT_APP_BASE_URL}/oauth/callback/github`,
+    redirectUrl: `${REACT_APP_BASE_URL}/connect`,
     clientId: REACT_APP_GITHUB_CLIENT_ID,
     clientSecret: REACT_APP_GITHUB_CLIENT_SECRET,
   },
@@ -30,7 +30,7 @@ const APPS = {
     reqUrl: 'https://api.twitter.com/oauth/request_token', // Twitter has an extra step for auth
     authUrl: 'https://api.twitter.com/oauth/authorize',
     tokenUrl: 'https://api.twitter.com/oauth/access_token',
-    redirectUrl: `${REACT_APP_BASE_URL}/oauth/callback/twitter`,
+    redirectUrl: `${REACT_APP_BASE_URL}/connect`,
     clientId: REACT_APP_TWITTER_CLIENT_ID,
     clientSecret: REACT_APP_TWITTER_CLIENT_SECRET,
   },
