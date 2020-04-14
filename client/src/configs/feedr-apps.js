@@ -11,10 +11,8 @@ const {
 const APPS = {
   reddit: {
     name: 'reddit',
-    authUrl: '',
+    authUrl: `https://www.reddit.com/api/v1/authorize`,
     tokenUrl: '',
-    authUrl: `https://www.reddit.com/api/v1/authorize?client_id=CLIENT_ID&response_type=TYPE&
-    state=RANDOM_STRING&redirect_uri=URI&duration=DURATION&scope=SCOPE_STRING`,
     redirectUrl: `${REACT_APP_BASE_URL}/oauth/callback/reddit`,
     clientId: REACT_APP_REDDIT_CLIENT_ID,
     clientSecret: REACT_APP_REDDIT_CLIENT_SECRET,

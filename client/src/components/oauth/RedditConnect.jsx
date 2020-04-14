@@ -30,27 +30,33 @@ export const RedditConnect = props => {
 };
 
 function corsProxyTest() {
-  // let targetOrigin = 'http://example.com';
-  const targetOrigin = `${reddit.authUrl}?client_id=${reddit.clientId}&response_type=code&
-    state=abc123&redirect_uri=${reddit.redirectUrl}&duration=permanent&scope=read`;
+  // // let targetOrigin = 'http://example.com';
+  // const targetOrigin = `${reddit.authUrl}?client_id=${reddit.clientId}&response_type=code&
+  //   state=abc123&redirect_uri=${reddit.redirectUrl}&duration=permanent&scope=read`;
 
-  // let proxyUrl = 'http://cors-proxy.com/post/user';
-  const proxyUrl = 'http://localhost:3001/';
+  // // let proxyUrl = 'http://cors-proxy.com/post/user';
+  // const proxyUrl = 'http://localhost:3001/';
 
-  let user = { userId: 'userId', post: 'hello!' };
+  // let user = { userId: 'userId', post: 'hello!' };
 
-  fetch(proxyUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Target-URL': targetOrigin,
-    },
-    body: JSON.stringify(user),
+  // fetch(proxyUrl, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'Target-URL': targetOrigin,
+  //   },
+  // })
+  //   .then(function(response) {
+  //     return response.json();
+  //   })
+  //   .then(function(data) {
+  //     console.log('response: ', data);
+  //   });
+
+  fetch('/api/greeting?name=Jeff', {
+    crossDomain: true,
+    headers: { 'Content-Type': 'application/json' },
   })
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      console.log('response', data);
-    });
+    .then(resp => resp.json())
+    .then(data => console.log(data));
 }
