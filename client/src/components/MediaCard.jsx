@@ -39,7 +39,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    overflowY: 'auto',
+    verticalAlign: 'middle',
   },
+  wrapper: {},
   paper: {
     width: 600,
     outline: 'none',
@@ -47,6 +50,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    margin: 'auto',
   },
   modalTitle: {
     width: 600,
