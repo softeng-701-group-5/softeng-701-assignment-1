@@ -80,7 +80,7 @@ export const FeedPage = () => {
   );
 };
 
-function isSearchedPost(search, item) {
+const isSearchedPost = (search, item) => {
   // Only checking the mainText if there is text to check, untherwise it will come up as 'undefined'
   return !!item.mainText
     ? item.mainText.toLowerCase().includes(search) ||
@@ -88,4 +88,4 @@ function isSearchedPost(search, item) {
         item.title.toLowerCase().includes(search)
     : item.username.toLowerCase().includes(search) ||
         item.title.toLowerCase().includes(search);
-}
+};
