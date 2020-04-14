@@ -1,5 +1,5 @@
 import React from 'react';
-import Masonry from 'react-masonry-component';
+import StackGrid from 'react-stack-grid';
 import { CircularProgress, makeStyles } from '@material-ui/core';
 import { MediaCard } from '../components/MediaCard';
 import { FilterBar } from '../components/FilterBar';
@@ -53,16 +53,21 @@ export const FeedPage = () => {
       {!loader && <FilterBar setFilters={setFilters} />}
       {loader && (
         <div className={classes.loaderContainer}>
-          <CircularProgress className={classes.loader}></CircularProgress>
+          <CircularProgress className={classes.loader} />
         </div>
       )}
-      <Masonry>
+      <StackGrid
+        className={classes.masonry}
+        columnWidth={300}
+        gutterWidth={20}
+        gutterHeight={20}
+      >
         {feed.map(
           (item, i) =>
             filters.includes(item.media) &&
             isSearchedPost(search, item) && <MediaCard {...item} />
         )}
-      </Masonry>
+      </StackGrid>
     </div>
   );
 };
