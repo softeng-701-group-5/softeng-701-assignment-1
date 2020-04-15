@@ -59,7 +59,7 @@ export const FavouritesPage = () => {
       <StackGrid
         className={classes.masonry}
         columnWidth={300}
-        gutterWidth={layout === 'grid' ? 20 : parseInt(window.innerWidth * 0.2)}
+        gutterWidth={layout === 'grid' ? 20 : 300}
         gutterHeight={20}
       >
         {feed.map(
