@@ -15,6 +15,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 2. Run `yarn install --frozen-lockfile` to install all the required dependencies
 3. Run `yarn start` to launch the application. Close the application with `ctrl+c` in the command prompt
 
+### When I start my app, why does it keep loading??
+0. Stop the app (if it is running)
+1. Add a .env file to `./client/.env`
+2. Add `REACT_APP_GOOGLE_CLIENT_ID=<client-id>` (Ask Nisarag if you can't find the client-id)
+3. Start the app again
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:

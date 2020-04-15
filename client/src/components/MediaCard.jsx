@@ -8,10 +8,9 @@ import {
   Avatar,
   Typography,
   makeStyles,
-  Modal,
-  Backdrop,
-  Fade,
 } from '@material-ui/core';
+
+import { FeedrModal } from './FeedrModal';
 
 import TwitterIcon from '../assets/twitter-icon.svg';
 import GithubIcon from '../assets/github-icon.svg';
@@ -34,31 +33,6 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     backgroundColor: '#d9d9d9',
-  },
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    width: 600,
-    outline: 'none',
-    borderRadius: 5,
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-  modalTitle: {
-    width: 600,
-    textAlign: 'center',
-    fontSize: 20,
-    paddingTop: 30,
-  },
-  modalContent: {
-    paddingTop: 30,
-    paddingBottom: 30,
-    paddingLeft: 50,
-    paddingRight: 50,
   },
 }));
 
@@ -158,51 +132,17 @@ export const MediaCard = props => {
           />
         </CardActions>
       </Card>
-      <div>
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modal}
-          open={open}
-          disableAutoFocus={true}
-          onBackdropClick={handleClose}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={open} style={{ padding: '0px 0px 0px 0px' }}>
-            <div className={classes.paper}>
-              <CardActions
-                style={{ backgroundColor: barColour(props.media) }}
-                disableSpacing
-              >
-                <img
-                  src={mediaIcon(props.media)}
-                  alt={`${props.media} logo`}
-                  height="20px"
-                />
-              </CardActions>
-              <Typography className={classes.modalTitle}>
-                {props.title}
-              </Typography>
-
-              <Typography className={classes.modalContent}>
-                <Typography variant="body" color="textSecondary" component="p">
-                  {props.mainText}
-                </Typography>
-
-                <br />
-                <Typography>
-                  {`${props.username} - ${props.relativeTime}`}
-                </Typography>
-              </Typography>
-            </div>
-          </Fade>
-        </Modal>
-      </div>
+      <FeedrModal
+        open={open}
+        handleClose={handleClose}
+        barColour={barColour}
+        mediaIcon={mediaIcon}
+        media={props.media}
+        title={props.title}
+        mainText={props.mainText}
+        username={props.username}
+        relativeTime={props.relativeTime}
+      />
     </div>
   );
 };
