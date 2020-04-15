@@ -29,7 +29,6 @@ export const GithubConnect = props => {
 
   const failureHandler = data => {
     // TODO: Handle failure
-    console.log(data);
   };
 
   return !isConnected ? (

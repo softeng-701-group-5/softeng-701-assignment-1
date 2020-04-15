@@ -23,13 +23,11 @@ export const TwitterConnect = props => {
   */
   const authHandler = (err, data) => {
     if (!err) {
-      console.log(data);
       CookieManager.setUserToken(data, twitter.name);
 
       // TODO: Get/update data shown on feed
     } else {
       // TODO: Handle error
-      console.log(err);
     }
 
     // Probably don't need to check so thoroughly

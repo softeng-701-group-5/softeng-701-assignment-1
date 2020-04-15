@@ -7,7 +7,6 @@ import { useAuth } from './context/AuthContext';
 import { Loader } from './components/Loader';
 import { ConnectPage } from './pages/ConnectPage';
 import { CallbackPage } from './pages/CallbackPage';
-// require('./common/oauth');
 
 const PrivateRoute = ({ component: Component, ...props }) => {
   const { isSignedIn, isInitialized } = useAuth();

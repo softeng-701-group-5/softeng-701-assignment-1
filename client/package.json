@@ -4,7 +4,8 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "run-p server startReact",
+    "startReact": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --updateSnapshot",
     "eject": "react-scripts eject",
