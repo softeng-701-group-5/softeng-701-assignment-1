@@ -25,6 +25,12 @@ export const RedditConnect = props => {
     window.location = `${url}?client_id=${id}&response_type=${type}&state=${state}&redirect_uri=${redir}&duration=${dur}&scope=${scope}`;
   };
 
+  useEffect(() => {
+    // TODO: Change this to actually work
+    const cookie = CookieManager.getUserToken(reddit.name);
+    setConnected(cookie !== null && cookie !== undefined);
+  }, []);
+
   // TODO: Prevent the need for manually refreshing the page after successfull authorization to see the token
   // TODO: Can probably pass in props or something to fix the above TODO
   return !isConnected ? (
