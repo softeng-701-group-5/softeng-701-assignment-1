@@ -15,11 +15,6 @@ public class UserController {
     return userService.getUser(id);
   }
 
-  @PostMapping("/user")
-  public void saveUser(@RequestBody User user) {
-    userService.saveUser(user);
-  }
-
   @PutMapping("/user/{id}")
   public void updateUser(@PathVariable("id") String id, @RequestBody User user) {
     userService.updateUser(id, user);
