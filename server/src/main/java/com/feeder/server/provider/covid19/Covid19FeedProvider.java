@@ -15,14 +15,13 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
 @Service
-public class Covid19FeedProvider implements  FeedProvider{
+public class Covid19FeedProvider implements FeedProvider {
 
   private static final String COVID19_API_BASE_URL =
       " https://coronavirus-19-api.herokuapp.com/countries/New%20Zealand";
   private static final String COVID19_v3_MIME_TYPE = "application/vnd.github.v3+json";
   private static final Logger logger = LoggerFactory.getLogger(Covid19FeedProvider.class);
   private WebClient.Builder webClientBuilder;
-
 
   public Flux<CovidNineteenData> getFeed() {
     // NZ Health Official Page
@@ -110,8 +109,9 @@ public class Covid19FeedProvider implements  FeedProvider{
 
     data = builder.build();
 
-//    Flux.create(data);
-//    return data;
+    return Flux.just(data);
+    //    Flux.create(data);
+    //    return data;
   }
 
   private WebClient.Builder getWebClientBuilder() {
