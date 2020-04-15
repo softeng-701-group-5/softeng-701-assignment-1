@@ -18,7 +18,7 @@ export const TwitterConnect = props => {
       "oauth_token": "0000000000000000000-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
       "oauth_token_secret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
       "user_id": "0000000000000000000",
-      "screen_name": "Group205149975"
+      "screen_name": "xxxxxxxxxxxxxx"
     }
   */
   const authHandler = (err, data) => {
