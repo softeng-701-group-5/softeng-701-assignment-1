@@ -98,14 +98,14 @@ exports[`<MediaCard /> matches each snapshots 2`] = `
       className="MuiCardActions-root"
       style={
         Object {
-          "backgroundColor": "#010101",
+          "backgroundColor": "#05ACF0",
         }
       }
     >
       <img
-        alt="github logo"
+        alt="twitter logo"
         height="20px"
-        src="github-icon.svg"
+        src="twitter-icon.svg"
       />
     </div>
   </div>
@@ -154,14 +154,14 @@ exports[`<MediaCard /> matches each snapshots 3`] = `
       className="MuiCardActions-root"
       style={
         Object {
-          "backgroundColor": "#05ACF0",
+          "backgroundColor": "#b3b3b3",
         }
       }
     >
       <img
-        alt="twitter logo"
+        alt="default logo"
         height="20px"
-        src="twitter-icon.svg"
+        src=""
       />
     </div>
   </div>
