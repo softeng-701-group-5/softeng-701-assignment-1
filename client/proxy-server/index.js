@@ -1,3 +1,5 @@
+// REFERENCE: https://github.com/reddit-archive/reddit/wiki/OAuth2
+
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -35,6 +37,40 @@ app.get('/proxy/reddit/token', (req, reactRes) => {
   };
 
   // Make the final request to Reddit to get the access_token
+  axios.post(url, qs.stringify(data), config).then(
+    res => {
+      // Redirect back to the React app
+      reactRes.send(JSON.stringify(res.data));
+    },
+    err => {
+      // TODO: Handle error
+    }
+  );
+});
+
+/**
+ * Endpoint for the React app to call in order to refresh a Reddit access_token.
+ */
+app.post('/proxy/reddit/refresh', (req, reactRes) => {
+  const url = reddit.tokenUrl;
+  const data = {
+    grant_type: 'refresh_token',
+    refresh_token: req.body.refresh_token,
+  };
+  const config = {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization:
+        'Basic ' +
+        Buffer.from(
+          unescape(
+            encodeURIComponent(reddit.clientId + ':' + reddit.clientSecret)
+          )
+        ).toString('base64'),
+    },
+  };
+
+  // Make the final request to Reddit to refresh the access_token
   axios.post(url, qs.stringify(data), config).then(
     res => {
       // Redirect back to the React app

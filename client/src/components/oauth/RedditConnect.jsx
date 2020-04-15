@@ -2,6 +2,7 @@ import React from 'react';
 import APPS from '../../configs/feedr-apps';
 import CookieManager from './CookieManager';
 import { useEffect } from 'react';
+import qs from 'querystring';
 
 const reddit = APPS.reddit;
 
@@ -25,6 +26,37 @@ export const RedditConnect = props => {
     window.location = `${url}?client_id=${id}&response_type=${type}&state=${state}&redirect_uri=${redir}&duration=${dur}&scope=${scope}`;
   };
 
+  // TODO: Whenver using the access token, first check the expires_at key of the cookie and refresh if needed
+  const refreshReddit = () => {
+    const cookie = CookieManager.getUserToken(reddit.name);
+    const refreshToken = JSON.parse(cookie).refresh_token;
+
+    fetch('/proxy/reddit/refresh', {
+      method: 'POST',
+      crossDomain: true,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: qs.stringify({ refresh_token: refreshToken }),
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        data.expires_at = new Date(
+          new Date().getTime() + data.expires_in * 1000
+        );
+
+        // Refreshing the access_token doesn't return the refresh_token (which is permanent) with it, so add it
+        const newCookie = data;
+        newCookie.refresh_token = refreshToken;
+
+        CookieManager.setUserToken(newCookie, APPS.reddit.name);
+
+        // Probably don't need to check so thoroughly
+        const cookie = CookieManager.getUserToken(reddit.name);
+        setConnected(cookie !== null && cookie !== undefined);
+      });
+
+    // TODO: Handle errors returned from the above fetch
+  };
+
   useEffect(() => {
     // TODO: Change this to actually work
     const cookie = CookieManager.getUserToken(reddit.name);
@@ -42,6 +74,7 @@ export const RedditConnect = props => {
     <div>
       <h1>CONNECTED TO REDDIT!!!</h1>
       <h4>COOKIE = {CookieManager.getUserToken(reddit.name)}</h4>
+      <button onClick={refreshReddit}>TEST REDDIT REFRESH</button>
     </div>
   );
 };

@@ -26,7 +26,12 @@ export const CallbackPage = props => {
         headers: { 'Content-Type': 'application/json' },
       })
         .then(resp => resp.json())
-        .then(data => CookieManager.setUserToken(data, APPS.reddit.name))
+        .then(data => {
+          data.expires_at = new Date(
+            new Date().getTime() + data.expires_in * 1000
+          );
+          CookieManager.setUserToken(data, APPS.reddit.name);
+        })
         .then(props.history.push('/connect'));
 
       // TODO: Handle errors returned from the above fetch
