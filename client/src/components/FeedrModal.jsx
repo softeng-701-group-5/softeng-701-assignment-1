@@ -7,6 +7,7 @@ import {
   Fade,
   makeStyles,
 } from '@material-ui/core';
+import externalLinkIcon from '../assets/external-link.png';
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -23,7 +24,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2, 4, 3),
   },
   modalTitle: {
-    width: 600,
+    width: 500,
+    paddingLeft: 50,
     textAlign: 'center',
     fontSize: 20,
     paddingTop: 30,
@@ -34,10 +36,48 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: 50,
     paddingRight: 50,
   },
+  modalLink: {
+    width: 500,
+    position: 'absolute',
+    justifyContent: 'right',
+    textAlign: 'right',
+  },
+  modalFooter: {
+    display: 'flex',
+    alignItems: 'left',
+    justifyContent: 'left',
+  },
 }));
 
 export const FeedrModal = props => {
   const classes = useStyles();
+
+  //Change the provided source links to go to correct webpage
+  var externalLink;
+  switch (props.media) {
+    case 'reddit':
+      externalLink = props.mediaSourceLink;
+      break;
+    case 'hackernews':
+      externalLink = props.mediaSourceLink.replace('ask/', 'item?id=');
+      break;
+    case 'github':
+      externalLink = props.mediaSourceLink
+        .replace('api.', '')
+        .replace('repos/', '');
+      break;
+  }
+
+  if (props.media != 'twitter') {
+    var renderLink = (
+      <React.Fragment>
+        <a href={externalLink} target="_blank">
+          <img src={externalLinkIcon} alt={`link icon`} height="25px" />
+        </a>
+      </React.Fragment>
+    );
+  }
+
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -72,9 +112,14 @@ export const FeedrModal = props => {
               {props.mainText}
             </Typography>
             <br />
-            <Typography>
-              {`${props.username} - ${props.relativeTime}`}
-            </Typography>
+            <div className={classes.modalFooter}>
+              <Typography>
+                {`${props.username} - ${props.relativeTime}`}
+              </Typography>
+              <Typography className={classes.modalLink}>
+                {renderLink}
+              </Typography>
+            </div>
           </Typography>
         </div>
       </Fade>

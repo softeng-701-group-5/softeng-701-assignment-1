@@ -142,6 +142,7 @@ export const MediaCard = props => {
         mainText={props.mainText}
         username={props.username}
         relativeTime={props.relativeTime}
+        mediaSourceLink={props.mediaSourceLink}
       />
     </div>
   );
