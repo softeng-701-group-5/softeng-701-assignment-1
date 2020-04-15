@@ -10,7 +10,7 @@ public class FavouritePost {
 
     @Id
     private String id;
-    private String user_id;
+    private String userId;
 
     private String mediaType;
     private String title;
@@ -23,8 +23,10 @@ public class FavouritePost {
     private String avatarLink;
 
     // Constructors
-    public FavouritePost( String id, String mediaType, String title, String mainText, String username, Date date) {
+    public FavouritePost(String id, String userId, String mediaType, String title, String mainText, String username,
+                         Date date) {
         this.id = id;
+        this.userId = userId;
         this.mediaType = mediaType;
         this.title = title;
         this.mainText = mainText;
@@ -33,24 +35,24 @@ public class FavouritePost {
     }
 
     // Reddit and Hackernews
-    public FavouritePost(String id, String mediaType, String title, String mainText, Date date, String username,
-                         String mediaSourceLink) {
-        this(id, mediaType, title, mainText, username, date);
+    public FavouritePost(String id, String userId, String mediaType, String title, String mainText, Date date,
+                         String username, String mediaSourceLink) {
+        this(id, userId, mediaType, title, mainText, username, date);
         this.mediaSourceLink = mediaSourceLink;
     }
 
     // Github
-    public FavouritePost(String id, String mediaType, String title, String mainText, String username, String avatarLink,
-                         String mediaSourceLink, Date date) {
-        this(id, mediaType, title, mainText, username, date);
+    public FavouritePost(String id, String userId, String mediaType, String title, String mainText, String username,
+                         String avatarLink, String mediaSourceLink, Date date) {
+        this(id, userId, mediaType, title, mainText, username, date);
         this.avatarLink = avatarLink;
         this.mediaSourceLink = mediaSourceLink;
     }
 
     // Twitter
-    public FavouritePost(String id, String mediaType, String title, String mainText, Date date, String username,
-                         String imageLink, String avatarLink) {
-        this(id, mediaType, title, mainText, username, date);
+    public FavouritePost(String id, String userId, String mediaType, String title, String mainText, Date date,
+                         String username, String imageLink, String avatarLink) {
+        this(id, userId, mediaType, title, mainText, username, date);
         this.imageLink = imageLink;
         this.avatarLink = avatarLink;
     }
