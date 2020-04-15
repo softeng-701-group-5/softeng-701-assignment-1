@@ -12,6 +12,7 @@ import {
 export const ConnectPage = () => {
   return (
     <div>
+      <h1>Refresh the page to see updates to Reddit :(</h1>
       <RedditConnect />
       <GithubConnect />
       <TwitterConnect />
