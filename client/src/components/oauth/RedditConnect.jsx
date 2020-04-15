@@ -26,6 +26,8 @@ export const RedditConnect = props => {
   };
 
   useEffect(() => {
+    // TODO: Currently you need to manually refresh the page after successfull authorization to see the token
+    // TODO: Fix the above TODO
     const cookie = CookieManager.getUserToken(reddit.name);
     setConnected(cookie !== null && cookie !== undefined);
   }, []);
