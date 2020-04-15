@@ -37,7 +37,6 @@ export const FeedPage = () => {
     'twitter',
   ]);
   const [search, setSearch] = React.useState([]);
-  console.log(parseInt(window.innerWidth));
   // fetches data when page loads
   React.useEffect(() => {
     // synchronous function as recommended by react
