@@ -1,64 +1,44 @@
 import React from 'react';
-// import TwitterLogin from 'react-twitter-login';
 import APPS from '../../configs/feedr-apps';
+import CookieManager from './CookieManager';
+import { useEffect } from 'react';
 
 const reddit = APPS.reddit;
 
 export const RedditConnect = props => {
-  const authHandler = (err, data) => {
-    console.log(err, data);
+  const cookie = CookieManager.getUserToken(reddit.name);
+
+  const [isConnected, setConnected] = React.useState(
+    cookie !== null && cookie !== undefined
+  );
+
+  const connectReddit = () => {
+    const url = reddit.authUrl;
+    const id = reddit.clientId;
+    const type = 'code';
+    const state = (Math.random() + 1).toString(36).substring(7); // A random (5 character) string
+    const redir = reddit.redirectUrl;
+    const dur = 'permanent';
+    const scope = 'read';
+
+    // Redirect to the Reddit login page
+    window.location = `${url}?client_id=${id}&response_type=${type}&state=${state}&redirect_uri=${redir}&duration=${dur}&scope=${scope}`;
   };
 
-  const connectReddit = props => {
-    // const url = `${reddit.authUrl}?client_id=${reddit.clientId}&response_type=code&
-    // state=abc123&redirect_uri=${reddit.redirectUrl}&duration=permanent&scope=read`;
+  useEffect(() => {
+    const cookie = CookieManager.getUserToken(reddit.name);
+    setConnected(cookie !== null && cookie !== undefined);
+  }, []);
 
-    // const opt = {
-    //   method: 'GET',
-    // };
-
-    // fetch(url, opt).then(resp => console.log(resp));
-
-    // corsProxyTest();
-
-    window.location =
-      'https://www.reddit.com/api/v1/authorize?client_id=E6V2MtwA-JLx1w&response_type=code&state=abc123&redirect_uri=http://localhost:3001/oauth/callback/reddit&duration=permanent&scope=read';
-  };
-
-  return (
+  return !isConnected ? (
     <div>
       <button onClick={connectReddit}>LOGIN TO REDDIT</button>
     </div>
+  ) : (
+    // TODO: Change this into a disconnect button
+    <div>
+      <h1>CONNECTED TO REDDIT!!!</h1>
+      <h4>COOKIE = {CookieManager.getUserToken(reddit.name)}</h4>
+    </div>
   );
 };
-
-function corsProxyTest() {
-  // // let targetOrigin = 'http://example.com';
-  // const targetOrigin = `${reddit.authUrl}?client_id=${reddit.clientId}&response_type=code&
-  //   state=abc123&redirect_uri=${reddit.redirectUrl}&duration=permanent&scope=read`;
-  // // let proxyUrl = 'http://cors-proxy.com/post/user';
-  // const proxyUrl = 'http://localhost:3001/';
-  // let user = { userId: 'userId', post: 'hello!' };
-  // fetch(proxyUrl, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'Target-URL': targetOrigin,
-  //   },
-  // })
-  //   .then(function(response) {
-  //     return response.json();
-  //   })
-  //   .then(function(data) {
-  //     console.log('response: ', data);
-  //   });
-  // fetch('/api/greeting?name=Jeff', {
-  //   crossDomain: true,
-  //   headers: { 'Content-Type': 'application/json' },
-  // })
-  //   .then(resp => resp.json())
-  //   .then(data => console.log(data));
-  // props.history.push(
-  //   'https://www.reddit.com/api/v1/authorize?client_id=E6V2MtwA-JLx1w&response_type=code&state=abc123&redirect_uri=http://localhost:3001/test/oauth/callback&duration=permanent&scope=read'
-  // );
-}

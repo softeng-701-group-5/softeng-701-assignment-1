@@ -8,7 +8,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --updateSnapshot",
     "eject": "react-scripts eject",
-    "server": "node server --exec nodemon",
+    "server": "node proxy-server --exec nodemon",
     "dev": "run-p server start"
   },
   "eslintConfig": {

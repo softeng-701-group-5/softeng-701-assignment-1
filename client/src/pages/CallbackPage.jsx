@@ -1,26 +1,24 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import APPS from '../configs/feedr-apps';
+import CookieManager from '../components/oauth/CookieManager';
 
 export const CallbackPage = props => {
   const params = useParams();
 
   useEffect(() => {
-    console.log(params.app, props.location.search);
-
     if (params.app === 'reddit') {
       fetch('/proxy/reddit/token' + props.location.search, {
         crossDomain: true,
         headers: { 'Content-Type': 'application/json' },
       })
         .then(resp => resp.json())
-        .then(data => console.log('THE FINAL DATA: ' + data));
+        .then(data => CookieManager.setUserToken(data, APPS.reddit.name))
+        .then(props.history.push('/connect'));
+
+      // TODO: Handle errors returned from the above fetch
     }
-    // TODO: Handle going back to connect page
   });
 
-  return (
-    <div>
-      <h1>callback</h1>
-    </div>
-  );
+  return <div>Redirecting, please wait...</div>;
 };
