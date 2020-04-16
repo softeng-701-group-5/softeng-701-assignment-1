@@ -1,5 +1,11 @@
 package com.feeder.server.controller;
 
+import com.feeder.server.model.DemoData;
+import com.feeder.server.model.GithubData;
+import com.feeder.server.model.HackerNewsData;
+import com.feeder.server.model.RedditData;
+import com.feeder.server.model.TwitterData;
+import com.feeder.server.model.CovidNineteenData;
 import com.feeder.server.model.*;
 import com.feeder.server.provider.FeedProvider;
 import org.junit.jupiter.api.Test;
@@ -18,6 +24,8 @@ public class MultiFeedControllerIntegrationTest {
   @MockBean FeedProvider<HackerNewsData> mockHackerNewsFeedProvider;
   @MockBean FeedProvider<GithubData> mockGithubFeedProvider;
   @MockBean FeedProvider<TwitterData> mockTwitterFeedProvider;
+  @MockBean FeedProvider<CovidNineteenData> mockCovidNineteenFeedProvider;
+
   @MockBean FeedProvider<WeatherData> mockWeatherFeedProvider;
 
   @Test
