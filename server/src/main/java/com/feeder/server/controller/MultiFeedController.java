@@ -24,7 +24,7 @@ public class MultiFeedController {
 
   @GetMapping("/")
   public Flux<? extends GenericData> multiFeedMixerFlow() {
-    return Flux.merge(redditFlow(), githubFlow(), hackerNewsFlow(), twitterFlow());
+    return Flux.merge(redditFlow(), githubFlow(), hackerNewsFlow(), twitterFlow(), covidNineteenFlow());
   }
 
   @GetMapping("/reddit")
