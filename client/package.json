@@ -2,11 +2,15 @@
   "name": "feedr-client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "run-p server startReact",
+    "startReact": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --updateSnapshot",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "node proxy-server --exec nodemon",
+    "dev": "run-p server start"
   },
   "eslintConfig": {
     "extends": [
@@ -42,12 +46,18 @@
   "dependencies": {
     "@material-ui/core": "^4.9.5",
     "@material-ui/icons": "^4.9.1",
+    "axios": "^0.19.2",
     "fg-loadcss": "^2.1.0",
+    "js-cookie": "^2.2.1",
     "moment": "^2.24.0",
+    "querystring": "^0.2.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-github-login": "^1.0.3",
+    "react-infinite-scroller": "^1.2.4",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "react-twitter-login": "^1.1.2",
     "react-use-googlelogin": "^0.11.2"
   },
   "devDependencies": {
@@ -60,6 +70,8 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
+    "nodemon": "^2.0.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "react-test-renderer": "^16.13.0"
   }
