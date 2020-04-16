@@ -30,6 +30,9 @@ In the project directory, you can run:
 ### `yarn install --frozen-lockfile`
 Installs required dependencies to run the project.
 
+### `yarn add nodemon npm-run-all --dev`
+Installs the dev dependecies that allow the proxy-server and React app to run in parallel
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
