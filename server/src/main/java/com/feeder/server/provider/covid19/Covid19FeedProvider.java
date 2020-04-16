@@ -102,8 +102,6 @@ public class Covid19FeedProvider implements FeedProvider<CovidNineteenData> {
     builder.newHospitalised(newHospitalised);
     builder.totalRecovered(totalRecovered);
     builder.newRecovered(newRecovered);
-    builder.totalRecovered(totalRecovered);
-    builder.newRecovered(newRecovered);
     builder.totalDeaths(totalDead);
     builder.newDeaths(newDead);
 

@@ -1,5 +1,6 @@
 package com.feeder.server.controller;
 
+import com.feeder.server.model.CovidNineteenData;
 import com.feeder.server.model.DemoData;
 import com.feeder.server.model.GithubData;
 import com.feeder.server.model.HackerNewsData;
