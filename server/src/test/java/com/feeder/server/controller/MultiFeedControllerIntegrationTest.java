@@ -1,5 +1,6 @@
 package com.feeder.server.controller;
 
+import com.feeder.server.model.CovidNineteenData;
 import com.feeder.server.model.DemoData;
 import com.feeder.server.model.GithubData;
 import com.feeder.server.model.HackerNewsData;
@@ -22,6 +23,7 @@ public class MultiFeedControllerIntegrationTest {
   @MockBean FeedProvider<HackerNewsData> mockHackerNewsFeedProvider;
   @MockBean FeedProvider<GithubData> mockGithubFeedProvider;
   @MockBean FeedProvider<TwitterData> mockTwitterFeedProvider;
+  @MockBean FeedProvider<CovidNineteenData> mockCovidNineteenFeedProvider;
 
   @Test
   public void testSerializationDemoFlow() {

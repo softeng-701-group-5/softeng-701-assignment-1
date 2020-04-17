@@ -15,7 +15,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
 @Service
-public class Covid19FeedProvider implements FeedProvider {
+public class Covid19FeedProvider implements FeedProvider<CovidNineteenData> {
 
   private static final String COVID19_API_BASE_URL =
       " https://coronavirus-19-api.herokuapp.com/countries/New%20Zealand";
@@ -100,8 +100,6 @@ public class Covid19FeedProvider implements FeedProvider {
     builder.newProbable(newProbable);
     builder.totalHospitalised(totalHospitalised);
     builder.newHospitalised(newHospitalised);
-    builder.totalRecovered(totalRecovered);
-    builder.newRecovered(newRecovered);
     builder.totalRecovered(totalRecovered);
     builder.newRecovered(newRecovered);
     builder.totalDeaths(totalDead);
