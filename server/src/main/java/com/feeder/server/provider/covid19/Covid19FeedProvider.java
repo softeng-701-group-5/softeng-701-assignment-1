@@ -90,8 +90,8 @@ public class Covid19FeedProvider implements FeedProvider<CovidNineteenData> {
         // Probable
       } else if (r == 2) {
 
-        parsedData.put("totalConfirmed", cols.first().text());
-        parsedData.put("newConfirmed", cols.last().text());
+        parsedData.put("totalProbable", cols.first().text());
+        parsedData.put("newProbable", cols.last().text());
         // Hospitalised
       } else if (r == 4) {
 
