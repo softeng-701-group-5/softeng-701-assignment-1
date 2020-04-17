@@ -32,7 +32,6 @@ export const FavouritesPage = () => {
   const [feed, setFeed] = React.useState([]);
   const [mappedFeed, setMappedFeed] = React.useState([]);
   const [hasMore, setHasMore] = React.useState(true);
-  const [feedIndex, setFeedIndex] = React.useState(0);
   const [filters, setFilters] = React.useState([
     'reddit',
     'hackernews',
@@ -42,28 +41,36 @@ export const FavouritesPage = () => {
   const [filterInit, setFilterInit] = React.useState(false);
   const [search, setSearch] = React.useState([]);
 
+  const feedsPerLoad = 12;
+
   // fetches data when page loads
   React.useEffect(() => {
     // synchronous function as recommended by react
     getFeed()
-      .then(data => {
-        setFeed(data);
-        setMappedFeed(data.slice(0, 25));
-        setFeedIndex(25);
-      })
+      .then(data => setFeed(data))
       .then(() => setFilterInit(true))
       .catch(error => console.error(error));
   }, []);
 
-  const loadFeed = () => {
-    const feedsPerLoad = 12;
-    if (feed.length > feedIndex) {
-      Array.prototype.push.apply(
-        mappedFeed,
-        feed.slice(feedIndex, feedIndex + feedsPerLoad)
-      );
-      setFeedIndex(feedIndex + feedsPerLoad);
-    } else if (feed.length !== 0) {
+  React.useEffect(() => {
+    console.log('sup');
+    let timer = setInterval(() => {
+      if (document.body.scrollHeight > window.screen.height) {
+        clearInterval(timer);
+      }
+      setMappedFeed(prevMap => [
+        ...prevMap,
+        ...feed.slice(prevMap.length, prevMap.length + feedsPerLoad),
+      ]);
+    }, 2000);
+  }, [feed]);
+
+  const onEnter = () => {
+    setMappedFeed(prevMap => [
+      ...prevMap,
+      ...feed.slice(prevMap.length, prevMap.length + feedsPerLoad),
+    ]);
+    if (mappedFeed.length > feed.length) {
       setHasMore(false);
     }
   };
@@ -83,11 +90,7 @@ export const FavouritesPage = () => {
             isSearchedPost(search, item) && <MediaCard {...item} />
         )}
       </StackGrid>
-      <Waypoint
-        onEnter={() => {
-          setTimeout(() => loadFeed());
-        }}
-      />
+      <Waypoint onEnter={onEnter} />
       {hasMore && (
         <div className={classes.loaderContainer}>
           <CircularProgress className={classes.loader}></CircularProgress>
