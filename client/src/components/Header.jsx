@@ -1,5 +1,12 @@
 import React from 'react';
-import { AppBar, Grid, IconButton, Button } from '@material-ui/core';
+import {
+  AppBar,
+  Grid,
+  IconButton,
+  Button,
+  Switch,
+  FormControlLabel,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
@@ -58,6 +65,9 @@ export const Header = props => {
           <SearchBox setSearch={props.setSearch} />
         </div>
         <div className={classes.appBarContents}>
+          <FormControlLabel
+            control={<Switch onChange={() => props.toggleTheme()} />}
+          />
           <IconButton
             onClick={() =>
               handleClick(props.layout === 'grid' ? 'row' : 'grid')

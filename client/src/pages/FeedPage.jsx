@@ -7,9 +7,7 @@ import { Header } from '../components/Header';
 import { getFeed } from '../common/api';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: '#f5f5f5',
-  },
+  root: {},
   feedContainer: {
     marginTop: 30,
   },
@@ -34,6 +32,14 @@ const useStyles = makeStyles(theme => ({
     marginTop: 20,
     marginBottom: 20,
   },
+  lightTheme: {
+    backgroundColor: '#fff',
+    color: '#333',
+  },
+  darkTheme: {
+    backgroundColor: '#1a1919',
+    color: '#999',
+  },
 }));
 
 export const FeedPage = () => {
@@ -53,6 +59,17 @@ export const FeedPage = () => {
     'twitter',
   ]);
   const [search, setSearch] = React.useState([]);
+
+  //theme management
+  const [theme, setTheme] = React.useState('light');
+
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
 
   // fetches data when page loads
   React.useEffect(() => {
@@ -77,8 +94,13 @@ export const FeedPage = () => {
   };
 
   return (
-    <div className={classes.root}>
-      <Header setLayout={setLayout} setSearch={setSearch} layout={layout} />
+    <div className={theme === 'light' ? classes.lightTheme : classes.darkTheme}>
+      <Header
+        setLayout={setLayout}
+        setSearch={setSearch}
+        layout={layout}
+        toggleTheme={toggleTheme}
+      />
       {!loader && <FilterBar setFilters={setFilters} />}
       <InfiniteScroll
         loadMore={loadFeed.bind(this)}
@@ -102,7 +124,11 @@ export const FeedPage = () => {
               filters.includes(item.media) &&
               isSearchedPost(search, item) && (
                 <Grid item key={i} className={classes.item}>
-                  <MediaCard {...item} className={classes.card} />
+                  <MediaCard
+                    {...item}
+                    className={classes.card}
+                    getTheme={theme}
+                  />
                 </Grid>
               )
           )}
