@@ -10,7 +10,8 @@ public abstract class GenericData {
     GITHUB,
     HACKERNEWS,
     TWITTER,
-    COVIDNINETEEN
+    COVIDNINETEEN,
+    WEATHER
   }
 
   @JsonProperty("feedType")
