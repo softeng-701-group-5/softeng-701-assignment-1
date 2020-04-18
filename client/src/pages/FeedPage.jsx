@@ -40,7 +40,7 @@ export const FeedPage = () => {
   const [filterInit, setFilterInit] = React.useState(false);
   const [search, setSearch] = React.useState([]);
 
-  const feedsPerLoad = 12;
+  const feedsPerLoad = 20;
 
   // fetches data when page loads
   React.useEffect(() => {
