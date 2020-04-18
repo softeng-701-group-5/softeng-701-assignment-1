@@ -11,6 +11,9 @@ export const mapFeedItem = item => {
       return mapTwitterItem(item);
     case 'HACKERNEWS':
       return mapHackerNewsItem(item);
+    case 'WEATHER':
+      console.log(item);
+      return mapWeatherItem(item);
     default:
       throw new Error(`feedType ${item.feedType} unsupported`);
   }
@@ -56,3 +59,5 @@ const mapHackerNewsItem = item => ({
   relativeTime: moment(item.time * 1000).fromNow(),
   mediaSourceLink: item.url,
 });
+
+const mapWeatherItem = item => ({});

@@ -51,6 +51,7 @@ export const FeedPage = () => {
     'hackernews',
     'github',
     'twitter',
+    'weather',
   ]);
   const [search, setSearch] = React.useState([]);
 
