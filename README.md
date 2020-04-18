@@ -10,6 +10,7 @@ We are using the React framework to manage the front-end UI and using a Java ser
 - Reddit
 - Hacker News
 - Twitter
+- Weather
 
 *Created for Assignment 1 of the SOFTENG701 course at the University of Auckland*
 
