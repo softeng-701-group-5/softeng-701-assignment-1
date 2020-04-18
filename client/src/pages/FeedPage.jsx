@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     marginTop: 20,
-    marginBottom: 20,
   },
 }));
 
@@ -53,7 +52,6 @@ export const FeedPage = () => {
   }, []);
 
   React.useEffect(() => {
-    console.log('sup');
     let timer = setInterval(() => {
       if (document.body.scrollHeight > window.screen.height) {
         clearInterval(timer);
@@ -70,7 +68,7 @@ export const FeedPage = () => {
       ...prevMap,
       ...feed.slice(prevMap.length, prevMap.length + feedsPerLoad),
     ]);
-    if (mappedFeed.length > feed.length) {
+    if (mappedFeed.length >= feed.length && feed.length !== 0) {
       setHasMore(false);
     }
   };
