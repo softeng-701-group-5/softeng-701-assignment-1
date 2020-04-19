@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationProperties {
 
+  private String weatherApiKey = "";
   private String redditUsername = "";
   private String redditPassword = "";
   private String redditClientId = "";
@@ -26,6 +27,7 @@ public class ApplicationProperties {
       @Value("${providers.reddit.password}") String redditPassword,
       @Value("${providers.reddit.clientId}") String redditClientId,
       @Value("${providers.reddit.clientSecret}") String redditClientSecret,
+      @Value("${providers.weather.api}") String weatherApiKey,
       @Value("${providers.github.username}") String githubUsername,
       @Value("${providers.github.password}") String githubPassword,
       @Value("${providers.twitter.consumerKey}") String twitterConsumerKey,
@@ -36,6 +38,8 @@ public class ApplicationProperties {
     this.redditPassword = redditPassword;
     this.redditClientId = redditClientId;
     this.redditClientSecret = redditClientSecret;
+
+    this.weatherApiKey = weatherApiKey;
 
     this.githubUsername = githubUsername;
     this.githubPassword = githubPassword;
@@ -67,6 +71,10 @@ public class ApplicationProperties {
 
   public String getGithubUsername() {
     return githubUsername;
+  }
+
+  public String getWeatherApiKey() {
+    return weatherApiKey;
   }
 
   public String getGithubPassword() {
