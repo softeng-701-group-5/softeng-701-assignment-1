@@ -1,10 +1,12 @@
 import React from 'react';
-import InfiniteScroll from 'react-infinite-scroller';
-import { Grid, CircularProgress, makeStyles } from '@material-ui/core';
+import StackGrid from 'react-stack-grid';
+import { Waypoint } from 'react-waypoint';
+import { CircularProgress, makeStyles } from '@material-ui/core';
 import { MediaCard } from '../components/MediaCard';
 import { FilterBar } from '../components/FilterBar';
 import { Header } from '../components/Header';
 import { getFeed } from '../common/api';
+import classNames from 'classnames';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -30,7 +32,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     marginTop: 20,
-    marginBottom: 20,
   },
   lightTheme: {
     backgroundColor: '#fff',
@@ -48,16 +49,15 @@ export const FeedPage = () => {
   // state management
   const [layout, setLayout] = React.useState('grid');
   const [feed, setFeed] = React.useState([]);
-  const [mappedFeed] = React.useState([]);
+  const [mappedFeed, setMappedFeed] = React.useState([]);
   const [hasMore, setHasMore] = React.useState(true);
-  const [feedIndex, setFeedIndex] = React.useState(0);
-  const [loader, setLoader] = React.useState(true);
   const [filters, setFilters] = React.useState([
     'reddit',
     'hackernews',
     'github',
     'twitter',
   ]);
+  const [filterInit, setFilterInit] = React.useState(false);
   const [search, setSearch] = React.useState([]);
 
   //theme management
@@ -70,70 +70,73 @@ export const FeedPage = () => {
       setTheme('light');
     }
   };
+  const feedsPerLoad = 20;
 
   // fetches data when page loads
   React.useEffect(() => {
     // synchronous function as recommended by react
     getFeed()
       .then(data => setFeed(data))
-      .then(() => setLoader(false))
+      .then(() => setFilterInit(true))
       .catch(error => console.error(error));
   }, []);
 
-  const loadFeed = page => {
-    const feedsPerLoad = 6;
-    if (feed.length > feedIndex) {
-      Array.prototype.push.apply(
-        mappedFeed,
-        feed.slice(feedIndex, feedIndex + feedsPerLoad)
-      );
-      setFeedIndex(feedIndex + feedsPerLoad);
-    } else if (!loader) {
+  React.useEffect(() => {
+    let timer = setInterval(() => {
+      if (document.body.scrollHeight > window.screen.height) {
+        clearInterval(timer);
+      }
+      setMappedFeed(prevMap => [
+        ...prevMap,
+        ...feed.slice(prevMap.length, prevMap.length + feedsPerLoad),
+      ]);
+    }, 1500);
+  }, [feed]);
+
+  const onEnter = () => {
+    setMappedFeed(prevMap => [
+      ...prevMap,
+      ...feed.slice(prevMap.length, prevMap.length + feedsPerLoad),
+    ]);
+    if (mappedFeed.length >= feed.length && feed.length !== 0) {
       setHasMore(false);
     }
   };
 
   return (
-    <div className={theme === 'light' ? classes.lightTheme : classes.darkTheme}>
+    <div
+      className={classNames(
+        classes.root,
+        theme === 'light' ? classes.lightTheme : classes.darkTheme
+      )}
+    >
       <Header
         setLayout={setLayout}
         setSearch={setSearch}
         layout={layout}
         toggleTheme={toggleTheme}
+        getTheme={theme}
       />
-      {!loader && <FilterBar setFilters={setFilters} />}
-      <InfiniteScroll
-        loadMore={loadFeed.bind(this)}
-        hasMore={hasMore}
-        loader={
-          <div className={classes.loaderContainer}>
-            <CircularProgress className={classes.loader}></CircularProgress>
-          </div>
-        }
+      {filterInit && <FilterBar setFilters={setFilters} />}
+      <StackGrid
+        columnWidth={300}
+        gutterWidth={layout === 'grid' ? 20 : 300}
+        gutterHeight={20}
       >
-        <Grid
-          className={classes.feedContainer}
-          container
-          direction={layout === 'grid' ? 'row' : 'column'}
-          spacing={3}
-          alignContent={'center'}
-          justify="center"
-        >
-          {mappedFeed.map(
-            (item, i) =>
-              filters.includes(item.media) &&
-              isSearchedPost(search, item) && (
-                <Grid item key={i} className={classes.item}>
-                  <MediaCard
-                    {...item}
-                    className={classes.card}
-                    getTheme={theme}
-                  />
-                </Grid>
-              )
-          )}
-        </Grid>
-      </InfiniteScroll>
+        {mappedFeed.map(
+          (item, i) =>
+            filters.includes(item.media) &&
+            isSearchedPost(search, item) && (
+              <MediaCard {...item} getTheme={theme} />
+            )
+        )}
+      </StackGrid>
+      <Waypoint onEnter={onEnter} />
+      {hasMore && (
+        <div className={classes.loaderContainer}>
+          <CircularProgress className={classes.loader}></CircularProgress>
+        </div>
+      )}
     </div>
   );
 };

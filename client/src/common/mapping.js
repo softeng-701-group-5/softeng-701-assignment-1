@@ -11,6 +11,8 @@ export const mapFeedItem = item => {
       return mapTwitterItem(item);
     case 'HACKERNEWS':
       return mapHackerNewsItem(item);
+    case 'WEATHER':
+      return {};
     default:
       throw new Error(`feedType ${item.feedType} unsupported`);
   }
