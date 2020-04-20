@@ -62,6 +62,7 @@ export const Header = props => {
         </div>
         <div className={classes.appBarContents}>
           <FormControlLabel
+            checked={props.getTheme === 'dark'}
             control={<Switch onChange={() => props.toggleTheme()} />}
           />
           <IconButton
