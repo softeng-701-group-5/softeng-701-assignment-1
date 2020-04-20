@@ -13,6 +13,8 @@ export const mapFeedItem = item => {
       return mapHackerNewsItem(item);
     case 'WEATHER':
       return {};
+    case 'COVIDNINETEEN':
+      return {};
     default:
       throw new Error(`feedType ${item.feedType} unsupported`);
   }
