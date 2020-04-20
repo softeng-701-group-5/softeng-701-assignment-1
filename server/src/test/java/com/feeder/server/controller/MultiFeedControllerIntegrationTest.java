@@ -19,6 +19,7 @@ public class MultiFeedControllerIntegrationTest {
   @MockBean FeedProvider<GithubData> mockGithubFeedProvider;
   @MockBean FeedProvider<TwitterData> mockTwitterFeedProvider;
   @MockBean FeedProvider<WeatherData> mockWeatherFeedProvider;
+  @MockBean FeedProvider<CovidNineteenData> mockCovidNineteenFeedProvider;
 
   @Test
   public void testSerializationDemoFlow() {

@@ -11,6 +11,7 @@ We are using the React framework to manage the front-end UI and using a Java ser
 - Hacker News
 - Twitter
 - Weather
+- Covid-19
 
 *Created for Assignment 1 of the SOFTENG701 course at the University of Auckland*
 
