@@ -6,10 +6,22 @@ import { MediaCard } from '../components/MediaCard';
 import { FilterBar } from '../components/FilterBar';
 import { Header } from '../components/Header';
 import { getFeed } from '../common/api';
+import classNames from 'classnames';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: '#f5f5f5',
+  root: {},
+  feedContainer: {
+    marginTop: 30,
+  },
+  paperContainer: {
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  item: {
+    display: 'flex',
+  },
+  card: {
+    flex: 1,
   },
   loader: {
     width: '100%',
@@ -20,6 +32,14 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     marginTop: 20,
+  },
+  lightTheme: {
+    backgroundColor: '#fff',
+    color: '#333',
+  },
+  darkTheme: {
+    backgroundColor: '#1a1919',
+    color: '#999',
   },
 }));
 
@@ -40,6 +60,16 @@ export const FeedPage = () => {
   const [filterInit, setFilterInit] = React.useState(false);
   const [search, setSearch] = React.useState([]);
 
+  //theme management
+  const [theme, setTheme] = React.useState('light');
+
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
   const feedsPerLoad = 20;
 
   // fetches data when page loads
@@ -74,8 +104,19 @@ export const FeedPage = () => {
   };
 
   return (
-    <div className={classes.root}>
-      <Header setLayout={setLayout} setSearch={setSearch} layout={layout} />
+    <div
+      className={classNames(
+        classes.root,
+        theme === 'light' ? classes.lightTheme : classes.darkTheme
+      )}
+    >
+      <Header
+        setLayout={setLayout}
+        setSearch={setSearch}
+        layout={layout}
+        toggleTheme={toggleTheme}
+        getTheme={theme}
+      />
       {filterInit && <FilterBar setFilters={setFilters} />}
       <StackGrid
         columnWidth={300}
@@ -85,7 +126,9 @@ export const FeedPage = () => {
         {mappedFeed.map(
           (item, i) =>
             filters.includes(item.media) &&
-            isSearchedPost(search, item) && <MediaCard {...item} />
+            isSearchedPost(search, item) && (
+              <MediaCard {...item} getTheme={theme} />
+            )
         )}
       </StackGrid>
       <Waypoint onEnter={onEnter} />
