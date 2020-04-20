@@ -23,15 +23,16 @@ public class MultiFeedController {
   @Autowired private FeedProvider<WeatherData> weatherDataProvider;
   @Autowired private FeedProvider<CovidNineteenData> covidNineteenFeedProvider;
 
-  @GetMapping("/")
+  @GetMapping("/all")
   public Flux<? extends GenericData> multiFeedMixerFlow() {
     return Flux.merge(
-        redditFlow(),
-        githubFlow(),
-        hackerNewsFlow(),
-        twitterFlow(),
-        weatherFlow(),
-        covidNineteenFlow());
+            redditFlow(),
+            githubFlow(),
+            hackerNewsFlow(),
+            twitterFlow(),
+            weatherFlow(),
+            covidNineteenFlow()
+    );
   }
 
   @GetMapping("/reddit")
