@@ -5,16 +5,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class User {
-
   @Id private String uid;
-
   private String profilePicture;
   private String name;
+  private String gridLayout;
+  private String theme;
 
-  public User(String uid, String profilePicture, String name) {
+  public User(String uid, String profilePicture, String name, String gridLayout, String theme) {
     this.uid = uid;
     this.profilePicture = profilePicture;
     this.name = name;
+    this.gridLayout = gridLayout;
+    this.theme = theme;
   }
 
   public void setId(String id) {
@@ -31,6 +33,14 @@ public class User {
 
   public String getName() {
     return name;
+  }
+
+  public String getGridLayout() {
+    return gridLayout;
+  }
+
+  public String getTheme() {
+    return theme;
   }
 
   @Override
