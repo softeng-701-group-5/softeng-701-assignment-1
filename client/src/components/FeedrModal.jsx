@@ -54,18 +54,20 @@ export const FeedrModal = props => {
 
   //Change the provided source links to go to correct webpage
   var externalLink;
-  switch (props.media) {
-    case 'reddit':
-      externalLink = props.mediaSourceLink;
-      break;
-    case 'hackernews':
-      externalLink = props.mediaSourceLink.replace('ask/', 'item?id=');
-      break;
-    case 'github':
-      externalLink = props.mediaSourceLink
-        .replace('api.', '')
-        .replace('repos/', '');
-      break;
+  if (props.media) {
+    switch (props.media) {
+      case 'reddit':
+        externalLink = props.mediaSourceLink;
+        break;
+      case 'hackernews':
+        externalLink = props.mediaSourceLink.replace('ask/', 'item?id=');
+        break;
+      case 'github':
+        externalLink = props.mediaSourceLink
+          .replace('api.', '')
+          .replace('repos/', '');
+        break;
+    }
   }
 
   if (props.media != 'twitter') {
