@@ -16,8 +16,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
-@WebFluxTest(controllers = HackerNewsFeedProvider.class)
 @ExtendWith(MockitoExtension.class)
+@WebFluxTest(controllers = HackerNewsFeedProvider.class)
 public class HackerNewsFeedProviderTest {
 
   @MockBean private WebClient mockWebClient;

@@ -6,7 +6,6 @@ exports[`<FilterBar /> matches snapshot 1`] = `
 >
   <div
     className="MuiChip-root makeStyles-chip-2 MuiChip-deletable"
-    onKeyDown={[Function]}
     onKeyUp={[Function]}
     role="button"
     tabIndex={0}
@@ -25,6 +24,7 @@ exports[`<FilterBar /> matches snapshot 1`] = `
       className="MuiSvgIcon-root MuiChip-deleteIcon"
       focusable="false"
       onClick={[Function]}
+      role="presentation"
       viewBox="0 0 24 24"
     >
       <path
@@ -34,7 +34,6 @@ exports[`<FilterBar /> matches snapshot 1`] = `
   </div>
   <div
     className="MuiChip-root makeStyles-chip-2 MuiChip-deletable"
-    onKeyDown={[Function]}
     onKeyUp={[Function]}
     role="button"
     tabIndex={0}
@@ -53,6 +52,7 @@ exports[`<FilterBar /> matches snapshot 1`] = `
       className="MuiSvgIcon-root MuiChip-deleteIcon"
       focusable="false"
       onClick={[Function]}
+      role="presentation"
       viewBox="0 0 24 24"
     >
       <path
@@ -62,7 +62,6 @@ exports[`<FilterBar /> matches snapshot 1`] = `
   </div>
   <div
     className="MuiChip-root makeStyles-chip-2 MuiChip-deletable"
-    onKeyDown={[Function]}
     onKeyUp={[Function]}
     role="button"
     tabIndex={0}
@@ -81,6 +80,7 @@ exports[`<FilterBar /> matches snapshot 1`] = `
       className="MuiSvgIcon-root MuiChip-deleteIcon"
       focusable="false"
       onClick={[Function]}
+      role="presentation"
       viewBox="0 0 24 24"
     >
       <path
@@ -90,7 +90,6 @@ exports[`<FilterBar /> matches snapshot 1`] = `
   </div>
   <div
     className="MuiChip-root makeStyles-chip-2 MuiChip-deletable"
-    onKeyDown={[Function]}
     onKeyUp={[Function]}
     role="button"
     tabIndex={0}
@@ -109,6 +108,7 @@ exports[`<FilterBar /> matches snapshot 1`] = `
       className="MuiSvgIcon-root MuiChip-deleteIcon"
       focusable="false"
       onClick={[Function]}
+      role="presentation"
       viewBox="0 0 24 24"
     >
       <path
