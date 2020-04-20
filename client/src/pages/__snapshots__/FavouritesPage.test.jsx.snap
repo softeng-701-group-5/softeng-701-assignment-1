@@ -8,14 +8,14 @@ exports[`<FavouritesPage /> matches snapshot 1`] = `
     className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4"
   >
     <div
-      className="MuiGrid-root makeStyles-appBar-8 MuiGrid-align-items-xs-center MuiGrid-justify-xs-space-between"
+      className="MuiGrid-root makeStyles-appBar-7 MuiGrid-align-items-xs-center MuiGrid-justify-xs-space-between"
     >
       <div
-        className="makeStyles-appBarContents-9"
+        className="makeStyles-appBarContents-8"
       >
         <a
           aria-disabled={false}
-          className="MuiButtonBase-root MuiButton-root makeStyles-title-10"
+          className="MuiButtonBase-root MuiButton-root makeStyles-title-9"
           href="/"
           onBlur={[Function]}
           onClick={[Function]}
@@ -40,7 +40,7 @@ exports[`<FavouritesPage /> matches snapshot 1`] = `
         </a>
         <a
           aria-disabled={false}
-          className="MuiButtonBase-root MuiButton-root makeStyles-title-10"
+          className="MuiButtonBase-root MuiButton-root makeStyles-title-9"
           href="/favourites"
           onBlur={[Function]}
           onClick={[Function]}
@@ -64,10 +64,10 @@ exports[`<FavouritesPage /> matches snapshot 1`] = `
           </span>
         </a>
         <div
-          className="makeStyles-search-187"
+          className="makeStyles-search-186"
         >
           <div
-            className="makeStyles-searchIcon-188"
+            className="makeStyles-searchIcon-187"
           >
             <svg
               aria-hidden="true"
@@ -82,12 +82,12 @@ exports[`<FavouritesPage /> matches snapshot 1`] = `
             </svg>
           </div>
           <div
-            className="MuiInputBase-root makeStyles-inputRoot-189 MuiInputBase-fullWidth"
+            className="MuiInputBase-root makeStyles-inputRoot-188 MuiInputBase-fullWidth"
             onClick={[Function]}
           >
             <input
               aria-label="search"
-              className="MuiInputBase-input makeStyles-inputInput-190 MuiInputBase-inputTypeSearch"
+              className="MuiInputBase-input makeStyles-inputInput-189 MuiInputBase-inputTypeSearch"
               id="search"
               onAnimationStart={[Function]}
               onBlur={[Function]}
@@ -100,10 +100,10 @@ exports[`<FavouritesPage /> matches snapshot 1`] = `
         </div>
       </div>
       <div
-        className="makeStyles-appBarContents-9"
+        className="makeStyles-appBarContents-8"
       >
         <button
-          className="MuiButtonBase-root MuiIconButton-root makeStyles-headerButtons-11 MuiIconButton-colorInherit"
+          className="MuiButtonBase-root MuiIconButton-root makeStyles-headerButtons-10 MuiIconButton-colorInherit"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -138,7 +138,7 @@ exports[`<FavouritesPage /> matches snapshot 1`] = `
         </button>
         <a
           aria-disabled={false}
-          className="MuiButtonBase-root MuiIconButton-root makeStyles-headerButtons-11 MuiIconButton-colorInherit"
+          className="MuiButtonBase-root MuiIconButton-root makeStyles-headerButtons-10 MuiIconButton-colorInherit"
           href="/"
           onBlur={[Function]}
           onClick={[Function]}
@@ -174,38 +174,33 @@ exports[`<FavouritesPage /> matches snapshot 1`] = `
       </div>
     </div>
   </header>
-  <div>
+  <div
+    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-align-content-xs-center MuiGrid-justify-xs-center"
+  >
     <div
-      className="MuiGrid-root makeStyles-feedContainer-2 MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-align-content-xs-center MuiGrid-justify-xs-center"
-    />
-    <div
-      className="makeStyles-loaderContainer-7"
-    >
-      <div
-        className="MuiCircularProgress-root makeStyles-loader-6 MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
-        role="progressbar"
-        style={
-          Object {
-            "height": 40,
-            "width": 40,
-          }
+      className="MuiCircularProgress-root makeStyles-loader-6 MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+      role="progressbar"
+      style={
+        Object {
+          "height": 40,
+          "width": 40,
         }
+      }
+    >
+      <svg
+        className="MuiCircularProgress-svg"
+        viewBox="22 22 44 44"
       >
-        <svg
-          className="MuiCircularProgress-svg"
-          viewBox="22 22 44 44"
-        >
-          <circle
-            className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-            cx={44}
-            cy={44}
-            fill="none"
-            r={20.2}
-            strokeWidth={3.6}
-            style={Object {}}
-          />
-        </svg>
-      </div>
+        <circle
+          className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+          cx={44}
+          cy={44}
+          fill="none"
+          r={20.2}
+          strokeWidth={3.6}
+          style={Object {}}
+        />
+      </svg>
     </div>
   </div>
 </div>

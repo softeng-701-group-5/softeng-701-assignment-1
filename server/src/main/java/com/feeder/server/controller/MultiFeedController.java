@@ -1,6 +1,12 @@
 package com.feeder.server.controller;
 
-import com.feeder.server.model.*;
+import com.feeder.server.model.DemoData;
+import com.feeder.server.model.GenericData;
+import com.feeder.server.model.GithubData;
+import com.feeder.server.model.HackerNewsData;
+import com.feeder.server.model.RedditData;
+import com.feeder.server.model.TwitterData;
+import com.feeder.server.model.WeatherData;
 import com.feeder.server.provider.FeedProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,18 +26,11 @@ public class MultiFeedController {
   @Autowired private FeedProvider<GithubData> githubFeedProvider;
   @Autowired private FeedProvider<HackerNewsData> hackerNewsFeedProvider;
   @Autowired private FeedProvider<TwitterData> twitterFeedProvider;
-  @Autowired private FeedProvider<CovidNineteenData> covidNineteenFeedProvider;
   @Autowired private FeedProvider<WeatherData> weatherDataProvider;
 
   @GetMapping("/")
   public Flux<? extends GenericData> multiFeedMixerFlow() {
-    return Flux.merge(
-        redditFlow(),
-        githubFlow(),
-        hackerNewsFlow(),
-        twitterFlow(),
-        covidNineteenFlow(),
-        weatherFlow());
+    return Flux.merge(redditFlow(), githubFlow(), hackerNewsFlow(), twitterFlow(), weatherFlow());
   }
 
   @GetMapping("/reddit")
@@ -49,23 +48,18 @@ public class MultiFeedController {
     return hackerNewsFeedProvider.getFeed();
   }
 
-  @GetMapping("/weather")
-  public Flux<WeatherData> weatherFlow() {
-    return weatherDataProvider.getFeed();
-  }
-
   @GetMapping("/twitter")
   public Flux<TwitterData> twitterFlow() {
     return twitterFeedProvider.getFeed();
   }
 
+  @GetMapping("/weather")
+  public Flux<WeatherData> weatherFlow() {
+    return weatherDataProvider.getFeed();
+  }
+
   @GetMapping("/demo")
   public Flux<DemoData> serializationDemoFlow() {
     return Flux.just(DemoData.newBuilder().title("Cat").imageURI("http://cat.jpg").build());
-  }
-
-  @GetMapping("/covid")
-  public Flux<CovidNineteenData> covidNineteenFlow() {
-    return covidNineteenFeedProvider.getFeed();
   }
 }
