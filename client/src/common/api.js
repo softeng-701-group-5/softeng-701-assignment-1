@@ -1,21 +1,5 @@
 import { mapFeedItem } from './mapping';
-
-// TODO: configure production url
-const BASE_URL = 'http://localhost:8080';
-
-export const getFeed = async () => {
-  // fetch data from server
-  const response = await fetch(`${BASE_URL}/`);
-  const data = await response.json();
-
-  // sort data
-  const sortedData = sortFeed(data);
-
-  // map data
-  const mappedData = sortedData.map(item => mapFeedItem(item));
-
-  return mappedData;
-};
+import { client } from './client';
 
 // sorts feed from newest to oldest
 const sortFeed = feed => {
@@ -31,3 +15,32 @@ const sortFeed = feed => {
     return bDate - aDate;
   });
 };
+
+const sortAndMap = async endpoint => {
+  const response = await client(endpoint);
+  const sortedData = sortFeed(response);
+  const mappedData = sortedData.map(item => mapFeedItem(item));
+  return mappedData;
+};
+
+const feedApi = {
+  getAllFeeds: async () => sortAndMap('/all'),
+  getGithubFeed: async () => sortAndMap('/github'),
+  getRedditFeed: async () => sortAndMap('/reddit'),
+  getTwitterFeed: async () => sortAndMap('/twitter'),
+  getHackerNewsFeed: async () => sortAndMap('/hackernews'),
+  getWeatherFeed: async () => sortAndMap('/weather'),
+  getCoronaFeed: async () => sortAndMap('/covid'),
+};
+
+const userApi = {
+  getPreferences: async id => client(`/user/${id}`),
+  updateUser: async (id, user) => {
+    await client(`/user/${id}`, {
+      method: 'PUT',
+      body: user,
+    });
+  },
+};
+
+export { feedApi, userApi };
