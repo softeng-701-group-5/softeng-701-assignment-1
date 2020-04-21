@@ -32,11 +32,14 @@ public class UserController {
     AccessToken accessToken = new AccessToken();
     // Check if tokens are not null
     if (!redditToken.isEmpty()) {
-      accessToken = new AccessToken("reddit", redditToken);
+      accessToken.setApp("reddit");
+      accessToken.setToken(redditToken);
     } else if (!twitterToken.isEmpty()) {
-      accessToken = new AccessToken("twitter", twitterToken);
+      accessToken.setApp("twitter");
+      accessToken.setToken(twitterToken);
     } else if (!githubToken.isEmpty()) {
-      accessToken = new AccessToken("github", githubToken);
+      accessToken.setApp("github");
+      accessToken.setToken(githubToken);
     }
 
     if (!accessToken.getApp().isEmpty()) {
