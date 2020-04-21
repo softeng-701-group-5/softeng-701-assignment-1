@@ -1,6 +1,6 @@
 package com.feeder.server.controller;
 
-import com.feeder.server.model.User;
+import com.feeder.server.model.user.User;
 import com.feeder.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
