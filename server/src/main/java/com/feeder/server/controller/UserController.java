@@ -1,5 +1,6 @@
 package com.feeder.server.controller;
 
+import com.feeder.server.model.user.AccessToken;
 import com.feeder.server.model.user.User;
 import com.feeder.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,30 @@ public class UserController {
   @PutMapping("/user/{id}")
   public void updateUser(@PathVariable("id") String id, @RequestBody User user) {
     userService.updateUser(id, user);
+  }
+
+  @PutMapping("/user/{id}/token")
+  public void addAccessToken(
+      @PathVariable("id") String id,
+      @CookieValue(name = "feedr_reddit_token", defaultValue = "") String redditToken,
+      @CookieValue(name = "feedr_twitter_token", defaultValue = "") String twitterToken,
+      @CookieValue(name = "feedr_github_token", defaultValue = "") String githubToken) {
+
+    AccessToken accessToken = new AccessToken();
+    // Check if tokens are not null
+    if (!redditToken.isEmpty()) {
+      accessToken = new AccessToken("reddit", redditToken);
+    } else if (!twitterToken.isEmpty()) {
+      accessToken = new AccessToken("twitter", twitterToken);
+    } else if (!githubToken.isEmpty()) {
+      accessToken = new AccessToken("github", githubToken);
+    }
+
+    if (!accessToken.getApp().isEmpty()) {
+      User user = userService.getUser(id);
+      user.addAccessToken(accessToken);
+
+      userService.updateUser(id, user);
+    }
   }
 }
