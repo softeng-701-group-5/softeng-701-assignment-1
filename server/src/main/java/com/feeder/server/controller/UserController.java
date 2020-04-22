@@ -3,6 +3,7 @@ package com.feeder.server.controller;
 import com.feeder.server.model.user.AccessToken;
 import com.feeder.server.model.user.User;
 import com.feeder.server.service.UserService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,17 +30,31 @@ public class UserController {
       @CookieValue(name = "feedr_twitter_token", defaultValue = "") String twitterToken,
       @CookieValue(name = "feedr_github_token", defaultValue = "") String githubToken) {
 
+    User user = userService.getUser(id);
     AccessToken accessToken = null;
-    if (!redditToken.isEmpty()) {
+
+    // Ensure only one token for each app is saved
+    Boolean[] tokenForAppExists = new Boolean[3];
+    List<AccessToken> tokens = user.getAccessTokens();
+    for (AccessToken token : tokens) {
+      if (token.getApp().contentEquals("reddit")) {
+        tokenForAppExists[0] = true;
+      } else if (token.getApp().contentEquals("twitter")) {
+        tokenForAppExists[1] = true;
+      } else if (token.getApp().contentEquals("github")) {
+        tokenForAppExists[2] = true;
+      }
+    }
+
+    if (!redditToken.isEmpty() && !tokenForAppExists[0]) {
       accessToken = new AccessToken("reddit", redditToken);
-    } else if (!twitterToken.isEmpty()) {
+    } else if (!twitterToken.isEmpty() && !tokenForAppExists[1]) {
       accessToken = new AccessToken("twitter", twitterToken);
-    } else if (!githubToken.isEmpty()) {
+    } else if (!githubToken.isEmpty() && !tokenForAppExists[2]) {
       accessToken = new AccessToken("github", githubToken);
     }
 
     if (accessToken != null) {
-      User user = userService.getUser(id);
       user.addAccessToken(accessToken);
 
       userService.updateUser(id, user);
