@@ -9,10 +9,10 @@ public class AccessToken {
 
   public AccessToken() {}
 
-  //  public AccessToken(String app, String token) {
-  //    this.app = app;
-  //    this.token = token;
-  //  }
+  public AccessToken(String app, String token) {
+    this.app = app;
+    this.token = token;
+  }
 
   public String getApp() {
     return this.app;

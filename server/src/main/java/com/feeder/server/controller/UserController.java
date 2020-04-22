@@ -23,30 +23,28 @@ public class UserController {
   }
 
   @PutMapping("/user/{id}/token")
-  public void addAccessToken(
+  public User addAccessToken(
       @PathVariable("id") String id,
       @CookieValue(name = "feedr_reddit_token", defaultValue = "") String redditToken,
       @CookieValue(name = "feedr_twitter_token", defaultValue = "") String twitterToken,
       @CookieValue(name = "feedr_github_token", defaultValue = "") String githubToken) {
 
-    AccessToken accessToken = new AccessToken();
-    // Check if tokens are not null
+    AccessToken accessToken = null;
     if (!redditToken.isEmpty()) {
-      accessToken.setApp("reddit");
-      accessToken.setToken(redditToken);
+      accessToken = new AccessToken("reddit", redditToken);
     } else if (!twitterToken.isEmpty()) {
-      accessToken.setApp("twitter");
-      accessToken.setToken(twitterToken);
+      accessToken = new AccessToken("twitter", twitterToken);
     } else if (!githubToken.isEmpty()) {
-      accessToken.setApp("github");
-      accessToken.setToken(githubToken);
+      accessToken = new AccessToken("github", githubToken);
     }
 
-    if (!accessToken.getApp().isEmpty()) {
+    if (accessToken != null) {
       User user = userService.getUser(id);
       user.addAccessToken(accessToken);
 
       userService.updateUser(id, user);
     }
+
+    return userService.getUser(id);
   }
 }

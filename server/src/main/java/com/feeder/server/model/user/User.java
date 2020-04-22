@@ -1,5 +1,6 @@
 package com.feeder.server.model.user;
 
+import java.util.ArrayList;
 import java.util.List;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
@@ -13,7 +14,7 @@ public class User {
   private String name;
   private String gridLayout;
   private String theme;
-  private List<AccessToken> accessTokens;
+  private List<AccessToken> accessTokens = new ArrayList<>();
 
   public User(String uid, String profilePicture, String name, String gridLayout, String theme) {
     this.uid = uid;
