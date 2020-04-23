@@ -3,6 +3,7 @@ package com.feeder.server.controller;
 import com.feeder.server.model.user.AccessToken;
 import com.feeder.server.model.user.User;
 import com.feeder.server.service.UserService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,34 +32,44 @@ public class UserController {
       @CookieValue(name = "feedr_github_token", defaultValue = "") String githubToken) {
 
     User user = userService.getUser(id);
-    AccessToken accessToken = null;
+    List<AccessToken> accessTokens = new ArrayList<>();
 
-    // Ensure only one token for each app is saved
-    Boolean[] tokenForAppExists = new Boolean[3];
-    List<AccessToken> tokens = user.getAccessTokens();
-    for (AccessToken token : tokens) {
+    List<String> userHasAppToken = new ArrayList<>();
+    List<AccessToken> userTokens = user.getAccessTokens();
+
+    for (AccessToken token : userTokens) {
       if (token.getApp().contentEquals("reddit")) {
-        tokenForAppExists[0] = true;
-      } else if (token.getApp().contentEquals("twitter")) {
-        tokenForAppExists[1] = true;
-      } else if (token.getApp().contentEquals("github")) {
-        tokenForAppExists[2] = true;
+        userHasAppToken.add("reddit");
+      }
+      if (token.getApp().contentEquals("twitter")) {
+        userHasAppToken.add("twitter");
+      }
+      if (token.getApp().contentEquals("github")) {
+        userHasAppToken.add("github");
       }
     }
 
-    if (!redditToken.isEmpty() && !tokenForAppExists[0]) {
-      accessToken = new AccessToken("reddit", redditToken);
-    } else if (!twitterToken.isEmpty() && !tokenForAppExists[1]) {
-      accessToken = new AccessToken("twitter", twitterToken);
-    } else if (!githubToken.isEmpty() && !tokenForAppExists[2]) {
-      accessToken = new AccessToken("github", githubToken);
+    if (!redditToken.isEmpty()) {
+      accessTokens.add(new AccessToken("reddit", redditToken));
+    }
+    if (!twitterToken.isEmpty()) {
+      accessTokens.add(new AccessToken("twitter", twitterToken));
+    }
+    if (!githubToken.isEmpty()) {
+      accessTokens.add(new AccessToken("github", githubToken));
     }
 
-    if (accessToken != null) {
-      user.addAccessToken(accessToken);
-
-      userService.updateUser(id, user);
+    for (AccessToken t : accessTokens) {
+      if (t.getApp().contentEquals("reddit") && userHasAppToken.contains("reddit")
+          || (t.getApp().contentEquals("twitter") && userHasAppToken.contains("twitter"))
+          || (t.getApp().contentEquals("github") && userHasAppToken.contains("github"))) {
+        user.updateAccessToken(t);
+      } else {
+        user.addAccessToken(t);
+      }
     }
+
+    userService.updateUser(id, user);
 
     return userService.getUser(id);
   }

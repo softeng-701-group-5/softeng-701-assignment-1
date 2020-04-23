@@ -55,4 +55,13 @@ public class User {
   public void addAccessToken(AccessToken accessToken) {
     this.accessTokens.add(accessToken);
   }
+
+  public void updateAccessToken(AccessToken accessToken) {
+    String appType = accessToken.getApp();
+    for (AccessToken token : accessTokens) {
+      if (token.getApp().equals(appType)) {
+        token.setToken(accessToken.getToken());
+      }
+    }
+  }
 }
