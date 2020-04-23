@@ -1,11 +1,8 @@
 package com.feeder.server.provider.twitter;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.feeder.server.model.RedditData;
 import com.feeder.server.model.TwitterData;
 import com.feeder.server.provider.FeedProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
@@ -32,7 +29,8 @@ public class TwitterFeedProvider implements FeedProvider<TwitterData> {
 
   @Override
   public Flux<TwitterData> getFeed() {
-     // The endpoint that feeder uses to get twitter posts https://api.twitter.com/1.1/statuses/home_timeline
+    // The endpoint that feeder uses to get twitter posts
+    // https://api.twitter.com/1.1/statuses/home_timeline
     //  (from http://twitter4j.org/javadoc/twitter4j/api/TimelinesResources.html#getHomeTimeline--)
 
     // Gets the twitter posts from the user's home feed
@@ -66,36 +64,36 @@ public class TwitterFeedProvider implements FeedProvider<TwitterData> {
                   .build();
             });
 
-    //New changes to use access token
-//      WebClient webClient = getWebClientBuilder().build();
-//      return webClient
-//              .get()
-//              .uri(TWITTER_API_BASE_URL + "/statuses/home_timeline")
-//              .headers(headers -> headers.setBearerAuth(""))
-//              .exchange()
-//              .map(response ->{
-//                  TwitterData.Builder twitterBuilder = TwitterData.newBuilder();
-//                  return twitterBuilder
-//                      .tweet(response.)
-//                      .profileUsername(status.getUser().getName())
-//                      .profileImageURI(status.getUser().get400x400ProfileImageURL())
-//                      .tweetPostDate(status.getCreatedAt())
-//                      .build();
-//              });
+    // New changes to use access token
+    //      WebClient webClient = getWebClientBuilder().build();
+    //      return webClient
+    //              .get()
+    //              .uri(TWITTER_API_BASE_URL + "/statuses/home_timeline")
+    //              .headers(headers -> headers.setBearerAuth(""))
+    //              .exchange()
+    //              .map(response ->{
+    //                  TwitterData.Builder twitterBuilder = TwitterData.newBuilder();
+    //                  return twitterBuilder
+    //                      .tweet(response.)
+    //                      .profileUsername(status.getUser().getName())
+    //                      .profileImageURI(status.getUser().get400x400ProfileImageURL())
+    //                      .tweetPostDate(status.getCreatedAt())
+    //                      .build();
+    //              });
 
-      //tweet:text, profileUsername:user.name, profileimageuri:
+    // tweet:text, profileUsername:user.name, profileimageuri:
 
   }
 
-//    private WebClient.Builder getWebClientBuilder() {
-//        if (this.webClientBuilder == null) {
-//            this.webClientBuilder =
-//                    WebClient.builder()
-//                            .baseUrl(TWITTER_API_BASE_URL)
-//                            .defaultHeader(HttpHeaders.AUTHORIZATION);
-//        }
-//        return this.webClientBuilder;
-//    }
+  //    private WebClient.Builder getWebClientBuilder() {
+  //        if (this.webClientBuilder == null) {
+  //            this.webClientBuilder =
+  //                    WebClient.builder()
+  //                            .baseUrl(TWITTER_API_BASE_URL)
+  //                            .defaultHeader(HttpHeaders.AUTHORIZATION);
+  //        }
+  //        return this.webClientBuilder;
+  //    }
 
   ResponseList<Status> getLastResponse() {
     return lastResponse;

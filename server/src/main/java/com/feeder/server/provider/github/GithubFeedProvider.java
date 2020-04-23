@@ -29,7 +29,7 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
   @Override
   public Flux<GithubData> getFeed() {
 
-    //Need to get username to get the feed
+    // Need to get username to get the feed
     String apiEndpointReceivedEvents =
         "/users/" + applicationProperties.getGithubUsername() + "/received_events";
 
