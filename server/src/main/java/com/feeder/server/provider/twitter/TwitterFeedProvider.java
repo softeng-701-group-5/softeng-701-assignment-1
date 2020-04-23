@@ -64,7 +64,7 @@ public class TwitterFeedProvider implements FeedProvider<TwitterData> {
                   .build();
             });
 
-    // New changes to use access token
+    // NEW CHANGES
     //      WebClient webClient = getWebClientBuilder().build();
     //      return webClient
     //              .get()
