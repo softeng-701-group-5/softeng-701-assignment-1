@@ -29,6 +29,7 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
   @Override
   public Flux<GithubData> getFeed() {
 
+    //Need to get username to get the feed
     String apiEndpointReceivedEvents =
         "/users/" + applicationProperties.getGithubUsername() + "/received_events";
 
@@ -38,6 +39,7 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
     return webClient
         .get()
         .uri(apiEndpointReceivedEvents)
+        .headers(headers -> headers.setBearerAuth("Add access token"))
         .exchange()
         .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
   }
@@ -54,12 +56,7 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
           WebClient.builder()
               .baseUrl(GITHUB_API_BASE_URL)
               .defaultHeader(HttpHeaders.CONTENT_TYPE, GITHUB_v3_MIME_TYPE)
-              .defaultHeader(HttpHeaders.AUTHORIZATION)
-              .defaultHeaders(
-                  httpHeaders ->
-                      httpHeaders.setBasicAuth(
-                          applicationProperties.getGithubUsername(),
-                          applicationProperties.getGithubPassword()));
+              .defaultHeader(HttpHeaders.AUTHORIZATION);
     }
     return this.webClientBuilder;
   }
