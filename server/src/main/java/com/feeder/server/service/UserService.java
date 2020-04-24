@@ -1,6 +1,6 @@
 package com.feeder.server.service;
 
-import com.feeder.server.model.User;
+import com.feeder.server.model.user.User;
 import com.feeder.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

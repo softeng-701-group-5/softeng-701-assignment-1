@@ -1,6 +1,6 @@
 package com.feeder.server.repository;
 
-import com.feeder.server.model.User;
+import com.feeder.server.model.user.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
