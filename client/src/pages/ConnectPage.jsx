@@ -12,7 +12,11 @@ import {
 export const ConnectPage = () => {
   return (
     <div>
-      <h1>Refresh the page to see updates to Reddit :(</h1>
+      <h1>
+        Refresh the page once you've logged in/refreshed to see updates to
+        Reddit and GitHub!!!!!!!!!!
+      </h1>
+      <h1>-------------------</h1>
       <RedditConnect />
       <GithubConnect />
       <TwitterConnect />
