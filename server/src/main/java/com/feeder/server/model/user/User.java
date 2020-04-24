@@ -1,15 +1,20 @@
-package com.feeder.server.model;
+package com.feeder.server.model.user;
 
+import java.util.ArrayList;
+import java.util.List;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
+@ToString
 public class User {
   @Id private String uid;
   private String profilePicture;
   private String name;
   private String gridLayout;
   private String theme;
+  private List<AccessToken> accessTokens = new ArrayList<>();
 
   public User(String uid, String profilePicture, String name, String gridLayout, String theme) {
     this.uid = uid;
@@ -43,8 +48,20 @@ public class User {
     return theme;
   }
 
-  @Override
-  public String toString() {
-    return uid;
+  public List<AccessToken> getAccessTokens() {
+    return this.accessTokens;
+  }
+
+  public void addAccessToken(AccessToken accessToken) {
+    this.accessTokens.add(accessToken);
+  }
+
+  public void updateAccessToken(AccessToken accessToken) {
+    String appType = accessToken.getApp();
+    for (AccessToken token : accessTokens) {
+      if (token.getApp().equals(appType)) {
+        token.setToken(accessToken.getToken());
+      }
+    }
   }
 }
