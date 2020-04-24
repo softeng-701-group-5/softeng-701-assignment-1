@@ -30,7 +30,7 @@ public class FavouritePostRepositoryTest {
 
     favouritePostRepository.save(favouritePost);
   }
-  
+
   @Test
   public void testSavePost() {
     List<FavouritePost> posts = favouritePostRepository.findByUserId("1");
