@@ -1,10 +1,12 @@
 package com.feeder.server.model;
 
-import java.util.Date;
+
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
+@ToString
 public class FavouritePost {
 
   @Id private String id;
@@ -14,22 +16,22 @@ public class FavouritePost {
   private String title;
   private String username;
   private String mainText;
-  private Date date;
+  private String date;
 
   private String mediaSourceLink;
   private String imageLink;
   private String avatarLink;
 
   // Constructors
+  public FavouritePost() {};
+
   public FavouritePost(
-      String id,
       String userId,
       String mediaType,
       String title,
       String mainText,
       String username,
-      Date date) {
-    this.id = id;
+      String date) {
     this.userId = userId;
     this.mediaType = mediaType;
     this.title = title;
@@ -40,48 +42,39 @@ public class FavouritePost {
 
   // Reddit and Hackernews
   public FavouritePost(
-      String id,
       String userId,
       String mediaType,
       String title,
       String mainText,
-      Date date,
+      String date,
       String username,
       String mediaSourceLink) {
-    this(id, userId, mediaType, title, mainText, username, date);
+    this(userId, mediaType, title, mainText, username, date);
     this.mediaSourceLink = mediaSourceLink;
   }
 
-  // Github
+  // Github and Twitter
   public FavouritePost(
-      String id,
       String userId,
       String mediaType,
       String title,
       String mainText,
       String username,
+      String date,
       String avatarLink,
-      String mediaSourceLink,
-      Date date) {
-    this(id, userId, mediaType, title, mainText, username, date);
+      String mediaSourceLinkOrImageLink) {
+    this(userId, mediaType, title, mainText, username, date);
     this.avatarLink = avatarLink;
-    this.mediaSourceLink = mediaSourceLink;
+
+    if (mediaType.contentEquals("github")) {
+      this.mediaSourceLink = mediaSourceLinkOrImageLink;
+    } else if (mediaType.contentEquals("twitter")) {
+      this.imageLink = mediaSourceLinkOrImageLink;
+    }
   }
 
-  // Twitter
-  public FavouritePost(
-      String id,
-      String userId,
-      String mediaType,
-      String title,
-      String mainText,
-      Date date,
-      String username,
-      String imageLink,
-      String avatarLink) {
-    this(id, userId, mediaType, title, mainText, username, date);
-    this.imageLink = imageLink;
-    this.avatarLink = avatarLink;
+  public String getUserId() {
+    return userId;
   }
 
   public String getId() {
@@ -100,7 +93,7 @@ public class FavouritePost {
     return mainText;
   }
 
-  public Date getDate() {
+  public String getDate() {
     return date;
   }
 
@@ -114,10 +107,5 @@ public class FavouritePost {
 
   public String getAvatarLink() {
     return avatarLink;
-  }
-
-  @Override
-  public String toString() {
-    return id;
   }
 }

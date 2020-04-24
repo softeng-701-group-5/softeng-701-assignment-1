@@ -11,7 +11,7 @@ public class FavouritePostService {
   @Autowired FavouritePostRepository favouritePostRepository;
 
   public List<FavouritePost> getFavouritePosts(String uid) {
-    return favouritePostRepository.findByUser(uid);
+    return favouritePostRepository.findByUserId(uid);
   }
 
   public void removePostFromFavourites(String id) {

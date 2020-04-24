@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FavouritePostRepository extends MongoRepository<FavouritePost, String> {
-  List<FavouritePost> findByUser(String uid);
+  List<FavouritePost> findByUserId(String uid);
 }
