@@ -60,6 +60,13 @@ public class UserController {
     }
 
     for (AccessToken t : accessTokens) {
+      // Save only access token from cookie value string
+      String entireTokenString = t.getToken();
+      int startIndex = entireTokenString.indexOf("%22", 18);
+      int endIndex = entireTokenString.indexOf("%22", 22);
+      String accessTokenString = (String) entireTokenString.subSequence(startIndex + 3, endIndex);
+      t.setToken(accessTokenString);
+
       if (t.getApp().contentEquals("reddit") && userHasAppToken.contains("reddit")
           || (t.getApp().contentEquals("twitter") && userHasAppToken.contains("twitter"))
           || (t.getApp().contentEquals("github") && userHasAppToken.contains("github"))) {
