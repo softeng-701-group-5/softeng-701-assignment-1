@@ -190,10 +190,11 @@ export const FeedPage = () => {
       >
         {mappedFeed.map(
           (item, i) =>
-            filters.includes(item.media) &&
-            isSearchedPost(search, item) && (
+            ((filters.includes(item.media) && isSearchedPost(search, item)) ||
+              item.media === 'covidNineteen') && (
               <MediaCard {...item} getTheme={theme} />
             )
+        )}
         )}
       </StackGrid>
       <Waypoint onEnter={onEnter} />
