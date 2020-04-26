@@ -1,4 +1,5 @@
 // REFERENCE: https://github.com/reddit-archive/reddit/wiki/OAuth2
+// REFERENCE: https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/
 
 require('dotenv').config();
 const express = require('express');
@@ -8,13 +9,28 @@ const qs = require('querystring');
 const APPS = require('../src/configs/feedr-apps');
 
 const reddit = APPS.reddit;
+const github = APPS.github;
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
 /**
+ * Endpoint for Reddit to redirect to after the first step of authorization,
+ * i.e. after the user sucessfully logs into Reddit. The code (and state) will
+ * then be sent back to the React app via redirection to its CallbackPage, with
+ * the paramters set in the query string of the URL.
+ */
+app.get('/proxy/callback/reddit', (req, res) => {
+  // Redirect back to the React app
+  res.redirect(
+    `${APPS._client.url}/oauth/callback/reddit?state=${req.query.state}&code=${req.query.code}`
+  );
+});
+
+/**
  * Endpoint for the React app to call after receiving a code when the user
  * successfully logs into Reddit. This endpoint will use that code to get the
- * final access_token (and relavent metadata), and redirect back to the React app
+ * final access_token (and relavent metadata), and redirect back to the React app.
  */
 app.get('/proxy/reddit/token', (req, reactRes) => {
   const url = reddit.tokenUrl;
@@ -82,16 +98,50 @@ app.post('/proxy/reddit/refresh', (req, reactRes) => {
   );
 });
 
+// =====================================================================================
+// =====================================================================================
+
 /**
- * Endpoint for Reddit to redirect to after the first step of authorization,
- * i.e. after the user sucessfully logs into Reddit. The code (and state) will
+ * Endpoint for GitHub to redirect to after the first step of authorization,
+ * i.e. after the user sucessfully logs into GitHub. The code (and state) will
  * then be sent back to the React app via redirection to its CallbackPage, with
  * the paramters set in the query string of the URL.
  */
-app.get('/proxy/callback/reddit', (req, res) => {
-  // Redirect back to the React app
+app.get('/proxy/callback/github', (req, res) => {
   res.redirect(
-    `${APPS._client.url}/oauth/callback/reddit?state=${req.query.state}&code=${req.query.code}`
+    `${APPS._client.url}/oauth/callback/github?state=${req.query.state}&code=${req.query.code}`
+  );
+});
+
+/**
+ * Endpoint for the React app to call after receiving a code when the user
+ * successfully logs into GitHub. This endpoint will use that code to get the
+ * final access_token (and relavent metadata), and redirect back to the React app.
+ */
+app.get('/proxy/github/token', (req, reactRes) => {
+  const url = github.tokenUrl;
+  const data = {
+    client_id: github.clientId,
+    client_secret: github.clientSecret,
+    code: req.query.code,
+    redirect_uri: github.redirectUrl,
+    state: req.query.state,
+  };
+  const config = {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  };
+
+  // Make the final request to GitHub to get the access_token
+  axios.post(url, qs.stringify(data), config).then(
+    res => {
+      // Redirect back to the React app
+      reactRes.send(JSON.stringify(res.data));
+    },
+    err => {
+      // TODO: Handle error
+    }
   );
 });
 
