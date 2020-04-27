@@ -162,6 +162,7 @@ export const MediaCard = props => {
         username={props.username}
         relativeTime={props.relativeTime}
         getTheme={props.getTheme}
+        mediaSourceLink={props.mediaSourceLink}
       />
     </div>
   );

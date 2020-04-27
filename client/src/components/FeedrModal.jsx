@@ -6,7 +6,10 @@ import {
   Backdrop,
   Fade,
   makeStyles,
+  IconButton,
+  Link,
 } from '@material-ui/core';
+import LinkIcon from '@material-ui/icons/Link';
 import classNames from 'classnames';
 
 const useStyles = makeStyles(theme => ({
@@ -46,10 +49,51 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#363537',
     color: '#FAFAFA',
   },
+  modalFooter: {
+    display: 'flex',
+    alignItems: 'left',
+    justifyContent: 'left',
+  },
 }));
 
 export const FeedrModal = props => {
   const classes = useStyles();
+
+  if (props.media !== 'twitter') {
+    var externalLink;
+
+    if (props.media) {
+      switch (props.media) {
+        case 'reddit':
+          externalLink = props.mediaSourceLink;
+          break;
+        case 'hackernews':
+          externalLink = props.mediaSourceLink.replace('ask/', 'item?id=');
+          break;
+        case 'github':
+          externalLink = props.mediaSourceLink
+            .replace('api.', '')
+            .replace('repos/', '');
+          break;
+        default:
+          externalLink = '';
+      }
+    }
+
+    var renderLink = (
+      <React.Fragment>
+        <Link href={externalLink} target="_blank">
+          <IconButton
+            aria-label="delete"
+            className={classes.margin}
+            size="medium"
+          >
+            <LinkIcon fontSize="inherit" />
+          </IconButton>
+        </Link>
+      </React.Fragment>
+    );
+  }
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -89,9 +133,12 @@ export const FeedrModal = props => {
               {props.mainText}
             </Typography>
             <br />
-            <Typography>
-              {`${props.username} - ${props.relativeTime}`}
-            </Typography>
+            <div className={classes.modalFooter}>
+              <Typography>
+                {`${props.username} - ${props.relativeTime}`}
+                {renderLink}
+              </Typography>
+            </div>
           </Typography>
         </div>
       </Fade>
