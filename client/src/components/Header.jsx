@@ -6,9 +6,12 @@ import {
   Button,
   Switch,
   FormControlLabel,
+  Avatar,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
 import ViewStreamRoundedIcon from '@material-ui/icons/ViewStreamRounded';
 import { SearchBox } from './SearchBox';
@@ -18,59 +21,76 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles(theme => ({
   appBar: {
     display: 'flex',
-    marginRight: theme.spacing(3),
-    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(2),
+    justifyContent: 'space-between',
   },
-  appBarContents: {
+  appBarContentLeft: {
     display: 'flex',
   },
-  title: {
-    color: 'white',
+  appBarContentRight: {
+    display: 'flex',
+    marginLeft: theme.spacing(1),
   },
   headerButtons: {
     color: '#FFFFFF',
+  },
+  image: {
+    marginTop: theme.spacing(0.5),
   },
 }));
 
 export const Header = props => {
   const classes = useStyles();
   const { signOut } = useAuth();
-
+  const { googleUser } = useAuth();
   const handleClick = layoutSelected => {
     props.setLayout(layoutSelected);
   };
 
   return (
     <AppBar
-      position="static"
+      position="sticky"
       style={{ background: props.getTheme === 'light' ? '#3d3fb3' : '#2e3b55' }}
     >
-      <Grid
-        className={classes.appBar}
-        alignItems={'center'}
-        justify={'space-between'}
-      >
-        <div className={classes.appBarContents}>
+      <Grid className={classes.appBar}>
+        <div className={classes.appBarContentLeft}>
+          <Avatar
+            className={classes.image}
+            src={googleUser.profileObj.imageUrl}
+          />
           <Button
-            className={classes.title}
+            className={classes.headerButtons}
             variant="h6"
             component={Link}
             to={'/'}
-            children={'Feedr'}
+            children={googleUser.profileObj.givenName}
           />
           <SearchBox setSearch={props.setSearch} />
+          <IconButton
+            className={classes.headerButtons}
+            onClick={() =>
+              handleClick(props.layout === 'grid' ? 'row' : 'grid')
+            }
+          >
+            {props.layout === 'grid' ? (
+              <FavoriteIcon />
+            ) : (
+              <FavoriteBorderIcon />
+            )}
+          </IconButton>
         </div>
-        <div className={classes.appBarContents}>
+        <div className={classes.appBarContentRight}>
           <FormControlLabel
+            className={classes.headerButtons}
             checked={props.getTheme === 'dark'}
             control={<Switch onChange={() => props.toggleTheme()} />}
           />
           <IconButton
+            className={classes.headerButtons}
             onClick={() =>
               handleClick(props.layout === 'grid' ? 'row' : 'grid')
             }
-            color="inherit"
-            className={classes.headerButtons}
           >
             {props.layout === 'grid' ? (
               <ViewStreamRoundedIcon />
@@ -79,10 +99,9 @@ export const Header = props => {
             )}
           </IconButton>
           <IconButton
+            className={classes.headerButtons}
             component={Link}
             to={'/'}
-            color="inherit"
-            className={classes.headerButtons}
             onClick={signOut}
           >
             <ExitToAppIcon />
