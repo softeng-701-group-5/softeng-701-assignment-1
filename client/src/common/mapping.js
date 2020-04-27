@@ -14,6 +14,8 @@ export const mapFeedItem = item => {
     case 'WEATHER':
       console.log(item);
       return mapWeatherItem(item);
+    case 'COVIDNINETEEN':
+      return {};
     default:
       throw new Error(`feedType ${item.feedType} unsupported`);
   }

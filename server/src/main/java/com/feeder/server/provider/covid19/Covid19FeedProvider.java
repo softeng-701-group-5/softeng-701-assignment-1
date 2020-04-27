@@ -109,7 +109,6 @@ public class Covid19FeedProvider implements FeedProvider<CovidNineteenData> {
         parsedData.put("newDead", cols.last().text());
       }
     }
-
     return parsedData;
   }
 

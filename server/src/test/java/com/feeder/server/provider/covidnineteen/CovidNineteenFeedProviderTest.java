@@ -22,7 +22,6 @@ public class CovidNineteenFeedProviderTest {
     int expectedNumberOfFields = 1;
 
     Flux<CovidNineteenData> mockFeed = subject.getFeed();
-
     assertEquals(expectedNumberOfFields, mockFeed.collectList().block().size());
   }
 }

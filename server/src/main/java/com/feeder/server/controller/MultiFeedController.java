@@ -20,18 +20,18 @@ public class MultiFeedController {
   @Autowired private FeedProvider<GithubData> githubFeedProvider;
   @Autowired private FeedProvider<HackerNewsData> hackerNewsFeedProvider;
   @Autowired private FeedProvider<TwitterData> twitterFeedProvider;
-  @Autowired private FeedProvider<CovidNineteenData> covidNineteenFeedProvider;
   @Autowired private FeedProvider<WeatherData> weatherDataProvider;
+  @Autowired private FeedProvider<CovidNineteenData> covidNineteenFeedProvider;
 
-  @GetMapping("/")
+  @GetMapping("/all")
   public Flux<? extends GenericData> multiFeedMixerFlow() {
     return Flux.merge(
         redditFlow(),
         githubFlow(),
         hackerNewsFlow(),
         twitterFlow(),
-        covidNineteenFlow(),
-        weatherFlow());
+        weatherFlow(),
+        covidNineteenFlow());
   }
 
   @GetMapping("/reddit")
@@ -49,14 +49,14 @@ public class MultiFeedController {
     return hackerNewsFeedProvider.getFeed();
   }
 
-  @GetMapping("/weather")
-  public Flux<WeatherData> weatherFlow() {
-    return weatherDataProvider.getFeed();
-  }
-
   @GetMapping("/twitter")
   public Flux<TwitterData> twitterFlow() {
     return twitterFeedProvider.getFeed();
+  }
+
+  @GetMapping("/weather")
+  public Flux<WeatherData> weatherFlow() {
+    return weatherDataProvider.getFeed();
   }
 
   @GetMapping("/demo")

@@ -1,7 +1,6 @@
 import React from 'react';
 import { FeedPage } from './pages/FeedPage';
 import { HomePage } from './pages/HomePage';
-import { FavouritesPage } from './pages/FavouritesPage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import { Loader } from './components/Loader';
@@ -33,7 +32,6 @@ export const App = () => {
     <Router>
       <Switch>
         <PrivateRoute exact path="/" component={FeedPage} />
-        <PrivateRoute exact path="/favourites" component={FavouritesPage} />
         <PrivateRoute exact path="/connect" component={ConnectPage} />
         <PrivateRoute
           exact

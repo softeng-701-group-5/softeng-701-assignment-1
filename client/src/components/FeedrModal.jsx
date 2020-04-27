@@ -7,6 +7,7 @@ import {
   Fade,
   makeStyles,
 } from '@material-ui/core';
+import classNames from 'classnames';
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     width: 600,
     outline: 'none',
     borderRadius: 5,
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     margin: 'auto',
@@ -36,6 +37,14 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: 30,
     paddingLeft: 50,
     paddingRight: 50,
+  },
+  lightTheme: {
+    backgroundColor: '#E2E2E2',
+    color: '#363537',
+  },
+  darkTheme: {
+    backgroundColor: '#363537',
+    color: '#FAFAFA',
   },
 }));
 
@@ -57,7 +66,12 @@ export const FeedrModal = props => {
       }}
     >
       <Fade in={props.open} style={{ padding: '0px 0px 0px 0px' }}>
-        <div className={classes.paper}>
+        <div
+          className={classNames(
+            classes.paper,
+            props.getTheme === 'light' ? classes.lightTheme : classes.darkTheme
+          )}
+        >
           <CardActions
             style={{ backgroundColor: props.barColour(props.media) }}
             disableSpacing
@@ -71,7 +85,7 @@ export const FeedrModal = props => {
           <Typography className={classes.modalTitle}>{props.title}</Typography>
 
           <Typography className={classes.modalContent}>
-            <Typography variant="body" color="textSecondary" component="p">
+            <Typography variant="body" component="p">
               {props.mainText}
             </Typography>
             <br />
