@@ -59,6 +59,7 @@ export const FeedPage = () => {
     'hackernews',
     'github',
     'twitter',
+    'covidNineteen',
   ]);
   const [filterInit, setFilterInit] = React.useState(false);
   const [search, setSearch] = React.useState([]);
@@ -190,10 +191,13 @@ export const FeedPage = () => {
       >
         {mappedFeed.map(
           (item, i) =>
-            filters.includes(item.media) &&
-            isSearchedPost(search, item) && (
+            ((item.media === 'covidNineteen' &&
+              filters.includes('covidNineteen')) ||
+              (filters.includes(item.media) &&
+                isSearchedPost(search, item))) && (
               <MediaCard {...item} getTheme={theme} />
             )
+        )}
         )}
       </StackGrid>
       <Waypoint onEnter={onEnter} />
