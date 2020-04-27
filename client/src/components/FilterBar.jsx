@@ -2,6 +2,7 @@ import React from 'react';
 import Chip from '@material-ui/core/Chip';
 import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
+import ErrorTwoToneIcon from '@material-ui/icons/ErrorTwoTone';
 import { Icon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { loadCSS } from 'fg-loadcss';
@@ -44,6 +45,18 @@ const FilterBar = ({ setFilters }) => {
       key: 'twitter',
       label: 'Twitter',
       icon: <Icon className="fab fa-twitter" />,
+      on: true,
+    },
+    {
+      key: 'covidNineteen',
+      label: 'Covid19',
+      icon: <ErrorTwoToneIcon />,
+      on: true,
+    },
+    {
+      key: 'weather',
+      label: 'Weather',
+      icon: <Icon className="fas fa-cloud-showers-heavy" />,
       on: true,
     },
   ]);

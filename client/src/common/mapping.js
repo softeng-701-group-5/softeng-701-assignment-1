@@ -12,10 +12,9 @@ export const mapFeedItem = item => {
     case 'HACKERNEWS':
       return mapHackerNewsItem(item);
     case 'WEATHER':
-      console.log(item);
       return mapWeatherItem(item);
     case 'COVIDNINETEEN':
-      return {};
+      return mapCovidNineteenItem(item);
     default:
       throw new Error(`feedType ${item.feedType} unsupported`);
   }
@@ -78,4 +77,19 @@ const mapWeatherItem = item => ({
   sunrise: item.sys.sunrise,
   sunset: item.sys.sunset,
   relativeTime: new Date(Date.now()).toDateString(),
+});
+
+const mapCovidNineteenItem = item => ({
+  media: 'covidNineteen',
+  mainText: 'Covid-19',
+  totalConfirmed: item.totalConfirmed,
+  totalDeaths: item.totalDeaths,
+  totalProbable: item.totalProbable,
+  totalRecovered: item.totalRecovered,
+  totalHospitalised: item.totalHospitalised,
+  newConfirmed: item.newConfirmed,
+  newDeaths: item.newDeaths,
+  newProbable: item.newProbable,
+  newRecovered: item.newRecovered,
+  newHospitalised: item.newHospitalised,
 });

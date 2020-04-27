@@ -59,6 +59,8 @@ export const FeedPage = () => {
     'hackernews',
     'github',
     'twitter',
+    'covidNineteen',
+    'weather',
   ]);
   const [filterInit, setFilterInit] = React.useState(false);
   const [search, setSearch] = React.useState([]);
@@ -190,10 +192,11 @@ export const FeedPage = () => {
       >
         {mappedFeed.map(
           (item, i) =>
-            ((filters.includes(item.media) && isSearchedPost(search, item)) ||
-              item.media === 'weather') && (
+            filters.includes(item.media) &&
+            isSearchedPost(search, item) && (
               <MediaCard {...item} getTheme={theme} />
             )
+        )}
         )}
       </StackGrid>
       <Waypoint onEnter={onEnter} />
@@ -207,6 +210,7 @@ export const FeedPage = () => {
 };
 
 const isSearchedPost = (search, item) => {
+  console.log(item.media);
   // Only checking the mainText if there is text to check, otherwise it will come up as 'undefined'
   return !!item.mainText
     ? item.mainText.toLowerCase().includes(search) ||

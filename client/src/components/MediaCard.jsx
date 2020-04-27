@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
+
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
@@ -101,6 +102,8 @@ export const MediaCard = props => {
         return '#05ACF0';
       case 'weather':
         return '#4e4d4a';
+      case 'covidNineteen':
+        return '#B22222';
       default:
         return '#b3b3b3';
     }
@@ -186,7 +189,15 @@ export const MediaCard = props => {
     switch (props.media) {
       case 'weather':
         return (
-          <div>
+          <Card
+            className={classNames(
+              classes.root,
+              props.getTheme === 'light'
+                ? classes.lightTheme
+                : classes.darkTheme
+            )}
+            onClick={handleOpen}
+          >
             <CardHeader
               title="Current weather"
               subheader={
@@ -224,11 +235,85 @@ export const MediaCard = props => {
                 height="20px"
               />
             </CardActions>
+          </Card>
+        );
+      case 'covidNineteen':
+        return (
+          <div position="fixed" top={0} left={0}>
+            <Card
+              className={classNames(
+                classes.root,
+                props.getTheme === 'light'
+                  ? classes.lightTheme
+                  : classes.darkTheme
+              )}
+            >
+              <CardHeader
+                avatar={
+                  <Avatar
+                    src={
+                      'https://img.icons8.com/emoji/48/000000/exclamation-mark-emoji.png'
+                    }
+                    className={classes.avatar}
+                  />
+                }
+                title={'COVID19 UPDATE'}
+              />
+
+              <CardContent>
+                <Typography variant="body2" component="p">
+                  {'New Confirmed Cases: ' + props.newConfirmed}
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {'New Probable Cases: ' + props.newProbable}
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {'New Hospitalised: ' + props.newHospitalised}
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {'New Recovered: ' + props.newRecovered}
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {'New Deaths: ' + props.newDeaths}
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {'------------    '}
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {'Total Confirmed Cases: ' + props.totalConfirmed}
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {'Total Probable Cases: ' + props.totalProbable}
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {'Total Hospitalised: ' + props.totalHospitalised}
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {'Total Recovered: ' + props.totalRecovered}
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {'Total Deaths: ' + props.totalDeaths}
+                </Typography>
+              </CardContent>
+
+              <CardActions
+                style={{ backgroundColor: barColour(props.media) }}
+                disableSpacing
+              ></CardActions>
+            </Card>
           </div>
         );
       default:
         return (
-          <div>
+          <Card
+            className={classNames(
+              classes.root,
+              props.getTheme === 'light'
+                ? classes.lightTheme
+                : classes.darkTheme
+            )}
+            onClick={handleOpen}
+          >
             <CardHeader
               avatar={
                 <Avatar
@@ -268,7 +353,7 @@ export const MediaCard = props => {
                 height="20px"
               />
             </CardActions>
-          </div>
+          </Card>
         );
     }
   };
@@ -331,15 +416,7 @@ export const MediaCard = props => {
 
   return (
     <div>
-      <Card
-        className={classNames(
-          classes.root,
-          props.getTheme === 'light' ? classes.lightTheme : classes.darkTheme
-        )}
-        onClick={handleOpen}
-      >
-        <CardRender />
-      </Card>
+      <CardRender />
       <FeedModalRender />
     </div>
   );
