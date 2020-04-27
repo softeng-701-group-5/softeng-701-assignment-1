@@ -46,11 +46,6 @@ const FilterBar = ({ setFilters }) => {
       icon: <Icon className="fab fa-twitter" />,
       on: true,
     },
-    {
-      key: 'weather',
-      label: 'Weather',
-      on: true,
-    },
   ]);
 
   // Load Font Awesome for icons

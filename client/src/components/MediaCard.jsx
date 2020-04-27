@@ -8,6 +8,11 @@ import {
   Avatar,
   Typography,
   makeStyles,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
 } from '@material-ui/core';
 
 import { FeedrModal } from './FeedrModal';
@@ -16,6 +21,7 @@ import TwitterIcon from '../assets/twitter-icon.svg';
 import GithubIcon from '../assets/github-icon.svg';
 import RedditIcon from '../assets/reddit-icon.svg';
 import HackerNewsIcon from '../assets/hackernews-icon.svg';
+import WeatherIcon from '../assets/weather-icon.ico';
 import classNames from 'classnames';
 
 const useStyles = makeStyles(theme => ({
@@ -31,6 +37,17 @@ const useStyles = makeStyles(theme => ({
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
+  },
+  weatherCard: {
+    display: 'flex',
+  },
+  weatherContent: {
+    marginTop: 5,
+  },
+  icon: {
+    height: '100px',
+    width: '100px',
+    margin: 0,
   },
   avatar: {
     backgroundColor: '#c9c7c7',
@@ -82,6 +99,8 @@ export const MediaCard = props => {
         return '#010101';
       case 'twitter':
         return '#05ACF0';
+      case 'weather':
+        return '#4e4d4a';
       default:
         return '#b3b3b3';
     }
@@ -97,8 +116,216 @@ export const MediaCard = props => {
         return GithubIcon;
       case 'twitter':
         return TwitterIcon;
+      case 'weather':
+        return WeatherIcon;
       default:
         return '';
+    }
+  };
+
+  const WeatherTable = param => {
+    return (
+      <TableContainer>
+        <Table className={classes.table} aria-label="simple table">
+          <TableBody>
+            <TableRow key="minTemp">
+              <TableCell component="th" scope="row">
+                Minimum temperature
+              </TableCell>
+              <TableCell align="right">{param.minTemp}</TableCell>
+            </TableRow>
+            <TableRow key="maxTemp">
+              <TableCell component="th" scope="row">
+                Maximum temperature
+              </TableCell>
+              <TableCell align="right">{param.maxTemp}</TableCell>
+            </TableRow>
+            <TableRow key="wind">
+              <TableCell component="th" scope="row">
+                Wind
+              </TableCell>
+              <TableCell align="right">
+                {param.windSpeed} m/s ({props.windDeg})
+              </TableCell>
+            </TableRow>
+            <TableRow key="pressure">
+              <TableCell component="th" scope="row">
+                Pressure
+              </TableCell>
+              <TableCell align="right">{param.pressure} hpa</TableCell>
+            </TableRow>
+            <TableRow key="humidity">
+              <TableCell component="th" scope="row">
+                Humidity
+              </TableCell>
+              <TableCell align="right">{param.humidity} %</TableCell>
+            </TableRow>
+            <TableRow key="sunrise">
+              <TableCell component="th" scope="row">
+                Sunrise
+              </TableCell>
+              <TableCell align="right">
+                {new Date(param.sunrise * 1000).toLocaleTimeString()}
+              </TableCell>
+            </TableRow>
+            <TableRow key="sunset">
+              <TableCell component="th" scope="row">
+                Sunset
+              </TableCell>
+              <TableCell align="right">
+                {new Date(param.sunset * 1000).toLocaleTimeString()}
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+    );
+  };
+
+  const CardRender = () => {
+    switch (props.media) {
+      case 'weather':
+        return (
+          <div>
+            <CardHeader
+              title="Current weather"
+              subheader={
+                <Typography variant={'subtitle2'}>
+                  {`${'in Auckland, NZ'} - ${'Now'}`}
+                </Typography>
+              }
+            />
+
+            <div className={classes.weatherCard}>
+              {props.imageLink && (
+                <CardMedia
+                  className={classes.icon}
+                  image={props.imageLink}
+                  title={props.weather}
+                />
+              )}
+              <CardContent className={classes.weatherContent}>
+                <Typography variant="h4" component="h4">
+                  {Math.round(props.temperature)}&deg;C
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {props.mainText}
+                </Typography>
+              </CardContent>
+            </div>
+
+            <CardActions
+              style={{ backgroundColor: barColour(props.media) }}
+              disableSpacing
+            >
+              <img
+                src={mediaIcon(props.media)}
+                alt={`${props.media} logo`}
+                height="20px"
+              />
+            </CardActions>
+          </div>
+        );
+      default:
+        return (
+          <div>
+            <CardHeader
+              avatar={
+                <Avatar
+                  alt={props.username}
+                  src={
+                    props.avatarLink ||
+                    'https://img.icons8.com/windows/64/000000/user.png'
+                  }
+                  className={classes.avatar}
+                />
+              }
+              title={props.title}
+              subheader={
+                <Typography
+                  variant={'subtitle2'}
+                >{`${props.username} - ${props.relativeTime}`}</Typography>
+              }
+            />
+
+            {props.imageLink && (
+              <CardMedia className={classes.media} image={props.imageLink} />
+            )}
+
+            <CardContent>
+              <Typography variant="body2" component="p">
+                {truncateString(props.mainText, 200)}
+              </Typography>
+            </CardContent>
+
+            <CardActions
+              style={{ backgroundColor: barColour(props.media) }}
+              disableSpacing
+            >
+              <img
+                src={mediaIcon(props.media)}
+                alt={`${props.media} logo`}
+                height="20px"
+              />
+            </CardActions>
+          </div>
+        );
+    }
+  };
+
+  const FeedModalRender = () => {
+    switch (props.media) {
+      case 'weather':
+        return (
+          <FeedrModal
+            open={open}
+            handleClose={handleClose}
+            barColour={barColour}
+            mediaIcon={mediaIcon}
+            media={props.media}
+            title={'Current weather in Auckland, NZ'}
+            mainText={
+              <div>
+                <div className={classes.weatherCard}>
+                  {props.imageLink && (
+                    <CardMedia
+                      className={classes.icon}
+                      image={props.imageLink}
+                      title={props.weather}
+                    />
+                  )}
+                  <CardContent className={classes.weatherContent}>
+                    <Typography variant="h4" component="h4">
+                      {Math.round(props.temperature)}&deg;C
+                    </Typography>
+                    <Typography variant="body2" component="p">
+                      {props.mainText}
+                    </Typography>
+                  </CardContent>
+                </div>
+                {WeatherTable(props)}
+              </div>
+            }
+            username={'OpenWeatherMapAPI'}
+            relativeTime={props.relativeTime}
+            getTheme={props.getTheme}
+          />
+        );
+      default:
+        return (
+          <FeedrModal
+            open={open}
+            handleClose={handleClose}
+            barColour={barColour}
+            mediaIcon={mediaIcon}
+            media={props.media}
+            title={props.title}
+            mainText={props.mainText}
+            username={props.username}
+            relativeTime={props.relativeTime}
+            getTheme={props.getTheme}
+          />
+        );
     }
   };
 
@@ -111,58 +338,9 @@ export const MediaCard = props => {
         )}
         onClick={handleOpen}
       >
-        <CardHeader
-          avatar={
-            <Avatar
-              alt={props.username}
-              src={
-                props.avatarLink ||
-                'https://img.icons8.com/windows/64/000000/user.png'
-              }
-              className={classes.avatar}
-            />
-          }
-          title={props.title}
-          subheader={
-            <Typography
-              variant={'subtitle2'}
-            >{`${props.username} - ${props.relativeTime}`}</Typography>
-          }
-        />
-
-        {props.imageLink && (
-          <CardMedia className={classes.media} image={props.imageLink} />
-        )}
-
-        <CardContent>
-          <Typography variant="body2" component="p">
-            {truncateString(props.mainText, 200)}
-          </Typography>
-        </CardContent>
-
-        <CardActions
-          style={{ backgroundColor: barColour(props.media) }}
-          disableSpacing
-        >
-          <img
-            src={mediaIcon(props.media)}
-            alt={`${props.media} logo`}
-            height="20px"
-          />
-        </CardActions>
+        <CardRender />
       </Card>
-      <FeedrModal
-        open={open}
-        handleClose={handleClose}
-        barColour={barColour}
-        mediaIcon={mediaIcon}
-        media={props.media}
-        title={props.title}
-        mainText={props.mainText}
-        username={props.username}
-        relativeTime={props.relativeTime}
-        getTheme={props.getTheme}
-      />
+      <FeedModalRender />
     </div>
   );
 };

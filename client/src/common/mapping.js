@@ -62,4 +62,20 @@ const mapHackerNewsItem = item => ({
   mediaSourceLink: item.url,
 });
 
-const mapWeatherItem = item => ({});
+const mapWeatherItem = item => ({
+  media: 'weather',
+  weather: item.weather[0].main,
+  imageLink:
+    'http://openweathermap.org/img/wn/' + item.weather[0].icon + '@2x.png',
+  mainText: item.weather[0].description,
+  temperature: item.main.temp,
+  minTemp: item.main.temp_min,
+  maxTemp: item.main.temp_max,
+  pressure: item.main.pressure,
+  humidity: item.main.humidity,
+  windSpeed: item.wind.speed,
+  windDeg: item.wind.deg,
+  sunrise: item.sys.sunrise,
+  sunset: item.sys.sunset,
+  relativeTime: new Date(Date.now()).toDateString(),
+});
