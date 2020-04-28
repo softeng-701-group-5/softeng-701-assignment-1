@@ -12,9 +12,9 @@ export const mapFeedItem = item => {
     case 'HACKERNEWS':
       return mapHackerNewsItem(item);
     case 'WEATHER':
-      return {};
+      return mapWeatherItem(item);
     case 'COVIDNINETEEN':
-      return {};
+      return mapCovidNineteenItem(item);
     default:
       throw new Error(`feedType ${item.feedType} unsupported`);
   }
@@ -59,4 +59,37 @@ const mapHackerNewsItem = item => ({
   mainText: item.text,
   relativeTime: moment(item.time * 1000).fromNow(),
   mediaSourceLink: item.url,
+});
+
+const mapWeatherItem = item => ({
+  media: 'weather',
+  weather: item.weather[0].main,
+  imageLink:
+    'http://openweathermap.org/img/wn/' + item.weather[0].icon + '@2x.png',
+  mainText: item.weather[0].description,
+  temperature: item.main.temp,
+  minTemp: item.main.temp_min,
+  maxTemp: item.main.temp_max,
+  pressure: item.main.pressure,
+  humidity: item.main.humidity,
+  windSpeed: item.wind.speed,
+  windDeg: item.wind.deg,
+  sunrise: item.sys.sunrise,
+  sunset: item.sys.sunset,
+  relativeTime: new Date(Date.now()).toDateString(),
+});
+
+const mapCovidNineteenItem = item => ({
+  media: 'covidNineteen',
+  mainText: 'Covid-19',
+  totalConfirmed: item.totalConfirmed,
+  totalDeaths: item.totalDeaths,
+  totalProbable: item.totalProbable,
+  totalRecovered: item.totalRecovered,
+  totalHospitalised: item.totalHospitalised,
+  newConfirmed: item.newConfirmed,
+  newDeaths: item.newDeaths,
+  newProbable: item.newProbable,
+  newRecovered: item.newRecovered,
+  newHospitalised: item.newHospitalised,
 });
