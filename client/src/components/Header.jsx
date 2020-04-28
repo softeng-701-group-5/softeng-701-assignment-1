@@ -11,7 +11,7 @@ import {
 import { makeStyles } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+// import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
 import ViewStreamRoundedIcon from '@material-ui/icons/ViewStreamRounded';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';

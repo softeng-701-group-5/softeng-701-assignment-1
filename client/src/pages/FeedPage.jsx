@@ -1,7 +1,7 @@
 import React from 'react';
 import StackGrid from 'react-stack-grid';
 import { Waypoint } from 'react-waypoint';
-import { CircularProgress, makeStyles, Typography } from '@material-ui/core';
+import { CircularProgress, makeStyles } from '@material-ui/core';
 import { MediaCard } from '../components/MediaCard';
 import { FilterBar } from '../components/FilterBar';
 import { Header } from '../components/Header';
