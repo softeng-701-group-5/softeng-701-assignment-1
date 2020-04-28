@@ -65,15 +65,15 @@ export const FeedrModal = props => {
     if (props.media) {
       switch (props.media) {
         case 'reddit':
-          externalLink = props.mediaSourceLink;
+          externalLink = props?.mediaSourceLink;
           break;
         case 'hackernews':
-          externalLink = props.mediaSourceLink.replace('ask/', 'item?id=');
+          externalLink = props?.mediaSourceLink?.replace('ask/', 'item?id=');
           break;
         case 'github':
-          externalLink = props.mediaSourceLink
-            .replace('api.', '')
-            .replace('repos/', '');
+          externalLink = props?.mediaSourceLink
+            ?.replace('api.', '')
+            ?.replace('repos/', '');
           break;
         default:
           externalLink = '';
