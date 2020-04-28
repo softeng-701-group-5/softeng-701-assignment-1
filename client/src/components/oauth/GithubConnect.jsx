@@ -1,7 +1,7 @@
 import React from 'react';
-import GitHubLogin from 'react-github-login';
 import APPS from '../../configs/feedr-apps';
 import CookieManager from './CookieManager';
+import { useEffect } from 'react';
 
 const github = APPS.github;
 
@@ -11,33 +11,28 @@ export const GithubConnect = props => {
   const [isConnected, setConnected] = React.useState(
     cookie !== null && cookie !== undefined
   );
-  /**
-   * Successful authorization returns an object with the form:
-    {
-      code: "xxxxxxxxxxxxxxxxxxxx"
-    }
-   */
-  const successHandler = data => {
-    CookieManager.setUserToken(data, github.name);
 
-    // Probably don't need to check so thoroughly
+  useEffect(() => {
+    // TODO: Change this to actually work immediately after the user logs in (so that you don't need to refresh the page)
     const cookie = CookieManager.getUserToken(github.name);
     setConnected(cookie !== null && cookie !== undefined);
+  }, []);
 
-    // TODO: Get/update data shown on feed
-  };
+  const connectGithub = () => {
+    const url = github.authUrl;
+    const id = github.clientId;
+    const redir = github.redirectUrl;
+    const scope = github.scope;
+    const state = (Math.random() + 1).toString(36).substring(7); // A random (5 character) string
 
-  const failureHandler = data => {
-    // TODO: Handle failure
+    // Redirect to the GitHub login page
+    window.location = `${url}?client_id=${id}&redirect_uri=${redir}&scope=${scope}&state=${state}`;
   };
 
   return !isConnected ? (
-    <GitHubLogin
-      clientId={github.clientId}
-      redirectUri={github.redirectUrl}
-      onSuccess={successHandler}
-      onFailure={failureHandler}
-    />
+    <div>
+      <button onClick={connectGithub}>LOGIN TO GITHUB</button>
+    </div>
   ) : (
     // TODO: Change this into a disconnect button
     <div>
