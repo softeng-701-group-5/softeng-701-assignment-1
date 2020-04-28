@@ -35,7 +35,7 @@ const APPS = {
     reqUrl: 'https://api.twitter.com/oauth/request_token', // TODO: Remove? (unused)
     authUrl: 'https://api.twitter.com/oauth/authorize', // TODO: Remove? (unused)
     tokenUrl: 'https://api.twitter.com/oauth/access_token', // TODO: Remove? (unused)
-    redirectUrl: `${REACT_APP_BASE_URL}/connect`,
+    redirectUrl: `${REACT_APP_BASE_URL}`,
     clientId: REACT_APP_TWITTER_CLIENT_ID,
     clientSecret: REACT_APP_TWITTER_CLIENT_SECRET,
   },
