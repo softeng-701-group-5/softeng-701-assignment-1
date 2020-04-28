@@ -3,7 +3,7 @@
 exports[`<MediaCard /> matches each snapshots 1`] = `
 <div>
   <div
-    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+    className="MuiPaper-root MuiCard-root makeStyles-root-1 makeStyles-darkTheme-5 MuiPaper-elevation1 MuiPaper-rounded"
     onClick={[Function]}
   >
     <div
@@ -24,18 +24,18 @@ exports[`<MediaCard /> matches each snapshots 1`] = `
       <div
         className="MuiCardHeader-content"
       >
-        <span
-          className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+        <h6
+          className="MuiTypography-root MuiTypography-subtitle2"
         >
           undefined - undefined
-        </span>
+        </h6>
       </div>
     </div>
     <div
       className="MuiCardContent-root"
     >
       <p
-        className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+        className="MuiTypography-root MuiTypography-body2"
       />
     </div>
     <div
@@ -59,7 +59,7 @@ exports[`<MediaCard /> matches each snapshots 1`] = `
 exports[`<MediaCard /> matches each snapshots 2`] = `
 <div>
   <div
-    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+    className="MuiPaper-root MuiCard-root makeStyles-root-1 makeStyles-darkTheme-5 MuiPaper-elevation1 MuiPaper-rounded"
     onClick={[Function]}
   >
     <div
@@ -80,18 +80,18 @@ exports[`<MediaCard /> matches each snapshots 2`] = `
       <div
         className="MuiCardHeader-content"
       >
-        <span
-          className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+        <h6
+          className="MuiTypography-root MuiTypography-subtitle2"
         >
           undefined - undefined
-        </span>
+        </h6>
       </div>
     </div>
     <div
       className="MuiCardContent-root"
     >
       <p
-        className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+        className="MuiTypography-root MuiTypography-body2"
       />
     </div>
     <div
@@ -115,7 +115,7 @@ exports[`<MediaCard /> matches each snapshots 2`] = `
 exports[`<MediaCard /> matches each snapshots 3`] = `
 <div>
   <div
-    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+    className="MuiPaper-root MuiCard-root makeStyles-root-1 makeStyles-darkTheme-5 MuiPaper-elevation1 MuiPaper-rounded"
     onClick={[Function]}
   >
     <div
@@ -136,18 +136,18 @@ exports[`<MediaCard /> matches each snapshots 3`] = `
       <div
         className="MuiCardHeader-content"
       >
-        <span
-          className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+        <h6
+          className="MuiTypography-root MuiTypography-subtitle2"
         >
           undefined - undefined
-        </span>
+        </h6>
       </div>
     </div>
     <div
       className="MuiCardContent-root"
     >
       <p
-        className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+        className="MuiTypography-root MuiTypography-body2"
       />
     </div>
     <div
@@ -171,7 +171,7 @@ exports[`<MediaCard /> matches each snapshots 3`] = `
 exports[`<MediaCard /> matches each snapshots 4`] = `
 <div>
   <div
-    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+    className="MuiPaper-root MuiCard-root makeStyles-root-1 makeStyles-darkTheme-5 MuiPaper-elevation1 MuiPaper-rounded"
     onClick={[Function]}
   >
     <div
@@ -192,18 +192,18 @@ exports[`<MediaCard /> matches each snapshots 4`] = `
       <div
         className="MuiCardHeader-content"
       >
-        <span
-          className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+        <h6
+          className="MuiTypography-root MuiTypography-subtitle2"
         >
           undefined - undefined
-        </span>
+        </h6>
       </div>
     </div>
     <div
       className="MuiCardContent-root"
     >
       <p
-        className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+        className="MuiTypography-root MuiTypography-body2"
       />
     </div>
     <div
@@ -227,7 +227,7 @@ exports[`<MediaCard /> matches each snapshots 4`] = `
 exports[`<MediaCard /> matches each snapshots 5`] = `
 <div>
   <div
-    className="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+    className="MuiPaper-root MuiCard-root makeStyles-root-1 makeStyles-darkTheme-5 MuiPaper-elevation1 MuiPaper-rounded"
     onClick={[Function]}
   >
     <div
@@ -248,18 +248,18 @@ exports[`<MediaCard /> matches each snapshots 5`] = `
       <div
         className="MuiCardHeader-content"
       >
-        <span
-          className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+        <h6
+          className="MuiTypography-root MuiTypography-subtitle2"
         >
           undefined - undefined
-        </span>
+        </h6>
       </div>
     </div>
     <div
       className="MuiCardContent-root"
     >
       <p
-        className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+        className="MuiTypography-root MuiTypography-body2"
       />
     </div>
     <div

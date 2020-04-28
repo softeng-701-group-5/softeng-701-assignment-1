@@ -43,7 +43,7 @@ public class WeatherFeedProviderTest {
 
     when(mockWebClient.get()).thenReturn(mockRequestHeadersUriSpec);
     when(mockRequestHeadersUriSpec.uri(
-            "https://api.openweathermap.org/data/2.5/weather?q=auckland&appid="
+            "https://api.openweathermap.org/data/2.5/weather?q=auckland&units=metric&appid="
                 + applicationProperties.getWeatherApiKey()))
         .thenReturn(mockRequestHeaderSpec);
     when(mockRequestHeaderSpec.retrieve()).thenReturn(mockResponseSpec);

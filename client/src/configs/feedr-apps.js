@@ -23,11 +23,12 @@ const APPS = {
   },
   github: {
     name: 'github',
-    authUrl: 'https://github.com/login/oauth/authorize', // TODO: Remove? (unused)
-    tokenUrl: 'https://github.com/login/oauth/access_token', // TODO: Remove? (unused)
-    redirectUrl: `${REACT_APP_BASE_URL}/connect`,
+    authUrl: 'https://github.com/login/oauth/authorize',
+    tokenUrl: 'https://github.com/login/oauth/access_token',
+    redirectUrl: `${REACT_APP_PROXY_URL}/proxy/callback/github`,
     clientId: REACT_APP_GITHUB_CLIENT_ID,
     clientSecret: REACT_APP_GITHUB_CLIENT_SECRET,
+    scope: 'read:org notifications read:user read:discussion',
   },
   twitter: {
     name: 'twitter',

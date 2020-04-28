@@ -13,6 +13,12 @@ export const RedditConnect = props => {
     cookie !== null && cookie !== undefined
   );
 
+  useEffect(() => {
+    // TODO: Change this to actually work immediately after the user logs in (so that you don't need to refresh the page)
+    const cookie = CookieManager.getUserToken(reddit.name);
+    setConnected(cookie !== null && cookie !== undefined);
+  }, []);
+
   const connectReddit = () => {
     const url = reddit.authUrl;
     const id = reddit.clientId;
@@ -56,12 +62,6 @@ export const RedditConnect = props => {
 
     // TODO: Handle errors returned from the above fetch
   };
-
-  useEffect(() => {
-    // TODO: Change this to actually work
-    const cookie = CookieManager.getUserToken(reddit.name);
-    setConnected(cookie !== null && cookie !== undefined);
-  }, []);
 
   // TODO: Prevent the need for manually refreshing the page after successfull authorization to see the token
   // TODO: Can probably pass in props or something to fix the above TODO
