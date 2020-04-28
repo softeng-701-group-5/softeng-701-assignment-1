@@ -1,12 +1,40 @@
 import React from 'react';
 import APPS from '../../configs/feedr-apps';
 import CookieManager from './CookieManager';
+import { Button, makeStyles } from '@material-ui/core';
 import { useEffect } from 'react';
 import qs from 'querystring';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
+import classNames from 'classnames';
 
 const reddit = APPS.reddit;
 
+const useStyles = makeStyles(theme => ({
+  button: {
+    color: 'white',
+    background: '#0079d3',
+    fontWeight: '600',
+    height: 47,
+  },
+  reddit: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  checkIcon: {
+    fontSize: '48px',
+    marginTop: '10px',
+  },
+  connected: {
+    color: '#00E500',
+  },
+  disconnected: {
+    color: 'gray',
+  },
+}));
+
 export const RedditConnect = props => {
+  const classes = useStyles();
   const cookie = CookieManager.getUserToken(reddit.name);
 
   const [isConnected, setConnected] = React.useState(
@@ -65,16 +93,23 @@ export const RedditConnect = props => {
 
   // TODO: Prevent the need for manually refreshing the page after successfull authorization to see the token
   // TODO: Can probably pass in props or something to fix the above TODO
-  return !isConnected ? (
-    <div>
-      <button onClick={connectReddit}>LOGIN TO REDDIT</button>
-    </div>
-  ) : (
-    // TODO: Change this into a disconnect button
-    <div>
-      <h1>CONNECTED TO REDDIT!!!</h1>
-      <h4>COOKIE = {CookieManager.getUserToken(reddit.name)}</h4>
-      <button onClick={refreshReddit}>TEST REDDIT REFRESH</button>
+  return (
+    <div className={classes.reddit}>
+      <Button
+        className={classes.button}
+        onClick={connectReddit}
+        variant="contained"
+      >
+        {' '}
+        {isConnected ? 'Disconnect Reddit' : 'Connect to Reddit'}
+      </Button>
+      <CheckCircleRoundedIcon
+        className={classNames(
+          classes.checkIcon,
+          isConnected ? classes.connected : classes.disconnected
+        )}
+      />
+      {/* CookieManager.getUserToken(reddit.name) */}
     </div>
   );
 };

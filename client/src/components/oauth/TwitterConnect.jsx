@@ -2,10 +2,32 @@ import React from 'react';
 import TwitterLogin from 'react-twitter-login';
 import APPS from '../../configs/feedr-apps';
 import CookieManager from './CookieManager';
+import { makeStyles } from '@material-ui/core';
+import classNames from 'classnames';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 
 const twitter = APPS.twitter;
 
+const useStyles = makeStyles(theme => ({
+  twitter: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  checkIcon: {
+    fontSize: '48px',
+    marginTop: '10px',
+  },
+  connected: {
+    color: '#00E500',
+  },
+  disconnected: {
+    color: 'gray',
+  },
+}));
+
 export const TwitterConnect = props => {
+  const classes = useStyles();
   const cookie = CookieManager.getUserToken(twitter.name);
 
   const [isConnected, setConnected] = React.useState(
@@ -21,6 +43,7 @@ export const TwitterConnect = props => {
       "screen_name": "xxxxxxxxxxxxxx"
     }
   */
+
   const authHandler = (err, data) => {
     if (!err) {
       CookieManager.setUserToken(data, twitter.name);
@@ -35,18 +58,21 @@ export const TwitterConnect = props => {
     setConnected(cookie !== null && cookie !== undefined);
   };
 
-  return !isConnected ? (
-    <TwitterLogin
-      authCallback={authHandler}
-      consumerKey={twitter.clientId}
-      consumerSecret={twitter.clientSecret}
-      buttonTheme="light_short"
-    />
-  ) : (
-    // TODO: Change this into a disconnect button
-    <div>
-      <h1>CONNECTED TO TWITTER!!!</h1>
-      <h4>COOKIE = {CookieManager.getUserToken(twitter.name)}</h4>
+  return (
+    /*!isConnected ?*/ <div className={classes.twitter}>
+      <TwitterLogin
+        authCallback={authHandler}
+        consumerKey={twitter.clientId}
+        consumerSecret={twitter.clientSecret}
+        buttonTheme="dark_short"
+      />
+      <CheckCircleRoundedIcon
+        className={classNames(
+          classes.checkIcon,
+          isConnected ? classes.connected : classes.disconnected
+        )}
+      />
+      {/* {CookieManager.getUserToken(twitter.name)} */}
     </div>
   );
 };

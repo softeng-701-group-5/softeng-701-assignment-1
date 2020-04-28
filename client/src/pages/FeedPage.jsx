@@ -1,7 +1,7 @@
 import React from 'react';
 import StackGrid from 'react-stack-grid';
 import { Waypoint } from 'react-waypoint';
-import { CircularProgress, makeStyles } from '@material-ui/core';
+import { CircularProgress, makeStyles, Typography } from '@material-ui/core';
 import { MediaCard } from '../components/MediaCard';
 import { FilterBar } from '../components/FilterBar';
 import { Header } from '../components/Header';
@@ -185,6 +185,7 @@ export const FeedPage = () => {
         getTheme={theme}
       />
       {filterInit && <FilterBar setFilters={setFilters} />}
+
       <StackGrid
         columnWidth={300}
         gutterWidth={layout === 'grid' ? 20 : 300}
@@ -210,7 +211,6 @@ export const FeedPage = () => {
 };
 
 const isSearchedPost = (search, item) => {
-  console.log(item.media);
   // Only checking the mainText if there is text to check, otherwise it will come up as 'undefined'
   return !!item.mainText
     ? item.mainText.toLowerCase().includes(search) ||
