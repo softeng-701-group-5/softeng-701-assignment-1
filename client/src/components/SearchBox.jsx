@@ -61,7 +61,7 @@ const SearchBox = ({ setSearch }) => {
       </div>
       <InputBase
         type="search"
-        placeholder="Search Content"
+        placeholder="Search"
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
