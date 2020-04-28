@@ -60,7 +60,7 @@ export const FeedrModal = props => {
   const classes = useStyles();
 
   if (props.media !== 'twitter') {
-    var externalLink;
+    let externalLink;
 
     if (props.media) {
       switch (props.media) {
