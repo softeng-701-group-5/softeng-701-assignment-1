@@ -27,16 +27,15 @@ const useStyles = makeStyles(theme => ({
   },
   appBarContentLeft: {
     display: 'flex',
+    paddingTop: '5px',
+    paddingBottom: '5px',
+    paddingRight: '3px',
   },
   appBarContentRight: {
     display: 'flex',
-    marginLeft: theme.spacing(1),
   },
   headerButtons: {
     color: '#FFFFFF',
-  },
-  image: {
-    marginTop: theme.spacing(0.5),
   },
 }));
 
@@ -67,6 +66,13 @@ export const Header = props => {
             children={googleUser?.profileObj?.givenName}
           />
           <SearchBox setSearch={props.setSearch} />
+        </div>
+        <div className={classes.appBarContentRight}>
+          <FormControlLabel
+            className={classes.headerButtons}
+            checked={props.getTheme === 'dark'}
+            control={<Switch onChange={() => props.toggleTheme()} />}
+          />
           <IconButton
             className={classes.headerButtons}
             onClick={() =>
@@ -79,13 +85,6 @@ export const Header = props => {
               <FavoriteBorderIcon />
             )}
           </IconButton>
-        </div>
-        <div className={classes.appBarContentRight}>
-          <FormControlLabel
-            className={classes.headerButtons}
-            checked={props.getTheme === 'dark'}
-            control={<Switch onChange={() => props.toggleTheme()} />}
-          />
           <IconButton
             className={classes.headerButtons}
             onClick={() =>
