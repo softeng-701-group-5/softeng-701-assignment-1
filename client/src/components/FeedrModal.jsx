@@ -58,42 +58,49 @@ const useStyles = makeStyles(theme => ({
 
 export const FeedrModal = props => {
   const classes = useStyles();
+  const [externalLink, setExternalLink] = React.useState('');
 
-  if (props.media !== 'twitter') {
-    let externalLink;
+  React.useEffect(() => {
+    if (props.media !== 'twitter') {
+      let externalLink;
 
-    if (props.media) {
-      switch (props.media) {
-        case 'reddit':
-          externalLink = props?.mediaSourceLink;
-          break;
-        case 'hackernews':
-          externalLink = props?.mediaSourceLink?.replace('ask/', 'item?id=');
-          break;
-        case 'github':
-          externalLink = props?.mediaSourceLink
-            ?.replace('api.', '')
-            ?.replace('repos/', '');
-          break;
-        default:
-          externalLink = '';
+      if (props.media) {
+        switch (props.media) {
+          case 'reddit':
+            externalLink = props?.mediaSourceLink;
+            break;
+          case 'hackernews':
+            externalLink = props?.mediaSourceLink?.replace('ask/', 'item?id=');
+            break;
+          case 'github':
+            externalLink = props?.mediaSourceLink
+              ?.replace('api.', '')
+              ?.replace('repos/', '');
+            break;
+          default:
+            externalLink = '';
+        }
       }
-    }
 
-    var renderLink = (
-      <React.Fragment>
-        <Link href={externalLink} target="_blank">
-          <IconButton
-            aria-label="delete"
-            className={classes.margin}
-            size="medium"
-          >
-            <LinkIcon fontSize="inherit" />
-          </IconButton>
-        </Link>
-      </React.Fragment>
-    );
-  }
+      setExternalLink(externalLink);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const RenderLink = ({ externalLink }) => (
+    <React.Fragment>
+      <Link href={externalLink} target="_blank">
+        <IconButton
+          aria-label="delete"
+          className={classes.margin}
+          size="medium"
+        >
+          <LinkIcon fontSize="inherit" />
+        </IconButton>
+      </Link>
+    </React.Fragment>
+  );
+
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -136,7 +143,7 @@ export const FeedrModal = props => {
             <div className={classes.modalFooter}>
               <Typography>
                 {`${props.username} - ${props.relativeTime}`}
-                {renderLink}
+                <RenderLink externalLink={externalLink} />
               </Typography>
             </div>
           </Typography>
