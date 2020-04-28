@@ -53,6 +53,12 @@ const FilterBar = ({ setFilters }) => {
       icon: <ErrorTwoToneIcon />,
       on: true,
     },
+    {
+      key: 'weather',
+      label: 'Weather',
+      icon: <Icon className="fas fa-cloud-showers-heavy" />,
+      on: true,
+    },
   ]);
 
   // Load Font Awesome for icons
