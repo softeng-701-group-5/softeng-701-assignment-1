@@ -185,179 +185,6 @@ export const MediaCard = props => {
     );
   };
 
-  const CardRender = () => {
-    switch (props.media) {
-      case 'weather':
-        return (
-          <Card
-            className={classNames(
-              classes.root,
-              props.getTheme === 'light'
-                ? classes.lightTheme
-                : classes.darkTheme
-            )}
-            onClick={handleOpen}
-          >
-            <CardHeader
-              title="Current weather"
-              subheader={
-                <Typography variant={'subtitle2'}>
-                  {`${'in Auckland, NZ'} - ${'Now'}`}
-                </Typography>
-              }
-            />
-
-            <div className={classes.weatherCard}>
-              {props.imageLink && (
-                <CardMedia
-                  className={classes.icon}
-                  image={props.imageLink}
-                  title={props.weather}
-                />
-              )}
-              <CardContent className={classes.weatherContent}>
-                <Typography variant="h4" component="h4">
-                  {Math.round(props.temperature)}&deg;C
-                </Typography>
-                <Typography variant="body2" component="p">
-                  {props.mainText}
-                </Typography>
-              </CardContent>
-            </div>
-
-            <CardActions
-              style={{ backgroundColor: barColour(props.media) }}
-              disableSpacing
-            >
-              <img
-                src={mediaIcon(props.media)}
-                alt={`${props.media} logo`}
-                height="20px"
-              />
-            </CardActions>
-          </Card>
-        );
-      case 'covidNineteen':
-        return (
-          <div position="fixed" top={0} left={0}>
-            <Card
-              className={classNames(
-                classes.root,
-                props.getTheme === 'light'
-                  ? classes.lightTheme
-                  : classes.darkTheme
-              )}
-            >
-              <CardHeader
-                avatar={
-                  <Avatar
-                    src={
-                      'https://img.icons8.com/emoji/48/000000/exclamation-mark-emoji.png'
-                    }
-                    className={classes.avatar}
-                  />
-                }
-                title={'COVID19 UPDATE'}
-              />
-
-              <CardContent>
-                <Typography variant="body2" component="p">
-                  {'New Confirmed Cases: ' + props.newConfirmed}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  {'New Probable Cases: ' + props.newProbable}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  {'New Hospitalised: ' + props.newHospitalised}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  {'New Recovered: ' + props.newRecovered}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  {'New Deaths: ' + props.newDeaths}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  {'------------    '}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  {'Total Confirmed Cases: ' + props.totalConfirmed}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  {'Total Probable Cases: ' + props.totalProbable}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  {'Total Hospitalised: ' + props.totalHospitalised}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  {'Total Recovered: ' + props.totalRecovered}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  {'Total Deaths: ' + props.totalDeaths}
-                </Typography>
-              </CardContent>
-
-              <CardActions
-                style={{ backgroundColor: barColour(props.media) }}
-                disableSpacing
-              ></CardActions>
-            </Card>
-          </div>
-        );
-      default:
-        return (
-          <Card
-            className={classNames(
-              classes.root,
-              props.getTheme === 'light'
-                ? classes.lightTheme
-                : classes.darkTheme
-            )}
-            onClick={handleOpen}
-          >
-            <CardHeader
-              avatar={
-                <Avatar
-                  alt={props.username}
-                  src={
-                    props.avatarLink ||
-                    'https://img.icons8.com/windows/64/000000/user.png'
-                  }
-                  className={classes.avatar}
-                />
-              }
-              title={props.title}
-              subheader={
-                <Typography
-                  variant={'subtitle2'}
-                >{`${props.username} - ${props.relativeTime}`}</Typography>
-              }
-            />
-
-            {props.imageLink && (
-              <CardMedia className={classes.media} image={props.imageLink} />
-            )}
-
-            <CardContent>
-              <Typography variant="body2" component="p">
-                {truncateString(props.mainText, 200)}
-              </Typography>
-            </CardContent>
-
-            <CardActions
-              style={{ backgroundColor: barColour(props.media) }}
-              disableSpacing
-            >
-              <img
-                src={mediaIcon(props.media)}
-                alt={`${props.media} logo`}
-                height="20px"
-              />
-            </CardActions>
-          </Card>
-        );
-    }
-  };
-
   const FeedModalRender = () => {
     switch (props.media) {
       case 'weather':
@@ -414,70 +241,175 @@ export const MediaCard = props => {
     }
   };
 
-  return (
-    <div>
-      <Card
-        className={classNames(
-          classes.root,
-          props.getTheme === 'light' ? classes.lightTheme : classes.darkTheme
-        )}
-        onClick={handleOpen}
-      >
-        <CardHeader
-          avatar={
-            <Avatar
-              alt={props.username}
-              src={
-                props.avatarLink ||
-                'https://img.icons8.com/windows/64/000000/user.png'
-              }
-              className={classes.avatar}
-            />
-          }
-          title={props.title}
-          subheader={
-            <Typography
-              variant={'subtitle2'}
-            >{`${props.username} - ${props.relativeTime}`}</Typography>
-          }
-        />
-
-        {props.imageLink && (
-          <CardMedia className={classes.media} image={props.imageLink} />
-        )}
-
-        <CardContent>
-          <Typography variant="body2" component="p">
-            {truncateString(props.mainText, 200)}
-          </Typography>
-        </CardContent>
-
-        <CardActions
-          style={{ backgroundColor: barColour(props.media) }}
-          disableSpacing
+  if (props.media === 'weather') {
+    return (
+      <div>
+        <Card
+          className={classNames(
+            classes.root,
+            props.getTheme === 'light' ? classes.lightTheme : classes.darkTheme
+          )}
+          onClick={handleOpen}
         >
-          <img
-            src={mediaIcon(props.media)}
-            alt={`${props.media} logo`}
-            height="20px"
+          <CardHeader
+            title="Current weather"
+            subheader={
+              <Typography variant={'subtitle2'}>
+                {`${'in Auckland, NZ'} - ${'Now'}`}
+              </Typography>
+            }
           />
-        </CardActions>
-      </Card>
-      <FeedrModal
-        open={open}
-        handleClose={handleClose}
-        barColour={barColour}
-        mediaIcon={mediaIcon}
-        media={props.media}
-        title={props.title}
-        mainText={props.mainText}
-        username={props.username}
-        relativeTime={props.relativeTime}
-        getTheme={props.getTheme}
-        mediaSourceLink={props.mediaSourceLink}
-      />
-      <CardRender />
-      <FeedModalRender />
-    </div>
-  );
+
+          <div className={classes.weatherCard}>
+            {props.imageLink && (
+              <CardMedia
+                className={classes.icon}
+                image={props.imageLink}
+                title={props.weather}
+              />
+            )}
+            <CardContent className={classes.weatherContent}>
+              <Typography variant="h4" component="h4">
+                {Math.round(props.temperature)}&deg;C
+              </Typography>
+              <Typography variant="body2" component="p">
+                {props.mainText}
+              </Typography>
+            </CardContent>
+          </div>
+
+          <CardActions
+            style={{ backgroundColor: barColour(props.media) }}
+            disableSpacing
+          >
+            <img
+              src={mediaIcon(props.media)}
+              alt={`${props.media} logo`}
+              height="20px"
+            />
+          </CardActions>
+        </Card>
+
+        <FeedModalRender />
+      </div>
+    );
+  } else if (props.media === 'covidNineteen') {
+    return (
+      <div position="fixed" top={0} left={0}>
+        <Card
+          className={classNames(
+            classes.root,
+            props.getTheme === 'light' ? classes.lightTheme : classes.darkTheme
+          )}
+        >
+          <CardHeader
+            avatar={
+              <Avatar
+                src={
+                  'https://img.icons8.com/emoji/48/000000/exclamation-mark-emoji.png'
+                }
+                className={classes.avatar}
+              />
+            }
+            title={'COVID19 UPDATE'}
+          />
+
+          <CardContent>
+            <Typography variant="body2" component="p">
+              {'New Confirmed Cases: ' + props.newConfirmed}
+            </Typography>
+            <Typography variant="body2" component="p">
+              {'New Probable Cases: ' + props.newProbable}
+            </Typography>
+            <Typography variant="body2" component="p">
+              {'New Hospitalised: ' + props.newHospitalised}
+            </Typography>
+            <Typography variant="body2" component="p">
+              {'New Recovered: ' + props.newRecovered}
+            </Typography>
+            <Typography variant="body2" component="p">
+              {'New Deaths: ' + props.newDeaths}
+            </Typography>
+            <Typography variant="body2" component="p">
+              {'------------    '}
+            </Typography>
+            <Typography variant="body2" component="p">
+              {'Total Confirmed Cases: ' + props.totalConfirmed}
+            </Typography>
+            <Typography variant="body2" component="p">
+              {'Total Probable Cases: ' + props.totalProbable}
+            </Typography>
+            <Typography variant="body2" component="p">
+              {'Total Hospitalised: ' + props.totalHospitalised}
+            </Typography>
+            <Typography variant="body2" component="p">
+              {'Total Recovered: ' + props.totalRecovered}
+            </Typography>
+            <Typography variant="body2" component="p">
+              {'Total Deaths: ' + props.totalDeaths}
+            </Typography>
+          </CardContent>
+
+          <CardActions
+            style={{ backgroundColor: barColour(props.media) }}
+            disableSpacing
+          ></CardActions>
+        </Card>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Card
+          className={classNames(
+            classes.root,
+            props.getTheme === 'light' ? classes.lightTheme : classes.darkTheme
+          )}
+          onClick={handleOpen}
+        >
+          <CardHeader
+            avatar={
+              <Avatar
+                alt={props.username}
+                src={
+                  props.avatarLink ||
+                  'https://img.icons8.com/windows/64/000000/user.png'
+                }
+                className={classes.avatar}
+              />
+            }
+            title={props.title}
+            subheader={
+              <Typography
+                variant={'subtitle2'}
+              >{`${props.username} - ${props.relativeTime}`}</Typography>
+            }
+          />
+
+          {props.imageLink && (
+            <CardMedia className={classes.media} image={props.imageLink} />
+          )}
+
+          <CardContent>
+            <Typography variant="body2" component="p">
+              {truncateString(props.mainText, 200)}
+            </Typography>
+          </CardContent>
+
+          <CardActions
+            style={{ backgroundColor: barColour(props.media) }}
+            disableSpacing
+          >
+            <img
+              src={mediaIcon(props.media)}
+              alt={`${props.media} logo`}
+              height="20px"
+            />
+          </CardActions>
+        </Card>
+
+        <FeedModalRender />
+      </div>
+    );
+  }
 };
