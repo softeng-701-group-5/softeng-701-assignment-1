@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * A GithubFeedProvider is responsible for retrieving Github events from the user's Github home
  * page, using the Github API
@@ -25,30 +28,46 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
   @Autowired ApplicationProperties applicationProperties;
 
   private WebClient.Builder webClientBuilder;
+  private String username;
 
   @Override
   public Flux<GithubData> getFeed() {
-
-    // Need to get username to get the feed
-    String apiEndpointReceivedEvents =
-        "/users/" + applicationProperties.getGithubUsername() + "/received_events";
-
     WebClient webClient = getWebClientBuilder().build();
 
-    // For each Github event retrieved, build the GithubData type
+    setUserName();
+
     return webClient
         .get()
-        .uri(apiEndpointReceivedEvents)
+        .uri(GITHUB_API_BASE_URL + "/users/" + username + "/received_events" )
+        .headers(headers -> headers.setBearerAuth("576d812d9921c20f4f829b0f6a35881e0ce23628"))
         .exchange()
         .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
+  }
 
-    // NEW CHANGES
-    //    return webClient
-    //        .get()
-    //        .uri(apiEndpointReceivedEvents)
-    //        .headers(headers -> headers.setBearerAuth("Add access token"))
-    //        .exchange()
-    //        .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
+  private void setUserName(){
+    WebClient webClient = getWebClientBuilder().build();
+
+    webClient.get()
+            .uri("https://api.github.com/user")
+            .headers(headers -> headers.setBearerAuth("576d812d9921c20f4f829b0f6a35881e0ce23628"))
+            .retrieve()
+            .bodyToMono(String.class)
+            .subscribe( value -> {
+                Pattern pattern = Pattern.compile("login\":\"(.*?)\",", Pattern.DOTALL);
+                Matcher matcher = pattern.matcher(value);
+                while (matcher.find()) {
+                  username = matcher.group(1);
+                }
+            });
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void getGithubAccessToken(){
+
   }
 
   /**
@@ -69,25 +88,8 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
           WebClient.builder()
               .baseUrl(GITHUB_API_BASE_URL)
               .defaultHeader(HttpHeaders.CONTENT_TYPE, GITHUB_v3_MIME_TYPE)
-              .defaultHeader(HttpHeaders.AUTHORIZATION)
-              .defaultHeaders(
-                  httpHeaders ->
-                      httpHeaders.setBasicAuth(
-                          applicationProperties.getGithubUsername(),
-                          applicationProperties.getGithubPassword()));
+              .defaultHeader(HttpHeaders.AUTHORIZATION);
     }
     return this.webClientBuilder;
   }
-
-  // NEW CHANGES
-  //  private WebClient.Builder getWebClientBuilder() {
-  //    if (this.webClientBuilder == null) {
-  //      this.webClientBuilder =
-  //          WebClient.builder()
-  //              .baseUrl(GITHUB_API_BASE_URL)
-  //              .defaultHeader(HttpHeaders.CONTENT_TYPE, GITHUB_v3_MIME_TYPE)
-  //              .defaultHeader(HttpHeaders.AUTHORIZATION);
-  //    }
-  //    return this.webClientBuilder;
-  //  }
 }

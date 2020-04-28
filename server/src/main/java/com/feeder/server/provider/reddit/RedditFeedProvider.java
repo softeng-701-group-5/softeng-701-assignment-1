@@ -8,6 +8,7 @@ import net.dean.jraw.models.Listing;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.pagination.Paginator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
@@ -19,22 +20,24 @@ import reactor.core.publisher.Flux;
 @Service
 public class RedditFeedProvider implements FeedProvider<RedditData> {
 
-  private static final String REDDIT_API_BASE_URL = "https://oauth.reddit.com";
+  //private static final String REDDIT_API_BASE_URL = "https://oauth.reddit.com";
 
-  @Autowired private RedditClient redditClient;
+ @Autowired private RedditClient redditClient;
 
   private WebClient.Builder webClientBuilder;
 
   @Override
   public Flux<RedditData> getFeed() {
     // NEW CHANGES
-    //    WebClient webClient = getWebClientBuilder().build();
-    //    return webClient
-    //        .get()
-    //        .uri(REDDIT_API_BASE_URL + "/hot?limit=25&sort=hot&raw_json=1")
-    //        .headers(headers -> headers.setBearerAuth("Add access token"))
-    //        .retrieve()
-    //        .bodyToFlux(RedditData.class);
+//            WebClient webClient = getWebClientBuilder().build();
+//            return
+//                webClient.get()
+//                .uri(REDDIT_API_BASE_URL + "/hot?limit=25&sort=hot&raw_json=1")
+//                .headers(headers ->
+//     headers.setBearerAuth("473582527514-aDz-cis3wJ65xRUnwbWHzSkbi_M"))
+//                .retrieve()
+//                    .bodyToFlux(RedditData.class);
+    //Flux<RedditData> redditDataFlux = response.map(response.data.children)
 
     Paginator paginator = redditClient.frontPage().build();
 
@@ -59,13 +62,12 @@ public class RedditFeedProvider implements FeedProvider<RedditData> {
     return redditDataFlux;
   }
 
-  // NEW CHANGES
-  //  private WebClient.Builder getWebClientBuilder() {
-  //    if (this.webClientBuilder == null) {
-  //      this.webClientBuilder =
-  //
-  // WebClient.builder().baseUrl(REDDIT_API_BASE_URL).defaultHeader(HttpHeaders.AUTHORIZATION);
-  //    }
-  //    return this.webClientBuilder;
-  //  }
+//  // NEW CHANGES
+//  private WebClient.Builder getWebClientBuilder() {
+//    if (this.webClientBuilder == null) {
+//      this.webClientBuilder =
+//          WebClient.builder().baseUrl(REDDIT_API_BASE_URL).defaultHeader(HttpHeaders.AUTHORIZATION);
+//    }
+//    return this.webClientBuilder;
+//  }
 }
