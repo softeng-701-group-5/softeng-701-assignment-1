@@ -10,16 +10,19 @@ import org.springframework.web.bind.annotation.*;
 public class FavouritePostController {
   @Autowired private FavouritePostService favouritePostService;
 
-  @PostMapping("/favourites")
-  public FavouritePost saveFavouritePost(@RequestBody FavouritePost favouritePost) {
+  @PostMapping("/favourites/user/{uid}")
+  public FavouritePost saveFavouritePost(
+      @PathVariable("uid") String uid, @RequestBody FavouritePost favouritePost) {
+    favouritePost.setUserId(uid);
     return favouritePostService.saveFavouritePost(favouritePost);
   }
 
-  @GetMapping("/user/{id}/favourites")
-  public List<FavouritePost> getFavouritePosts(@PathVariable("id") String uid) {
+  @GetMapping("/favourites/user/{uid}")
+  public List<FavouritePost> getFavouritePosts(@PathVariable("uid") String uid) {
     return favouritePostService.getFavouritePosts(uid);
   }
-
+  
+  // This removes a post from a user's favourites by using the post id
   @DeleteMapping("/favourites/{id}")
   public void deletePostFromFavourites(@PathVariable("id") String id) {
     favouritePostService.removePostFromFavourites(id);

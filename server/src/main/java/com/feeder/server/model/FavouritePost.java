@@ -107,4 +107,8 @@ public class FavouritePost {
   public String getAvatarLink() {
     return avatarLink;
   }
+
+  public void setUserId(java.lang.String userId) {
+    this.userId = userId;
+  }
 }
