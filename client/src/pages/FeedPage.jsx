@@ -60,6 +60,7 @@ export const FeedPage = () => {
     'github',
     'twitter',
     'covidNineteen',
+    'weather',
   ]);
   const [filterInit, setFilterInit] = React.useState(false);
   const [search, setSearch] = React.useState([]);
@@ -191,10 +192,8 @@ export const FeedPage = () => {
       >
         {mappedFeed.map(
           (item, i) =>
-            ((item.media === 'covidNineteen' &&
-              filters.includes('covidNineteen')) ||
-              (filters.includes(item.media) &&
-                isSearchedPost(search, item))) && (
+            filters.includes(item.media) &&
+            isSearchedPost(search, item) && (
               <MediaCard {...item} getTheme={theme} />
             )
         )}
@@ -211,7 +210,8 @@ export const FeedPage = () => {
 };
 
 const isSearchedPost = (search, item) => {
-  // Only checking the mainText if there is text to check, untherwise it will come up as 'undefined'
+  console.log(item.media);
+  // Only checking the mainText if there is text to check, otherwise it will come up as 'undefined'
   return !!item.mainText
     ? item.mainText.toLowerCase().includes(search) ||
         item.username.toLowerCase().includes(search) ||
