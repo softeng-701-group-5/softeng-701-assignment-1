@@ -14,7 +14,7 @@ export const mapFeedItem = item => {
     case 'WEATHER':
       return {};
     case 'COVIDNINETEEN':
-      return {};
+      return mapCovidNineteenItem(item);
     default:
       throw new Error(`feedType ${item.feedType} unsupported`);
   }
@@ -59,4 +59,18 @@ const mapHackerNewsItem = item => ({
   mainText: item.text,
   relativeTime: moment(item.time * 1000).fromNow(),
   mediaSourceLink: item.url,
+});
+
+const mapCovidNineteenItem = item => ({
+  media: 'covidNineteen',
+  totalConfirmed: item.totalConfirmed,
+  totalDeaths: item.totalDeaths,
+  totalProbable: item.totalProbable,
+  totalRecovered: item.totalRecovered,
+  totalHospitalised: item.totalHospitalised,
+  newConfirmed: item.newConfirmed,
+  newDeaths: item.newDeaths,
+  newProbable: item.newProbable,
+  newRecovered: item.newRecovered,
+  newHospitalised: item.newHospitalised,
 });
