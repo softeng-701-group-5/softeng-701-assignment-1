@@ -416,6 +416,66 @@ export const MediaCard = props => {
 
   return (
     <div>
+      <Card
+        className={classNames(
+          classes.root,
+          props.getTheme === 'light' ? classes.lightTheme : classes.darkTheme
+        )}
+        onClick={handleOpen}
+      >
+        <CardHeader
+          avatar={
+            <Avatar
+              alt={props.username}
+              src={
+                props.avatarLink ||
+                'https://img.icons8.com/windows/64/000000/user.png'
+              }
+              className={classes.avatar}
+            />
+          }
+          title={props.title}
+          subheader={
+            <Typography
+              variant={'subtitle2'}
+            >{`${props.username} - ${props.relativeTime}`}</Typography>
+          }
+        />
+
+        {props.imageLink && (
+          <CardMedia className={classes.media} image={props.imageLink} />
+        )}
+
+        <CardContent>
+          <Typography variant="body2" component="p">
+            {truncateString(props.mainText, 200)}
+          </Typography>
+        </CardContent>
+
+        <CardActions
+          style={{ backgroundColor: barColour(props.media) }}
+          disableSpacing
+        >
+          <img
+            src={mediaIcon(props.media)}
+            alt={`${props.media} logo`}
+            height="20px"
+          />
+        </CardActions>
+      </Card>
+      <FeedrModal
+        open={open}
+        handleClose={handleClose}
+        barColour={barColour}
+        mediaIcon={mediaIcon}
+        media={props.media}
+        title={props.title}
+        mainText={props.mainText}
+        username={props.username}
+        relativeTime={props.relativeTime}
+        getTheme={props.getTheme}
+        mediaSourceLink={props.mediaSourceLink}
+      />
       <CardRender />
       <FeedModalRender />
     </div>
