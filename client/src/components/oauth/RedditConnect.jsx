@@ -3,7 +3,7 @@ import APPS from '../../configs/feedr-apps';
 import CookieManager from './CookieManager';
 import { Button, makeStyles } from '@material-ui/core';
 import { useEffect } from 'react';
-import qs from 'querystring';
+// import qs from 'querystring';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import classNames from 'classnames';
 
