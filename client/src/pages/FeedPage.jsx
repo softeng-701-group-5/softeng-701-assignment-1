@@ -212,6 +212,11 @@ export const FeedPage = () => {
 
 const isSearchedPost = (search, item) => {
   // Only checking the mainText if there is text to check, otherwise it will come up as 'undefined'
+  if (item.media === 'covidNineteen' || item.media === 'weather') {
+    return !!item.mainText
+      ? item.mainText.toLowerCase().includes(search)
+      : false;
+  }
   return !!item.mainText
     ? item.mainText.toLowerCase().includes(search) ||
         item.username.toLowerCase().includes(search) ||
