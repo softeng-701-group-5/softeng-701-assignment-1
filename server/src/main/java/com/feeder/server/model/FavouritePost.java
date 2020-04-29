@@ -11,11 +11,11 @@ public class FavouritePost {
   @Id private String id;
   private String userId;
 
-  private String mediaType;
+  private String media;
   private String title;
   private String username;
   private String mainText;
-  private String date;
+  private String relativeTime;
 
   private String mediaSourceLink;
   private String imageLink;
@@ -26,48 +26,48 @@ public class FavouritePost {
 
   public FavouritePost(
       String userId,
-      String mediaType,
+      String media,
       String title,
       String mainText,
       String username,
-      String date) {
+      String relativeTime) {
     this.userId = userId;
-    this.mediaType = mediaType;
+    this.media = media;
     this.title = title;
     this.mainText = mainText;
     this.username = username;
-    this.date = date;
+    this.relativeTime = relativeTime;
   }
 
   // Reddit and Hackernews
   public FavouritePost(
       String userId,
-      String mediaType,
+      String media,
       String title,
       String mainText,
-      String date,
+      String relativeTime,
       String username,
       String mediaSourceLink) {
-    this(userId, mediaType, title, mainText, username, date);
+    this(userId, media, title, mainText, username, relativeTime);
     this.mediaSourceLink = mediaSourceLink;
   }
 
   // Github and Twitter
   public FavouritePost(
       String userId,
-      String mediaType,
+      String media,
       String title,
       String mainText,
       String username,
-      String date,
+      String relativeTime,
       String avatarLink,
       String mediaSourceLinkOrImageLink) {
-    this(userId, mediaType, title, mainText, username, date);
+    this(userId, media, title, mainText, username, relativeTime);
     this.avatarLink = avatarLink;
 
-    if (mediaType.contentEquals("github")) {
+    if (media.contentEquals("github")) {
       this.mediaSourceLink = mediaSourceLinkOrImageLink;
-    } else if (mediaType.contentEquals("twitter")) {
+    } else if (media.contentEquals("twitter")) {
       this.imageLink = mediaSourceLinkOrImageLink;
     }
   }
@@ -93,7 +93,7 @@ public class FavouritePost {
   }
 
   public String getDate() {
-    return date;
+    return relativeTime;
   }
 
   public String getMediaSourceLink() {
