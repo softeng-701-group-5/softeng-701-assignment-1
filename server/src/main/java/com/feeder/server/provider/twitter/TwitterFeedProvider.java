@@ -29,9 +29,6 @@ public class TwitterFeedProvider implements FeedProvider<TwitterData> {
 
   @Override
   public Flux<TwitterData> getFeed() {
-    // The endpoint that feeder uses to get twitter posts
-    // https://api.twitter.com/1.1/statuses/home_timeline
-    //  (from http://twitter4j.org/javadoc/twitter4j/api/TimelinesResources.html#getHomeTimeline--)
 
     // Gets the twitter posts from the user's home feed
     return Mono.fromCallable(() -> twitter.getHomeTimeline())
@@ -63,37 +60,7 @@ public class TwitterFeedProvider implements FeedProvider<TwitterData> {
                   .tweetPostDate(status.getCreatedAt())
                   .build();
             });
-
-    // NEW CHANGES
-    //      WebClient webClient = getWebClientBuilder().build();
-    //      return webClient
-    //              .get()
-    //              .uri(TWITTER_API_BASE_URL + "/statuses/home_timeline")
-    //              .headers(headers -> headers.setBearerAuth(""))
-    //              .exchange()
-    //              .map(response ->{
-    //                  TwitterData.Builder twitterBuilder = TwitterData.newBuilder();
-    //                  return twitterBuilder
-    //                      .tweet(response.)
-    //                      .profileUsername(status.getUser().getName())
-    //                      .profileImageURI(status.getUser().get400x400ProfileImageURL())
-    //                      .tweetPostDate(status.getCreatedAt())
-    //                      .build();
-    //              });
-
-    // tweet:text, profileUsername:user.name, profileimageuri:
-
   }
-
-  //    private WebClient.Builder getWebClientBuilder() {
-  //        if (this.webClientBuilder == null) {
-  //            this.webClientBuilder =
-  //                    WebClient.builder()
-  //                            .baseUrl(TWITTER_API_BASE_URL)
-  //                            .defaultHeader(HttpHeaders.AUTHORIZATION);
-  //        }
-  //        return this.webClientBuilder;
-  //    }
 
   ResponseList<Status> getLastResponse() {
     return lastResponse;
