@@ -8,7 +8,6 @@ import net.dean.jraw.models.Listing;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.pagination.Paginator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
@@ -20,9 +19,9 @@ import reactor.core.publisher.Flux;
 @Service
 public class RedditFeedProvider implements FeedProvider<RedditData> {
 
-  //private static final String REDDIT_API_BASE_URL = "https://oauth.reddit.com";
+  // private static final String REDDIT_API_BASE_URL = "https://oauth.reddit.com";
 
- @Autowired private RedditClient redditClient;
+  @Autowired private RedditClient redditClient;
 
   private WebClient.Builder webClientBuilder;
 
