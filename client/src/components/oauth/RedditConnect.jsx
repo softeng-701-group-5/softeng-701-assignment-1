@@ -3,7 +3,7 @@ import APPS from '../../configs/feedr-apps';
 import CookieManager from './CookieManager';
 import { Button, makeStyles } from '@material-ui/core';
 import { useEffect } from 'react';
-// import qs from 'querystring';
+import qs from 'querystring';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import classNames from 'classnames';
 
@@ -61,35 +61,36 @@ export const RedditConnect = props => {
   };
 
   // TODO: Whenver using the access token, first check the expires_at key of the cookie and refresh if needed
-  // const refreshReddit = () => {
-  //   const cookie = CookieManager.getUserToken(reddit.name);
-  //   const refreshToken = JSON.parse(cookie).refresh_token;
+  // eslint-disable-next-line
+  const refreshReddit = () => {
+    const cookie = CookieManager.getUserToken(reddit.name);
+    const refreshToken = JSON.parse(cookie).refresh_token;
 
-  //   fetch('/proxy/reddit/refresh', {
-  //     method: 'POST',
-  //     crossDomain: true,
-  //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-  //     body: qs.stringify({ refresh_token: refreshToken }),
-  //   })
-  //     .then(resp => resp.json())
-  //     .then(data => {
-  //       data.expires_at = new Date(
-  //         new Date().getTime() + data.expires_in * 1000
-  //       );
+    fetch('/proxy/reddit/refresh', {
+      method: 'POST',
+      crossDomain: true,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: qs.stringify({ refresh_token: refreshToken }),
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        data.expires_at = new Date(
+          new Date().getTime() + data.expires_in * 1000
+        );
 
-  //       // Refreshing the access_token doesn't return the refresh_token (which is permanent) with it, so add it
-  //       const newCookie = data;
-  //       newCookie.refresh_token = refreshToken;
+        // Refreshing the access_token doesn't return the refresh_token (which is permanent) with it, so add it
+        const newCookie = data;
+        newCookie.refresh_token = refreshToken;
 
-  //       CookieManager.setUserToken(newCookie, APPS.reddit.name);
+        CookieManager.setUserToken(newCookie, APPS.reddit.name);
 
-  //       // Probably don't need to check so thoroughly
-  //       const cookie = CookieManager.getUserToken(reddit.name);
-  //       setConnected(cookie !== null && cookie !== undefined);
-  //     });
+        // Probably don't need to check so thoroughly
+        const cookie = CookieManager.getUserToken(reddit.name);
+        setConnected(cookie !== null && cookie !== undefined);
+      });
 
-  //   // TODO: Handle errors returned from the above fetch
-  // };
+    // TODO: Handle errors returned from the above fetch
+  };
 
   // TODO: Prevent the need for manually refreshing the page after successfull authorization to see the token
   // TODO: Can probably pass in props or something to fix the above TODO

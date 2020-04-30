@@ -6,7 +6,8 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-
+import { userApi } from '../common/api';
+import { useAuth } from '../context/AuthContext';
 import { Icon } from '@material-ui/core';
 import classNames from 'classnames';
 import { RedditConnect, GithubConnect, TwitterConnect } from './oauth';
@@ -77,11 +78,17 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const IntegrationModal = props => {
+  const { googleUser } = useAuth();
+
   const classes = useStyles();
 
-  const handleOnClick = () => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleOnClick = React.useCallback(async () => {
+    const { googleId } = googleUser?.profileObj;
+    const response = await userApi.getToken(googleId);
+    console.log(response);
     props.handleCloseAuth();
-  };
+  });
 
   return (
     <Modal
