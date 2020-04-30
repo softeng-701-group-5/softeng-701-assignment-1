@@ -44,7 +44,6 @@ export const GithubConnect = props => {
   );
 
   useEffect(() => {
-    // TODO: Change this to actually work immediately after the user logs in (so that you don't need to refresh the page)
     const cookie = CookieManager.getUserToken(github.name);
     setConnected(cookie !== null && cookie !== undefined);
   }, []);
@@ -60,14 +59,18 @@ export const GithubConnect = props => {
     window.location = `${url}?client_id=${id}&redirect_uri=${redir}&scope=${scope}&state=${state}`;
   };
 
+  const disconnectGithub = () => {
+    CookieManager.removeUserToken(github.name);
+    window.location.reload();
+  };
+
   return (
     <div className={classes.github}>
       <Button
         className={classes.button}
-        onClick={connectGithub}
+        onClick={isConnected ? disconnectGithub : connectGithub}
         variant="contained"
       >
-        {' '}
         {isConnected ? 'Disconnect Github' : 'Connect to Github'}
       </Button>
       <CheckCircleRoundedIcon
@@ -76,7 +79,6 @@ export const GithubConnect = props => {
           isConnected ? classes.connected : classes.disconnected
         )}
       />
-      {/* {CookieManager.getUserToken(github.name)} */}
     </div>
   );
 };

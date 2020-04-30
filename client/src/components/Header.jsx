@@ -10,8 +10,6 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-// import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
 import ViewStreamRoundedIcon from '@material-ui/icons/ViewStreamRounded';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
@@ -47,6 +45,12 @@ export const Header = props => {
   const { signOut } = useAuth();
   const { googleUser } = useAuth();
   const [openAuthModal, setOpenAuthModal] = React.useState(false);
+
+  React.useEffect(() => {
+    if (window.location.href.includes('?oauth_token=')) {
+      handleOpenAuth();
+    }
+  });
 
   const handleClick = layoutSelected => {
     props.setLayout(layoutSelected);
@@ -98,13 +102,6 @@ export const Header = props => {
             open={openAuthModal}
             handleCloseAuth={handleCloseAuth}
           />
-          <IconButton
-            className={classes.headerButtons}
-            onClick={() => console.log('filter favorites')}
-          >
-            <FavoriteIcon />
-            {/* <FavoriteBorderIcon /> */}
-          </IconButton>
           <IconButton
             className={classes.headerButtons}
             onClick={() =>

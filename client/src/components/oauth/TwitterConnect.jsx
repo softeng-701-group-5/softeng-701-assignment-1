@@ -2,13 +2,20 @@ import React from 'react';
 import TwitterLogin from 'react-twitter-login';
 import APPS from '../../configs/feedr-apps';
 import CookieManager from './CookieManager';
-import { makeStyles } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 
 const twitter = APPS.twitter;
 
 const useStyles = makeStyles(theme => ({
+  button: {
+    color: 'white',
+    fontWeight: '600',
+    width: 116,
+    background: 'rgb(29, 161, 242)',
+    height: 47,
+  },
   twitter: {
     display: 'flex',
     flexDirection: 'column',
@@ -47,32 +54,42 @@ export const TwitterConnect = props => {
   const authHandler = (err, data) => {
     if (!err) {
       CookieManager.setUserToken(data, twitter.name);
-
-      // TODO: Get/update data shown on feed
     } else {
-      // TODO: Handle error
+      console.error();
     }
 
-    // Probably don't need to check so thoroughly
     const cookie = CookieManager.getUserToken(twitter.name);
     setConnected(cookie !== null && cookie !== undefined);
   };
 
+  const disconnectTwitter = () => {
+    CookieManager.removeUserToken(twitter.name);
+    window.location.reload();
+  };
+
   return (
-    /*!isConnected ?*/ <div className={classes.twitter}>
-      <TwitterLogin
-        authCallback={authHandler}
-        consumerKey={twitter.clientId}
-        consumerSecret={twitter.clientSecret}
-        buttonTheme="dark_short"
-      />
+    <div className={classes.twitter}>
+      {!isConnected ? (
+        <TwitterLogin
+          authCallback={authHandler}
+          consumerKey={twitter.clientId}
+          consumerSecret={twitter.clientSecret}
+          buttonTheme="dark_short"
+        />
+      ) : (
+        <Button
+          className={classes.button}
+          onClick={disconnectTwitter}
+          variant="contained"
+          children={'Disconnect Twitter'}
+        />
+      )}
       <CheckCircleRoundedIcon
         className={classNames(
           classes.checkIcon,
           isConnected ? classes.connected : classes.disconnected
         )}
       />
-      {/* {CookieManager.getUserToken(twitter.name)} */}
     </div>
   );
 };
