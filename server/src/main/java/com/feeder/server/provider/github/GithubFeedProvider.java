@@ -38,10 +38,10 @@ public class GithubFeedProvider implements FeedProvider<GithubData>{
   public Flux<GithubData> getFeed(String uid) {
     WebClient webClient = getWebClientBuilder().build();
 
-    setUserName();
-
     User user = userService.getUser(uid);
     AccessToken githubToken = user.getAccessTokenByApp(APP_TYPE);
+
+    setUserName(githubToken);
 
     return webClient
         .get()
@@ -56,12 +56,12 @@ public class GithubFeedProvider implements FeedProvider<GithubData>{
     return null;
   }
 
-  private void setUserName(){
+  private void setUserName(AccessToken githubToken){
     WebClient webClient = getWebClientBuilder().build();
 
     webClient.get()
             .uri("https://api.github.com/user")
-            .headers(headers -> headers.setBearerAuth("d285b57749d600825f438ebc57888222aced62bd"))
+            .headers(headers -> headers.setBearerAuth(githubToken.getToken()))
             .retrieve()
             .bodyToMono(String.class)
             .subscribe( value -> {
@@ -100,5 +100,4 @@ public class GithubFeedProvider implements FeedProvider<GithubData>{
     }
     return this.webClientBuilder;
   }
-
 }
