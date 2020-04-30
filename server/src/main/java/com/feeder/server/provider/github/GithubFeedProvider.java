@@ -38,7 +38,7 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
     WebClient webClient = getWebClientBuilder().build();
 
     User user = userService.getUser(uid);
-    AccessToken githubToken = user.getAccessTokenByApp(APP_TYPE);
+    AccessToken githubToken = user.getExistingAccessTokenByApp(APP_TYPE);
 
     setUserName(githubToken);
 
