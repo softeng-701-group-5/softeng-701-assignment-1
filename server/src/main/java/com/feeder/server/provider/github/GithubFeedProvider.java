@@ -2,7 +2,10 @@ package com.feeder.server.provider.github;
 
 import com.feeder.server.ApplicationProperties;
 import com.feeder.server.model.GithubData;
+import com.feeder.server.model.user.AccessToken;
+import com.feeder.server.model.user.User;
 import com.feeder.server.provider.FeedProvider;
+import com.feeder.server.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,42 +22,38 @@ import java.util.regex.Pattern;
  * page, using the Github API
  */
 @Service
-public class GithubFeedProvider implements FeedProvider<GithubData> {
+public class GithubFeedProvider implements FeedProvider<GithubData>{
 
   private static final String GITHUB_API_BASE_URL = "https://api.github.com";
   private static final String GITHUB_v3_MIME_TYPE = "application/vnd.github.v3+json";
+  private static final String APP_TYPE= "github";
   private static final Logger logger = LoggerFactory.getLogger(GithubFeedProvider.class);
 
   @Autowired ApplicationProperties applicationProperties;
+  @Autowired private UserService userService;
 
   private WebClient.Builder webClientBuilder;
   private String username;
 
-  @Override
-  public Flux<GithubData> getFeed() {
+  public Flux<GithubData> getFeed(String uid) {
     WebClient webClient = getWebClientBuilder().build();
 
-    // Need to get username to get the feed
-//    String apiEndpointReceivedEvents =
-//            "/users/" + applicationProperties.getGithubUsername() + "/received_events";
-//
-//    WebClient webClient = getWebClientBuilder().build();
-//
-//    // For each Github event retrieved, build the GithubData type
-//    return webClient
-//            .get()
-//            .uri(apiEndpointReceivedEvents)
-//            .exchange()
-//            .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
-
     setUserName();
+
+    User user = userService.getUser(uid);
+    AccessToken githubToken = user.getAccessTokenByApp(APP_TYPE);
 
     return webClient
         .get()
         .uri(GITHUB_API_BASE_URL + "/users/" + username + "/received_events" )
-        .headers(headers -> headers.setBearerAuth("d285b57749d600825f438ebc57888222aced62bd"))
+        .headers(headers -> headers.setBearerAuth(githubToken.getToken()))
         .exchange()
         .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
+  }
+
+  @Override
+  public Flux<GithubData> getFeed() {
+    return null;
   }
 
   private void setUserName(){
@@ -77,10 +76,6 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-  }
-
-  private void getGithubAccessToken(){
-
   }
 
   /**
@@ -106,19 +101,4 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
     return this.webClientBuilder;
   }
 
-//  private WebClient.Builder getWebClientBuilder() {
-//    if (this.webClientBuilder == null) {
-//      this.webClientBuilder =
-//              WebClient.builder()
-//                      .baseUrl(GITHUB_API_BASE_URL)
-//                      .defaultHeader(HttpHeaders.CONTENT_TYPE, GITHUB_v3_MIME_TYPE)
-//                      .defaultHeader(HttpHeaders.AUTHORIZATION)
-//                      .defaultHeaders(
-//                              httpHeaders ->
-//                                      httpHeaders.setBasicAuth(
-//                                              applicationProperties.getGithubUsername(),
-//                                              applicationProperties.getGithubPassword()));
-//    }
-//    return this.webClientBuilder;
-//  }
 }
