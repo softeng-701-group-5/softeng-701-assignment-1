@@ -34,12 +34,25 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
   public Flux<GithubData> getFeed() {
     WebClient webClient = getWebClientBuilder().build();
 
+    // Need to get username to get the feed
+//    String apiEndpointReceivedEvents =
+//            "/users/" + applicationProperties.getGithubUsername() + "/received_events";
+//
+//    WebClient webClient = getWebClientBuilder().build();
+//
+//    // For each Github event retrieved, build the GithubData type
+//    return webClient
+//            .get()
+//            .uri(apiEndpointReceivedEvents)
+//            .exchange()
+//            .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
+
     setUserName();
 
     return webClient
         .get()
         .uri(GITHUB_API_BASE_URL + "/users/" + username + "/received_events" )
-        .headers(headers -> headers.setBearerAuth("576d812d9921c20f4f829b0f6a35881e0ce23628"))
+        .headers(headers -> headers.setBearerAuth("d285b57749d600825f438ebc57888222aced62bd"))
         .exchange()
         .flatMapMany(clientResponse -> clientResponse.bodyToFlux(GithubData.class));
   }
@@ -49,7 +62,7 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
 
     webClient.get()
             .uri("https://api.github.com/user")
-            .headers(headers -> headers.setBearerAuth("576d812d9921c20f4f829b0f6a35881e0ce23628"))
+            .headers(headers -> headers.setBearerAuth("d285b57749d600825f438ebc57888222aced62bd"))
             .retrieve()
             .bodyToMono(String.class)
             .subscribe( value -> {
@@ -92,4 +105,20 @@ public class GithubFeedProvider implements FeedProvider<GithubData> {
     }
     return this.webClientBuilder;
   }
+
+//  private WebClient.Builder getWebClientBuilder() {
+//    if (this.webClientBuilder == null) {
+//      this.webClientBuilder =
+//              WebClient.builder()
+//                      .baseUrl(GITHUB_API_BASE_URL)
+//                      .defaultHeader(HttpHeaders.CONTENT_TYPE, GITHUB_v3_MIME_TYPE)
+//                      .defaultHeader(HttpHeaders.AUTHORIZATION)
+//                      .defaultHeaders(
+//                              httpHeaders ->
+//                                      httpHeaders.setBasicAuth(
+//                                              applicationProperties.getGithubUsername(),
+//                                              applicationProperties.getGithubPassword()));
+//    }
+//    return this.webClientBuilder;
+//  }
 }
