@@ -2,6 +2,7 @@ package com.feeder.server.controller;
 
 import com.feeder.server.model.*;
 import com.feeder.server.provider.FeedProvider;
+import com.feeder.server.provider.github.GithubFeedProvider;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
@@ -16,7 +17,7 @@ public class MultiFeedControllerIntegrationTest {
   // For now we mock all dependencies since they are not implemented
   @MockBean FeedProvider<RedditData> mockRedditFeedProvider;
   @MockBean FeedProvider<HackerNewsData> mockHackerNewsFeedProvider;
-  @MockBean FeedProvider<GithubData> mockGithubFeedProvider;
+  @MockBean GithubFeedProvider mockGithubFeedProvider;
   @MockBean FeedProvider<TwitterData> mockTwitterFeedProvider;
   @MockBean FeedProvider<WeatherData> mockWeatherFeedProvider;
   @MockBean FeedProvider<CovidNineteenData> mockCovidNineteenFeedProvider;
