@@ -86,7 +86,6 @@ export const IntegrationModal = props => {
   const handleOnClick = React.useCallback(async () => {
     const { googleId } = googleUser?.profileObj;
     const response = await userApi.getToken(googleId);
-    console.log(response);
     props.handleCloseAuth();
   });
 

@@ -81,7 +81,7 @@ export const TwitterConnect = props => {
           className={classes.button}
           onClick={disconnectTwitter}
           variant="contained"
-          children={'Disconnect Twitter'}
+          children={'Log Out'}
         />
       )}
       <CheckCircleRoundedIcon
