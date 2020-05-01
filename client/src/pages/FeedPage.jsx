@@ -185,6 +185,7 @@ export const FeedPage = () => {
         getTheme={theme}
       />
       {filterInit && <FilterBar setFilters={setFilters} />}
+
       <StackGrid
         columnWidth={300}
         gutterWidth={layout === 'grid' ? 20 : 300}
