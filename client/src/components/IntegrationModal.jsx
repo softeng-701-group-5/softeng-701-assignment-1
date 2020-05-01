@@ -85,6 +85,7 @@ export const IntegrationModal = props => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleOnClick = React.useCallback(async () => {
     const { googleId } = googleUser?.profileObj;
+    // eslint-disable-next-line
     const response = await userApi.getToken(googleId);
     props.handleCloseAuth();
   });
