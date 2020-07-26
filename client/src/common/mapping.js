@@ -1,7 +1,6 @@
 import moment from 'moment';
 
 export const mapFeedItem = item => {
-  // TODO: add support for hackernews feed
   switch (item.feedType) {
     case 'REDDIT':
       return mapRedditItem(item);

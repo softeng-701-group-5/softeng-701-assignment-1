@@ -5,7 +5,7 @@ exports[`<FeedPage /> matches snapshot 1`] = `
   className="makeStyles-root-1 makeStyles-lightTheme-8"
 >
   <header
-    className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4"
+    className="MuiPaper-root MuiAppBar-root MuiAppBar-positionSticky MuiAppBar-colorPrimary MuiPaper-elevation4"
     style={
       Object {
         "background": "#3d3fb3",
@@ -13,14 +13,28 @@ exports[`<FeedPage /> matches snapshot 1`] = `
     }
   >
     <div
-      className="MuiGrid-root makeStyles-appBar-10 MuiGrid-align-items-xs-center MuiGrid-justify-xs-space-between"
+      className="MuiGrid-root makeStyles-appBar-10"
     >
       <div
-        className="makeStyles-appBarContents-11"
+        className="makeStyles-appBarContentLeft-11"
       >
+        <div
+          className="MuiAvatar-root MuiAvatar-circle MuiAvatar-colorDefault"
+        >
+          <svg
+            aria-hidden="true"
+            className="MuiSvgIcon-root MuiAvatar-fallback"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+            />
+          </svg>
+        </div>
         <a
           aria-disabled={false}
-          className="MuiButtonBase-root MuiButton-root makeStyles-title-12"
+          className="MuiButtonBase-root MuiButton-root makeStyles-headerButtons-13"
           href="/"
           onBlur={[Function]}
           onClick={[Function]}
@@ -39,15 +53,13 @@ exports[`<FeedPage /> matches snapshot 1`] = `
         >
           <span
             className="MuiButton-label"
-          >
-            Feedr
-          </span>
+          />
         </a>
         <div
-          className="makeStyles-search-189"
+          className="makeStyles-search-205"
         >
           <div
-            className="makeStyles-searchIcon-190"
+            className="makeStyles-searchIcon-206"
           >
             <svg
               aria-hidden="true"
@@ -61,35 +73,35 @@ exports[`<FeedPage /> matches snapshot 1`] = `
             </svg>
           </div>
           <div
-            className="MuiInputBase-root makeStyles-inputRoot-191 MuiInputBase-fullWidth"
+            className="MuiInputBase-root makeStyles-inputRoot-207 MuiInputBase-fullWidth"
             onClick={[Function]}
           >
             <input
               aria-label="search"
-              className="MuiInputBase-input makeStyles-inputInput-192 MuiInputBase-inputTypeSearch"
+              className="MuiInputBase-input makeStyles-inputInput-208 MuiInputBase-inputTypeSearch"
               id="search"
               onAnimationStart={[Function]}
               onBlur={[Function]}
               onChange={[Function]}
               onFocus={[Function]}
-              placeholder="Search Content"
+              placeholder="Search"
               type="search"
             />
           </div>
         </div>
       </div>
       <div
-        className="makeStyles-appBarContents-11"
+        className="makeStyles-appBarContentRight-12"
       >
         <label
-          className="MuiFormControlLabel-root"
+          className="MuiFormControlLabel-root makeStyles-headerButtons-13"
         >
           <span
             className="MuiSwitch-root"
           >
             <span
               aria-disabled={false}
-              className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-238 MuiSwitch-switchBase MuiSwitch-colorSecondary"
+              className="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-245 MuiSwitch-switchBase MuiSwitch-colorSecondary"
               onBlur={[Function]}
               onDragLeave={[Function]}
               onFocus={[Function]}
@@ -108,7 +120,7 @@ exports[`<FeedPage /> matches snapshot 1`] = `
               >
                 <input
                   checked={false}
-                  className="PrivateSwitchBase-input-241 MuiSwitch-input"
+                  className="PrivateSwitchBase-input-248 MuiSwitch-input"
                   onChange={[Function]}
                   type="checkbox"
                 />
@@ -153,6 +165,72 @@ exports[`<FeedPage /> matches snapshot 1`] = `
               viewBox="0 0 24 24"
             >
               <path
+                d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+              />
+            </svg>
+          </span>
+        </button>
+        <button
+          className="MuiButtonBase-root MuiIconButton-root makeStyles-headerButtons-13"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiIconButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+              />
+            </svg>
+          </span>
+        </button>
+        <button
+          className="MuiButtonBase-root MuiIconButton-root makeStyles-headerButtons-13"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiIconButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
                 d="M5 18h15c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zM4 6v4c0 .55.45 1 1 1h15c.55 0 1-.45 1-1V6c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1z"
               />
             </svg>
@@ -160,7 +238,7 @@ exports[`<FeedPage /> matches snapshot 1`] = `
         </button>
         <a
           aria-disabled={false}
-          className="MuiButtonBase-root MuiIconButton-root makeStyles-headerButtons-13 MuiIconButton-colorInherit"
+          className="MuiButtonBase-root MuiIconButton-root makeStyles-headerButtons-13"
           href="/"
           onBlur={[Function]}
           onClick={[Function]}

@@ -10,13 +10,14 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
 import ViewStreamRoundedIcon from '@material-ui/icons/ViewStreamRounded';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+
 import { SearchBox } from './SearchBox';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import { IntegrationModal } from './IntegrationModal';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -43,8 +44,24 @@ export const Header = props => {
   const classes = useStyles();
   const { signOut } = useAuth();
   const { googleUser } = useAuth();
+  const [openAuthModal, setOpenAuthModal] = React.useState(false);
+
+  React.useEffect(() => {
+    if (window.location.href.includes('?oauth_token=')) {
+      handleOpenAuth();
+    }
+  });
+
   const handleClick = layoutSelected => {
     props.setLayout(layoutSelected);
+  };
+
+  const handleOpenAuth = () => {
+    setOpenAuthModal(true);
+  };
+
+  const handleCloseAuth = () => {
+    setOpenAuthModal(false);
   };
 
   return (
@@ -74,17 +91,17 @@ export const Header = props => {
             control={<Switch onChange={() => props.toggleTheme()} />}
           />
           <IconButton
+            onClick={handleOpenAuth}
+            color="inherit"
             className={classes.headerButtons}
-            onClick={() =>
-              handleClick(props.layout === 'grid' ? 'row' : 'grid')
-            }
           >
-            {props.layout === 'grid' ? (
-              <FavoriteIcon />
-            ) : (
-              <FavoriteBorderIcon />
-            )}
+            <VpnKeyIcon />
           </IconButton>
+          <IntegrationModal
+            theme={props.getTheme}
+            open={openAuthModal}
+            handleCloseAuth={handleCloseAuth}
+          />
           <IconButton
             className={classes.headerButtons}
             onClick={() =>

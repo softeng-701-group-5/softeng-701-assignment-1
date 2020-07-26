@@ -2,10 +2,41 @@ import React from 'react';
 import APPS from '../../configs/feedr-apps';
 import CookieManager from './CookieManager';
 import { useEffect } from 'react';
+import { Button, makeStyles } from '@material-ui/core';
+import classNames from 'classnames';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 
 const github = APPS.github;
 
+const useStyles = makeStyles(theme => ({
+  button: {
+    color: 'white',
+    fontWeight: '600',
+    backgroundColor: '#28a745',
+    backgroundImage: 'linear-gradient(-180deg, #34d058, #28a745 90%)',
+    border: '1px solid rgba(27, 31, 35, 0.2)',
+    borderRadius: '.25em',
+    height: 47,
+  },
+  github: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  checkIcon: {
+    fontSize: '48px',
+    marginTop: '10px',
+  },
+  connected: {
+    color: '#00E500',
+  },
+  disconnected: {
+    color: 'gray',
+  },
+}));
+
 export const GithubConnect = props => {
+  const classes = useStyles();
   const cookie = CookieManager.getUserToken(github.name);
 
   const [isConnected, setConnected] = React.useState(
@@ -13,7 +44,6 @@ export const GithubConnect = props => {
   );
 
   useEffect(() => {
-    // TODO: Change this to actually work immediately after the user logs in (so that you don't need to refresh the page)
     const cookie = CookieManager.getUserToken(github.name);
     setConnected(cookie !== null && cookie !== undefined);
   }, []);
@@ -29,15 +59,26 @@ export const GithubConnect = props => {
     window.location = `${url}?client_id=${id}&redirect_uri=${redir}&scope=${scope}&state=${state}`;
   };
 
-  return !isConnected ? (
-    <div>
-      <button onClick={connectGithub}>LOGIN TO GITHUB</button>
-    </div>
-  ) : (
-    // TODO: Change this into a disconnect button
-    <div>
-      <h1>CONNECTED TO GITHUB!!!</h1>
-      <h4>COOKIE = {CookieManager.getUserToken(github.name)}</h4>
+  const disconnectGithub = () => {
+    CookieManager.removeUserToken(github.name);
+    window.location.reload();
+  };
+
+  return (
+    <div className={classes.github}>
+      <Button
+        className={classes.button}
+        onClick={isConnected ? disconnectGithub : connectGithub}
+        variant="contained"
+      >
+        {isConnected ? 'Disconnect Github' : 'Connect to Github'}
+      </Button>
+      <CheckCircleRoundedIcon
+        className={classNames(
+          classes.checkIcon,
+          isConnected ? classes.connected : classes.disconnected
+        )}
+      />
     </div>
   );
 };
