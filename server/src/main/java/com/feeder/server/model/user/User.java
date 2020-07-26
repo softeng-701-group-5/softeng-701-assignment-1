@@ -58,10 +58,17 @@ public class User {
 
   public void updateAccessToken(AccessToken accessToken) {
     String appType = accessToken.getApp();
+    if (getExistingAccessTokenByApp(appType) != null) {
+      getExistingAccessTokenByApp(appType).setToken(accessToken.getToken());
+    }
+  }
+
+  public AccessToken getExistingAccessTokenByApp(String appType) {
     for (AccessToken token : accessTokens) {
       if (token.getApp().equals(appType)) {
-        token.setToken(accessToken.getToken());
+        return token;
       }
     }
+    return null;
   }
 }

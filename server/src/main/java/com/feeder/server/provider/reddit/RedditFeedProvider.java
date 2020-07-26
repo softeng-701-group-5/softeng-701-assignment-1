@@ -19,7 +19,7 @@ import reactor.core.publisher.Flux;
 @Service
 public class RedditFeedProvider implements FeedProvider<RedditData> {
 
-  private static final String REDDIT_API_BASE_URL = "https://oauth.reddit.com";
+  // private static final String REDDIT_API_BASE_URL = "https://oauth.reddit.com";
 
   @Autowired private RedditClient redditClient;
 
@@ -27,14 +27,6 @@ public class RedditFeedProvider implements FeedProvider<RedditData> {
 
   @Override
   public Flux<RedditData> getFeed() {
-    // NEW CHANGES
-    //    WebClient webClient = getWebClientBuilder().build();
-    //    return webClient
-    //        .get()
-    //        .uri(REDDIT_API_BASE_URL + "/hot?limit=25&sort=hot&raw_json=1")
-    //        .headers(headers -> headers.setBearerAuth("Add access token"))
-    //        .retrieve()
-    //        .bodyToFlux(RedditData.class);
 
     Paginator paginator = redditClient.frontPage().build();
 
@@ -58,14 +50,4 @@ public class RedditFeedProvider implements FeedProvider<RedditData> {
 
     return redditDataFlux;
   }
-
-  // NEW CHANGES
-  //  private WebClient.Builder getWebClientBuilder() {
-  //    if (this.webClientBuilder == null) {
-  //      this.webClientBuilder =
-  //
-  // WebClient.builder().baseUrl(REDDIT_API_BASE_URL).defaultHeader(HttpHeaders.AUTHORIZATION);
-  //    }
-  //    return this.webClientBuilder;
-  //  }
 }
