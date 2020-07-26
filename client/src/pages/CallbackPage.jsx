@@ -39,9 +39,7 @@ export const CallbackPage = props => {
           );
           CookieManager.setUserToken(data, APPS.reddit.name);
         })
-        .then(props.history.push('/connect'));
-
-      // TODO: Handle errors returned from the above fetch
+        .then(props.history.push('/'));
     }
 
     /**
@@ -65,9 +63,7 @@ export const CallbackPage = props => {
         .then(data =>
           CookieManager.setUserToken(parseUrlQuery(data), APPS.github.name)
         )
-        .then(props.history.push('/connect'));
-
-      // TODO: Handle errors returned from the above fetch
+        .then(props.history.push('/'));
     }
   });
 

@@ -41,6 +41,11 @@ const userApi = {
       body: user,
     });
   },
+  getToken: async id => {
+    await client(`/user/${id}/token`, {
+      method: 'PUT',
+    });
+  },
 };
 
 export { feedApi, userApi };

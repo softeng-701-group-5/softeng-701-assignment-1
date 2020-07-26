@@ -2,10 +2,39 @@ import React from 'react';
 import TwitterLogin from 'react-twitter-login';
 import APPS from '../../configs/feedr-apps';
 import CookieManager from './CookieManager';
+import { Button, makeStyles } from '@material-ui/core';
+import classNames from 'classnames';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 
 const twitter = APPS.twitter;
 
+const useStyles = makeStyles(theme => ({
+  button: {
+    color: 'white',
+    fontWeight: '600',
+    width: 116,
+    background: 'rgb(29, 161, 242)',
+    height: 47,
+  },
+  twitter: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  checkIcon: {
+    fontSize: '48px',
+    marginTop: '10px',
+  },
+  connected: {
+    color: '#00E500',
+  },
+  disconnected: {
+    color: 'gray',
+  },
+}));
+
 export const TwitterConnect = props => {
+  const classes = useStyles();
   const cookie = CookieManager.getUserToken(twitter.name);
 
   const [isConnected, setConnected] = React.useState(
@@ -21,32 +50,46 @@ export const TwitterConnect = props => {
       "screen_name": "xxxxxxxxxxxxxx"
     }
   */
+
   const authHandler = (err, data) => {
     if (!err) {
       CookieManager.setUserToken(data, twitter.name);
-
-      // TODO: Get/update data shown on feed
     } else {
-      // TODO: Handle error
+      console.error();
     }
 
-    // Probably don't need to check so thoroughly
     const cookie = CookieManager.getUserToken(twitter.name);
     setConnected(cookie !== null && cookie !== undefined);
   };
 
-  return !isConnected ? (
-    <TwitterLogin
-      authCallback={authHandler}
-      consumerKey={twitter.clientId}
-      consumerSecret={twitter.clientSecret}
-      buttonTheme="light_short"
-    />
-  ) : (
-    // TODO: Change this into a disconnect button
-    <div>
-      <h1>CONNECTED TO TWITTER!!!</h1>
-      <h4>COOKIE = {CookieManager.getUserToken(twitter.name)}</h4>
+  const disconnectTwitter = () => {
+    CookieManager.removeUserToken(twitter.name);
+    window.location.reload();
+  };
+
+  return (
+    <div className={classes.twitter}>
+      {!isConnected ? (
+        <TwitterLogin
+          authCallback={authHandler}
+          consumerKey={twitter.clientId}
+          consumerSecret={twitter.clientSecret}
+          buttonTheme="dark_short"
+        />
+      ) : (
+        <Button
+          className={classes.button}
+          onClick={disconnectTwitter}
+          variant="contained"
+          children={'Log Out'}
+        />
+      )}
+      <CheckCircleRoundedIcon
+        className={classNames(
+          classes.checkIcon,
+          isConnected ? classes.connected : classes.disconnected
+        )}
+      />
     </div>
   );
 };
